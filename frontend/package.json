@@ -22,21 +22,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "prettier"
-    ],
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error"
-      ]
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -68,11 +53,5 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "prettier": {
-    "tabWidth": 2,
-    "semi": true,
-    "singleQuote": false,
-    "trailingComma": "es5"
   }
 }
