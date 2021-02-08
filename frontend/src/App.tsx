@@ -1,5 +1,6 @@
 import Header from "components/Header";
 import { SideMenu } from "components/SideMenu";
+import VideoContainer from "components/VideoContainer";
 import "styles/App.scss";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <Header />
       <main>
         <SideMenu />
+        <VideoContainer />
       </main>
       <nav className="overlay"></nav>
     </div>
