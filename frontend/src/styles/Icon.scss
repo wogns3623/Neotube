@@ -2,12 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  fill: white;
 
   & > svg {
     pointer-events: none;
     display: block;
     width: 100%;
     height: 100%;
-    fill: white;
+    fill: inherit;
   }
 }

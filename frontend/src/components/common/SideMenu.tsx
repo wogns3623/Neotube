@@ -3,8 +3,8 @@ import Menu from "components/common/Menu";
 import Icon from "components/common/Icon";
 import "styles/SideMenu.scss";
 
-type Props = { className?: string; id?: string };
-const SideMenuHeader = ({ className, id }: Props) => {
+type SideMenuHeaderProps = { className?: string; id?: string };
+const SideMenuHeader = ({ className, id }: SideMenuHeaderProps) => {
   return (
     <Menu id={id} className={`SideMenu-header ${className}`}>
       <Icon className="Icon-menu">
@@ -88,8 +88,285 @@ SideMenuHeader.defaultProps = {
   id: "",
 };
 
-const SideMenu = () => {
-  return <div className="SideMenu"></div>;
+type SideMenuItemProps = {
+  desc: string;
+  href: string;
+  className?: string;
+  children?: React.ReactNode;
+  hasNotification?: boolean;
+};
+const SideMenuItem = ({
+  desc,
+  href,
+  className,
+  children,
+  hasNotification,
+}: SideMenuItemProps) => {
+  // children: image | svg icon
+  // desc: channel name | 홈, 인기, 구독 등
+  return (
+    <div className={`MenuItem ${className}`}>
+      <a href={href}>
+        <Menu className="item-wrapper">
+          <Icon>{children}</Icon>
+          <div className="desc">{desc}</div>
+        </Menu>
+        <div className={`notificator ${hasNotification ? "active" : ""}`} />
+      </a>
+    </div>
+  );
+};
+SideMenuItem.defaultProps = {
+  href: "",
+  className: "",
+  hasNotification: false,
 };
 
-export { SideMenu, SideMenuHeader };
+const SideMenu = () => {
+  return (
+    <div className="SideMenu">
+      <Menu className="general" direction="column">
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+      </Menu>
+      <Menu className="personal" direction="column">
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+      </Menu>
+      <Menu className="subscribe" direction="column">
+        <div className="menu-desc">구독</div>
+        <SideMenuItem desc="홈" hasNotification={true}>
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈" hasNotification={true}>
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈" hasNotification={true}>
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+      </Menu>
+      <Menu className="setting" direction="column">
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+        <SideMenuItem desc="홈">
+          <svg
+            viewBox="0 0 24 24"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <g>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+            </g>
+          </svg>
+        </SideMenuItem>
+      </Menu>
+    </div>
+  );
+};
+
+export { SideMenuHeader, SideMenuItem, SideMenu };
