@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Icon from "components/common/Icon";
 import "styles/SearchBar.scss";
 
 const SearchBar = () => {
@@ -14,14 +15,16 @@ const SearchBar = () => {
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         ></input>
-        <button type="button" className="virtual-keyboard">
+
+        <Icon className="Icon-vkb">
           <img
             src="https://www.gstatic.com/inputtools/images/tia.png"
             alt="virtual keyboard"
           />
-        </button>
+        </Icon>
       </div>
-      <button type="submit" className="submit">
+
+      <Icon className="Icon-submit">
         <svg
           viewBox="0 0 24 24"
           preserveAspectRatio="xMidYMid meet"
@@ -35,7 +38,7 @@ const SearchBar = () => {
             ></path>
           </g>
         </svg>
-      </button>
+      </Icon>
     </form>
   );
 };

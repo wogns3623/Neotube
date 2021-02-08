@@ -4,13 +4,6 @@
   display: flex;
   color: white;
 
-  input,
-  button {
-    background: none;
-    border: none;
-    outline: none;
-  }
-
   .input-box {
     flex: 1 1 auto;
     display: flex;
@@ -20,12 +13,15 @@
     border-right: none;
 
     input[type="text"] {
+      background: none;
+      border: none;
+      outline: none;
       flex: 1 1 auto;
       color: inherit;
     }
   }
 
-  button.submit {
+  .Icon-submit {
     width: 65px;
     display: flex;
     align-items: center;

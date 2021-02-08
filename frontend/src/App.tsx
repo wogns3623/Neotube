@@ -1,4 +1,4 @@
-import { Header } from "components/common/Header";
+import Header from "components/common/Header";
 import "styles/App.scss";
 
 function App() {
