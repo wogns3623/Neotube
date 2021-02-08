@@ -1,6 +1,6 @@
 import React from "react";
-import Menu from "components/common/Menu";
-import Icon from "components/common/Icon";
+import Menu from "components/Menu";
+import Icon from "components/Icon";
 import "styles/SideMenu.scss";
 
 type SideMenuHeaderProps = { className?: string; id?: string };
@@ -364,6 +364,21 @@ const SideMenu = () => {
             </g>
           </svg>
         </SideMenuItem>
+      </Menu>
+      <Menu className="footer" direction="column">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a ligula
+          interdum, malesuada augue eu, ultrices tortor. Etiam a laoreet ex, id
+          hendrerit dui.
+        </p>
+        <p>
+          Cras ornare cursus mi et accumsan. Integer ut nisl scelerisque tortor
+          lobortis varius vitae ut urna. Curabitur vestibulum elit at ante
+          dapibus, in ullamcorper est auctor.
+        </p>
+        <p>
+          Nullam at rhoncus est, mattis venenatis enim. Nulla eu finibus eros.
+        </p>
       </Menu>
     </div>
   );

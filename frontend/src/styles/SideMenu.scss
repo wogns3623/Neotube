@@ -23,9 +23,8 @@
 
   a {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 192px;
     height: 100%;
     padding: 0 24px;
     color: inherit;
@@ -79,11 +78,13 @@
 
   overflow: hidden;
   &:hover {
-    overflow: auto;
+    overflow: overlay;
   }
   overscroll-behavior-y: contain;
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
+    z-index: 20;
+
     &-track {
       background-color: none;
     }
@@ -107,6 +108,17 @@
       margin: 0 24px;
       display: flex;
       align-items: center;
+    }
+  }
+
+  .footer {
+    color: #aaaaaa;
+
+    p {
+      margin: 5px 24px;
+      &:last-child {
+        color: #717171;
+      }
     }
   }
 }

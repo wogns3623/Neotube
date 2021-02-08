@@ -1,8 +1,8 @@
 import React from "react";
-import Menu from "components/common/Menu";
-import SearchBar from "components/common/Header/SearchBar";
-import { SideMenuHeader } from "components/common/SideMenu";
-import Icon from "components/common/Icon";
+import Menu from "components/Menu";
+import SearchBar from "components/Header/SearchBar";
+import { SideMenuHeader } from "components/SideMenu";
+import Icon from "components/Icon";
 
 import "styles/Header.scss";
 

@@ -1,5 +1,5 @@
-import Header from "components/common/Header";
-import { SideMenu } from "components/common/SideMenu";
+import Header from "components/Header";
+import { SideMenu } from "components/SideMenu";
 import "styles/App.scss";
 
 function App() {
