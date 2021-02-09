@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from backend.Neotube.watch.models import Video
+from watch.models import Video
 
 
 # Create your views here.
