@@ -100,10 +100,10 @@ DATABASES = {
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = [
-    'google.com',
-    'www.neotube.kro.kr',
-    'www.neotubei.kro.kr',
-    'localhost:80'
+    'https://www.google.com',
+    'http://www.neotube.kro.kr',
+    'http://www.neotubei.kro.kr',
+    'http://localhost:80'
 ]
 
 # Password validation
