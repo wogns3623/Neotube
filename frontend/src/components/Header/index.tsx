@@ -72,7 +72,7 @@ const Header = (props: HeaderProps) => {
               />
             </Icon>
           ) : (
-            <a href="http://www.neotubei.kro.kr/accounts/google/login">
+            <a href="http://www.neotubei.kro.kr/accounts/google/login/">
               로그인
             </a>
           )}

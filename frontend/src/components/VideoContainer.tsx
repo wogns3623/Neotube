@@ -102,7 +102,7 @@ const VideoContainer = ({ videoList }: VideoContainerProps) => {
       setTimeout(() => {
         setLoadVideo(false);
         // setVideoData(videoData + 30);
-        // axios.get("http://www.neotubei.kro.kr/neotubei/v1/browse");
+        // axios.get("http://www.neotubei.kro.kr/neotubei/v1/browse/");
       }, 1000);
     }
   }, [loadVideo]);
