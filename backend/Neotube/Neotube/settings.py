@@ -26,7 +26,7 @@ SECRET_KEY = 'btlcj$yttyc%y5t*0e&=(!)3hzx=1g&9xljw-@=y@tvdj_a6fs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.neotubei.kro.kr', '54.180.120.99']
 
 
 # Application definition
@@ -96,6 +96,8 @@ DATABASES = {
     }
 }
 
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
