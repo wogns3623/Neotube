@@ -26,8 +26,9 @@ SECRET_KEY = 'btlcj$yttyc%y5t*0e&=(!)3hzx=1g&9xljw-@=y@tvdj_a6fs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.neotubei.kro.kr', '54.180.120.99']
-
+ALLOWED_HOSTS = ['www.neotubei.kro.kr', 'www.neotube.kro.kr'
+                 '54.180.120.99', '127.0.0.1', 'localhost']
+# ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -40,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    ## third app
+    # third app
     'rest_framework',
     'rest_framework.authtoken',
     'allauth',
@@ -49,7 +50,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'corsheaders',
 
-    ## user app
+    # user app
     'guide',
     'feed',
     'watch',
@@ -71,8 +72,7 @@ ROOT_URLCONF = 'Neotube.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,13 +98,17 @@ DATABASES = {
     }
 }
 
+
+# CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = [
-    'https://www.google.com',
-    'http://www.neotube.kro.kr',
+    # 허용할 프론트엔드 도메인 추가 EX:
+    'http://127.0.0.1:8000',
+    'http://localhost:3000',
     'http://www.neotubei.kro.kr',
-    'http://localhost:80'
+    'http://www.neotube.kro.kr',
 ]
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -146,8 +150,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
 
 
 # Static files (CSS, JavaScript, Images)
