@@ -1,20 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import Icon from "components/Icon";
 import "styles/SearchBar.scss";
 
 const SearchBar = () => {
-  const [isFocused, setIsFocused] = useState<boolean>(false);
-  // const;
-
   return (
     <form className="SearchBar">
-      <div className={"input-box" + (isFocused ? " focused" : "")}>
-        <input
-          type="text"
-          placeholder="검색"
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-        ></input>
+      <div className={"input-box"}>
+        <input type="text" placeholder="검색"></input>
 
         <Icon className="Icon-vkb">
           <img

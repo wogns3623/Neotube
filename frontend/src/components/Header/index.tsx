@@ -6,7 +6,16 @@ import Icon from "components/Icon";
 
 import "styles/Header.scss";
 
-const Header = () => {
+type UserInfo = {
+  username: string | null;
+  img: string | null;
+};
+
+interface HeaderProps {
+  userInfo: UserInfo;
+}
+
+const Header = (props: HeaderProps) => {
   return (
     <header>
       <Menu className="menu-header">
@@ -53,15 +62,20 @@ const Header = () => {
             </svg>
           </Icon>
 
-          <Icon className="Icon-user">
-            <img
-              id="img"
-              alt="아바타 이미지"
-              height="32"
-              width="32"
-              src="https://yt3.ggpht.com/yti/ANoDKi6HMb1FNrJvFtJokdH7VP_xTjFd-nTOljMuAw=s88-c-k-c0x00ffffff-no-rj-mo"
-            />
-          </Icon>
+          {props.userInfo.username !== null ? (
+            <Icon className="Icon-user">
+              <img
+                alt="아바타 이미지"
+                height="32"
+                width="32"
+                src={props.userInfo.img as string}
+              />
+            </Icon>
+          ) : (
+            <a href="http://www.neotubei.kro.kr/accounts/google/login">
+              로그인
+            </a>
+          )}
         </Menu>
       </Menu>
     </header>

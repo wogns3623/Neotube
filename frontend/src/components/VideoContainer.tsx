@@ -1,73 +1,121 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "styles/VideoContainer.scss";
 
-// type VideoData = {
-//   channel: string;
-//   title: string;
-//   thumbnail: string;
-//   runtine: number;
-//   views: number;
-//   create_at: Date;
-// };
-
-// let videoData = {
-//   video: [
-//     {
-//       channel: "junsu",
-//       title: "[상여자] 라이벌",
-//       video: "video/2021/10/02/05/21/상여자_라이벌.mp4",
-//       thumbnail: "thumbnail/2021/10/02/05/21/fiveDice.png",
-//       runtime: 192,
-//       views: 1,
-//       create_at: "2021년 2월 5일 1:10 오전",
-//     },
-//   ],
-//   user: { username: null, img: null },
-// };
-
-const VideoBox = () => {
-  return <div className="video-box"></div>;
+type VideoData = {
+  channel: string;
+  title: string;
+  video: string;
+  thumbnail: string;
+  runtime: number;
+  views: number;
+  create_at: string;
 };
 
-type Props = {
+interface VideoBoxProps {
+  videoData: VideoData;
+}
+
+const VideoBox = ({ videoData }: VideoBoxProps) => {
+  const {
+    channel,
+    title,
+    video,
+    thumbnail,
+    runtime,
+    views,
+    create_at,
+  } = videoData;
+  return (
+    <div className="video-box">
+      <a href={video}>
+        <div className="thumbnail">
+          <img alt={title} src={thumbnail} />
+          <div className="runtime">{runtime}</div>
+        </div>
+        <div className="detail">
+          <div className="channel-icon"></div>
+          <div className="meta">
+            <div className="title">{title}</div>
+            <div className="channel-name">{channel}</div>
+            <div className="etc">
+              <div className="views">{views}</div>
+              <div className="created">{create_at}</div>
+            </div>
+          </div>
+          <div className="menu"></div>
+        </div>
+      </a>
+    </div>
+  );
+};
+
+interface VideoSectionProps {
   children: React.ReactNode;
   className?: string;
-};
-const VideoSection = ({ children, className }: Props) => {
+}
+const VideoSection = ({ children, className }: VideoSectionProps) => {
   return <section className={`video-section ${className}`}>{children}</section>;
 };
 VideoSection.defaultProps = {
   className: "",
 };
 
-const VideoContainer = () => {
-  const [loadVideo, setLoadVideo] = useState(false);
-  const [videoData, setVideoData] = useState(30);
+interface VideoContainerProps {
+  videoList: VideoData[];
+}
 
-  // useEffect(() => {
-  //   window.addEventListener("scroll", () => {
-  //     console.log(document.documentElement.offsetHeight;
-  //   });
-  // });
+const VideoContainer = ({ videoList }: VideoContainerProps) => {
+  const [loadVideo, setLoadVideo] = useState(false);
 
   useEffect(() => {
+    // add scroll event to VideoContainer
+    console.log("add event listener");
+
+    let infiScrollEvent = (event: Event): void => {
+      let element = document.getElementsByClassName(
+        "VideoContainer"
+      )[0] as HTMLElement;
+
+      let threshold = 100;
+
+      let elementHeight =
+        element.offsetHeight +
+        element.offsetTop -
+        document.documentElement.clientHeight;
+
+      console.log(elementHeight, window.scrollY);
+
+      if (window.scrollY > elementHeight - threshold) setLoadVideo(true);
+    };
+
+    window.addEventListener("scroll", infiScrollEvent);
+
+    return () => {
+      window.removeEventListener("scroll", infiScrollEvent);
+    };
+  }, []);
+
+  useEffect(() => {
+    // load additional video after scroll event
     if (loadVideo === true) {
       setTimeout(() => {
         setLoadVideo(false);
-        setVideoData(videoData + 30);
+        // setVideoData(videoData + 30);
+        // axios.get("http://www.neotubei.kro.kr/neotubei/v1/browse");
       }, 1000);
     }
-  });
+  }, [loadVideo]);
 
-  let videos = [];
+  let videoBoxes = [];
 
-  for (let i = 0; i < videoData; i++) {
-    videos.push(<VideoBox></VideoBox>);
+  for (let i = 0; i < videoList.length; i++) {
+    videoBoxes.push(<VideoBox videoData={videoList[i]}></VideoBox>);
   }
 
   return (
     <div className="VideoContainer">
-      <VideoSection>{videos}</VideoSection>
+      <VideoSection>{videoBoxes}</VideoSection>
       <div className={`spinner ${loadVideo ? "active" : ""}`}>
         it's spinner!
       </div>
