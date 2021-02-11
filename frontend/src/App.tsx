@@ -16,7 +16,7 @@ function App() {
     console.log("get guide data");
     axios.get("http://www.neotubei.kro.kr/neotubei/v1/guide/").then((res) => {
       console.log(res.data);
-      // setGuide(JSON.parse(res.data));
+      setGuide(res.data);
     });
   }, []);
 
