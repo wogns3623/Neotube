@@ -12,10 +12,11 @@ type UserInfo = {
 };
 
 interface HeaderProps {
-  userInfo: UserInfo;
+  userInfo: UserInfo | undefined;
 }
 
 const Header = (props: HeaderProps) => {
+  console.log(props.userInfo);
   return (
     <header>
       <Menu className="menu-header">
@@ -62,7 +63,7 @@ const Header = (props: HeaderProps) => {
             </svg>
           </Icon>
 
-          {props.userInfo.username !== null ? (
+          {props.userInfo !== undefined ? (
             <Icon className="Icon-user">
               <img
                 alt="아바타 이미지"
@@ -72,7 +73,7 @@ const Header = (props: HeaderProps) => {
               />
             </Icon>
           ) : (
-            <a href="http://www.neotubei.kro.kr/accounts/google/login">
+            <a href="http://www.neotubei.kro.kr/accounts/google/login/">
               로그인
             </a>
           )}

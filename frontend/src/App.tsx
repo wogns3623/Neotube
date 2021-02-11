@@ -8,17 +8,16 @@ import "styles/App.scss";
 function App() {
   const [guide, setGuide] = useState({
     video: [],
-    user: { username: null, img: null },
+    user: undefined,
   });
+
   useEffect(() => {
-    // load video
-    if (guide.video.length === 0) {
-      // after mount
-      console.log("get guide data");
-      axios.get("http://www.neotubei.kro.kr/neotubei/v1/guide").then((res) => {
-        setGuide(res.data);
-      });
-    }
+    // load video after mount
+    console.log("get guide data");
+    axios.get("http://www.neotubei.kro.kr/neotubei/v1/guide/").then((res) => {
+      console.log(res.data);
+      setGuide(res.data);
+    });
   }, []);
 
   return (
