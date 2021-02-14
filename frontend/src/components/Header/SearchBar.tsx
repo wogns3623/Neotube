@@ -1,5 +1,5 @@
 import React from "react";
-import Icon from "components/Icon";
+import { Icon } from "components/Icon";
 import "styles/SearchBar.scss";
 
 const SearchBar = () => {
@@ -8,7 +8,7 @@ const SearchBar = () => {
       <div className={"input-box"}>
         <input type="text" placeholder="검색"></input>
 
-        <Icon className="Icon-vkb">
+        <Icon className="vkb">
           <img
             src="https://www.gstatic.com/inputtools/images/tia.png"
             alt="virtual keyboard"
@@ -16,7 +16,7 @@ const SearchBar = () => {
         </Icon>
       </div>
 
-      <Icon className="Icon-submit">
+      <Icon className="submit">
         <svg
           viewBox="0 0 24 24"
           preserveAspectRatio="xMidYMid meet"

@@ -1,8 +1,8 @@
 import React from "react";
-import Menu from "components/Menu";
+import List from "components/List";
 import SearchBar from "components/Header/SearchBar";
 import { SideMenuHeader } from "components/SideMenu";
-import Icon from "components/Icon";
+import { Icon } from "components/Icon";
 
 import "styles/Header.scss";
 
@@ -16,16 +16,15 @@ interface HeaderProps {
 }
 
 const Header = (props: HeaderProps) => {
-  console.log(props.userInfo);
   return (
     <header>
-      <Menu className="menu-header">
+      <List className="menu-header">
         <SideMenuHeader />
 
-        <Menu id="middle">
+        <List id="middle">
           <SearchBar />
 
-          <Icon className="Icon-mic">
+          <Icon className="mic">
             <svg
               viewBox="0 0 24 24"
               preserveAspectRatio="xMidYMid meet"
@@ -36,10 +35,10 @@ const Header = (props: HeaderProps) => {
               </g>
             </svg>
           </Icon>
-        </Menu>
+        </List>
 
-        <Menu id="right">
-          <Icon className="Icon-upload">
+        <List id="right">
+          <Icon className="upload">
             <svg
               viewBox="0 0 24 24"
               preserveAspectRatio="xMidYMid meet"
@@ -51,7 +50,7 @@ const Header = (props: HeaderProps) => {
             </svg>
           </Icon>
 
-          <Icon className="Icon-notice">
+          <Icon className="notice">
             <svg
               viewBox="0 0 24 24"
               preserveAspectRatio="xMidYMid meet"
@@ -64,7 +63,7 @@ const Header = (props: HeaderProps) => {
           </Icon>
 
           {props.userInfo !== undefined ? (
-            <Icon className="Icon-user">
+            <Icon className="user">
               <img
                 alt="아바타 이미지"
                 height="32"
@@ -77,8 +76,8 @@ const Header = (props: HeaderProps) => {
               로그인
             </a>
           )}
-        </Menu>
-      </Menu>
+        </List>
+      </List>
     </header>
   );
 };

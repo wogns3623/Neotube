@@ -2,20 +2,22 @@
   & > * {
     margin-right: 8px;
   }
-  .Icon-menu {
-    width: 24px;
-    height: 24px;
-    padding: 8px;
-    margin-right: 8px;
-  }
+  .react-icon {
+    &.menu {
+      width: 24px;
+      height: 24px;
+      padding: 8px;
+      margin-right: 8px;
+    }
 
-  .Icon-logo {
-    width: 80px;
-    height: 24px;
+    &.logo {
+      width: 80px;
+      height: 24px;
+    }
   }
 }
 
-.MenuItem {
+.side-menu-item {
   display: flex;
   align-items: center;
   width: 100%;
@@ -34,7 +36,7 @@
       flex: 1 0 auto;
       justify-content: flex-start;
 
-      .Icon {
+      .react-icon {
         width: 24px;
         height: 24px;
         margin-right: 24px;
@@ -63,7 +65,7 @@
   &.selected {
     background-color: #383838;
 
-    .Icon {
+    .react-icon {
       fill: white;
     }
   }
@@ -93,7 +95,7 @@
     }
   }
 
-  & > .react-menu {
+  & > .react-list {
     border-top: 1px solid rgba($color: #ffffff, $alpha: 0.1);
     padding-top: 12px;
     margin-bottom: 12px;
