@@ -12,48 +12,53 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# sys.path.append(Path(__file__).resolve().parent.parent.parent.parent)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'btlcj$yttyc%y5t*0e&=(!)3hzx=1g&9xljw-@=y@tvdj_a6fs'
+SECRET_KEY = 'z^=77w3cb5+5ke@6xqeppa261h#_0i+l4(+-aa7q$7t-3p3u_a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.neotubei.kro.kr', 'www.neotube.kro.kr'
-                 '54.180.120.99', '127.0.0.1', 'localhost']
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    # * Django Default Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'django.contrib.sites',
 
-    # third app
+    # * Django Third-Party Apps
     'rest_framework',
     'rest_framework.authtoken',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'corsheaders',
 
-    # user app
-    'guide',
-    'feed',
-    'watch',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
+
+    # * Django My Apps
+    'video.apps.VideoConfig',
+    'comment.apps.CommentConfig',
+    'guide.apps.GuideConfig',
+    'browse.apps.BrowseConfig',
+    'feed.apps.FeedConfig',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +69,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'Neotube.urls'
@@ -72,7 +76,7 @@ ROOT_URLCONF = 'Neotube.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -99,17 +103,6 @@ DATABASES = {
 }
 
 
-# CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = [
-    # 허용할 프론트엔드 도메인 추가 EX:
-    'http://127.0.0.1:8000',
-    'http://localhost:3000',
-    'http://www.neotubei.kro.kr',
-    'http://www.neotube.kro.kr',
-]
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -132,9 +125,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -162,3 +152,15 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'auth.User'
+
+# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = [
+    # 허용할 프론트엔드 도메인 추가 EX:
+    'http://127.0.0.1:8000',
+    'http://localhost:3000',
+    'http://www.neotubei.kro.kr',
+    'http://www.neotube.kro.kr',
+]
+
+SITE_ID = 1
