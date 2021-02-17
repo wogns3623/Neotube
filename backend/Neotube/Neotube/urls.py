@@ -23,4 +23,5 @@ urlpatterns = [
     # * Django My Apps URL
     path('guide/', GuideAPIView.as_view(), name='guide'),
     path('browse/', BrowseAPIView.as_view(), name='browse'),
+    path('watch/', include('watch.urls')),
 ]
