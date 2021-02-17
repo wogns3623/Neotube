@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import GuideAPIView, BrowseAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     # * Django My Apps URL
-    path('guide/', include('guide.urls')),
-    path('browse/', include('browse.urls')),
+    path('guide/', GuideAPIView.as_view(), name='guide'),
+    path('browse/', BrowseAPIView.as_view(), name='browse'),
 ]

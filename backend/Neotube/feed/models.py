@@ -9,5 +9,11 @@ class Feed(models.Model):
     subscriber = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='subscriber_feed')
 
+    class Meta:
+        unique_together = ('neotuber', 'subscriber',)
+
     def __str__(self):
         return f'너튜버: {self.neotuber}, 구독자: {self.subscriber}'
+
+    def count_subscribers(self, neotuber):
+        return self.objects.filter(neotuber=neotuber)

@@ -56,8 +56,6 @@ INSTALLED_APPS = [
     # * Django My Apps
     'video.apps.VideoConfig',
     'comment.apps.CommentConfig',
-    'guide.apps.GuideConfig',
-    'browse.apps.BrowseConfig',
     'feed.apps.FeedConfig',
 ]
 
@@ -164,3 +162,6 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 SITE_ID = 1
+
+REST_FRAMEWORK = {'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+                  'PAGE_SIZE': 10}
