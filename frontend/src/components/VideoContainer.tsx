@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "styles/VideoContainer.scss";
 
-type VideoData = {
+export type VideoData = {
   channel: string;
   title: string;
   video: string;
