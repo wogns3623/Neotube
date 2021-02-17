@@ -50,27 +50,16 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
   );
 };
 
-interface VideoSectionProps {
-  children: React.ReactNode;
-  className?: string;
-}
-const VideoSection = ({ children, className }: VideoSectionProps) => {
-  return <section className={`video-section ${className}`}>{children}</section>;
-};
-VideoSection.defaultProps = {
-  className: "",
-};
-
 interface VideoContainerProps {
   videoList: VideoData[];
 }
 
-const VideoContainer = ({ videoList }: VideoContainerProps) => {
+const VideoContainer = (props: VideoContainerProps) => {
   const [loadVideo, setLoadVideo] = useState(false);
+  const [videoList, setVideoList] = useState([] as VideoData[]);
 
   useEffect(() => {
     // add scroll event to VideoContainer
-    console.log("add event listener");
 
     let infiScrollEvent = (event: Event): void => {
       let element = document.getElementsByClassName(
@@ -84,38 +73,52 @@ const VideoContainer = ({ videoList }: VideoContainerProps) => {
         element.offsetTop -
         document.documentElement.clientHeight;
 
-      console.log(elementHeight, window.scrollY);
+      console.log(window.scrollY, elementHeight, elementHeight - threshold);
 
-      if (window.scrollY > elementHeight - threshold) setLoadVideo(true);
+      if (window.scrollY > elementHeight - threshold) {
+        console.log("set loadVideo true");
+        setLoadVideo(true);
+      }
     };
 
+    console.log("add infiscroll event");
     window.addEventListener("scroll", infiScrollEvent);
 
     return () => {
+      console.log("remove infiScroll event");
       window.removeEventListener("scroll", infiScrollEvent);
     };
   }, []);
 
   useEffect(() => {
+    setVideoList(props.videoList);
+  }, [props.videoList]);
+
+  useEffect(() => {
     // load additional video after scroll event
     if (loadVideo === true) {
+      console.log("get additional video");
       setTimeout(() => {
+        setVideoList((vl) => vl.concat(vl));
         setLoadVideo(false);
-        // setVideoData(videoData + 30);
-        // axios.get("http://www.neotubei.kro.kr/neotubei/v1/browse/");
       }, 1000);
+
+      // axios
+      //   .get("http://www.neotubei.kro.kr/neotubei/v1/browse/")
+      //   .then((res) => {
+      //     setVideoList((vl) => vl.concat(res.data));
+      //     setLoadVideo(false);
+      //   });
     }
   }, [loadVideo]);
 
-  let videoBoxes = [];
-
-  for (let i = 0; i < videoList.length; i++) {
-    videoBoxes.push(<VideoBox videoData={videoList[i]}></VideoBox>);
-  }
-
   return (
     <div className="VideoContainer">
-      <VideoSection>{videoBoxes}</VideoSection>
+      <section className="video-section">
+        {videoList.map((videoInfo, index) => {
+          return <VideoBox videoData={videoInfo} key={index}></VideoBox>;
+        })}
+      </section>
       <div className={`spinner ${loadVideo ? "active" : ""}`}>
         it's spinner!
       </div>

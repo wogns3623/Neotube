@@ -1,0 +1,10 @@
+.react-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  &-column {
+    flex-direction: column;
+  }
+}

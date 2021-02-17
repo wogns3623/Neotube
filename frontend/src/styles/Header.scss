@@ -12,10 +12,10 @@ header {
     padding: 0 16px;
     justify-content: space-between;
 
-    #middle {
+    .middle {
       flex: 0 1 708px;
 
-      .Icon-mic {
+      .react-icon.mic {
         width: 24px;
         height: 24px;
         padding: 8px;
@@ -27,14 +27,14 @@ header {
       }
     }
 
-    #right {
-      .Icon {
+    .right {
+      .react-icon {
         width: 24px;
         height: 24px;
         padding: 8px;
         margin-right: 8px;
 
-        &-user {
+        &.user {
           width: 32px;
           height: 32px;
           & > img {
