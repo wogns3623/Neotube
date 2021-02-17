@@ -6,7 +6,7 @@ import { BasicProps, SingleWrapperProps } from "utils/types";
 
 const SideMenuHeader = ({ className }: BasicProps) => {
   return (
-    <List className={`SideMenu-header ${className}`}>
+    <List className={`SideMenu-header ${className ? className : ""}`}>
       <Icon className="menu">
         <svg
           viewBox="0 0 24 24"
@@ -83,10 +83,6 @@ const SideMenuHeader = ({ className }: BasicProps) => {
     </List>
   );
 };
-SideMenuHeader.defaultProps = {
-  className: "",
-  id: "",
-};
 
 type SideMenuItemProps = SingleWrapperProps & {
   desc: string;
@@ -103,7 +99,7 @@ const SideMenuItem = ({
   // children: image | svg icon
   // desc: channel name | 홈, 인기, 구독 등
   return (
-    <div className={`side-menu-item ${className}`}>
+    <div className={`side-menu-item ${className ? className : ""}`}>
       <a href={href}>
         <List className="item-wrapper">
           <Icon>{children}</Icon>
@@ -115,7 +111,6 @@ const SideMenuItem = ({
   );
 };
 SideMenuItem.defaultProps = {
-  className: "",
   href: "",
   hasNotification: false,
 };

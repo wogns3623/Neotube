@@ -6,7 +6,11 @@ import ButtonIcon from "components/common/Icon/ButtonIcon";
 import { ClickableProps } from "utils/types";
 
 const MenuButton = ({ className, children }: ClickableProps) => {
-  return <div className={`react-menu-button ${className}`}>{children}</div>;
+  return (
+    <div className={`react-menu-button ${className ? className : ""}`}>
+      {children}
+    </div>
+  );
 };
 
 type MenuProps = ListProps & {
@@ -21,7 +25,7 @@ const Menu = ({ className, children, direction, menuButton }: MenuProps) => {
 
   return (
     <div
-      className={`react-menu ${className}`}
+      className={`react-menu ${className ? className : ""}`}
       onBlur={() => {
         handleOpenMenu(false);
       }}

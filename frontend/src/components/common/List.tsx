@@ -15,14 +15,16 @@ const List = ({ children, className, direction }: ListProps) => {
   });
 
   return (
-    <div className={`react-list react-list-${direction} ${className}`}>
+    <div
+      className={`react-list react-list-${direction} ${
+        className ? className : ""
+      }`}
+    >
       {children}
     </div>
   );
 };
 List.defaultProps = {
-  className: "",
-  id: "",
   direction: "row",
 };
 
