@@ -1,19 +1,18 @@
 import React from "react";
+import Icon from "./Icon";
 import List from "components/common/List";
-import { Icon } from "components/common/Icon";
+import { SingleWrapperProps } from "utils/types";
 
-type DescIconProps = {
+type DescIconProps = SingleWrapperProps & {
   desc: string;
   href: string;
-  className?: string;
-  children?: React.ReactNode;
   additionalIcon?: React.ReactNode;
 };
 const DescIcon = ({
-  desc,
-  href,
   className,
   children,
+  desc,
+  href,
   additionalIcon,
 }: DescIconProps) => {
   // children: image | svg icon
@@ -34,10 +33,5 @@ DescIcon.defaultProps = {
   href: "",
   className: "",
 };
-
-Object.defineProperty(DescIcon, "component_name", {
-  value: "DescIcon",
-  writable: false,
-});
 
 export default DescIcon;

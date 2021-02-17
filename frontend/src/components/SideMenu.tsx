@@ -2,11 +2,11 @@ import React from "react";
 import List from "components/common/List";
 import { Icon } from "components/common/Icon";
 import "styles/SideMenu.scss";
+import { BasicProps, SingleWrapperProps } from "utils/types";
 
-type SideMenuHeaderProps = { className?: string; id?: string };
-const SideMenuHeader = ({ className, id }: SideMenuHeaderProps) => {
+const SideMenuHeader = ({ className }: BasicProps) => {
   return (
-    <List id={id} className={`SideMenu-header ${className}`}>
+    <List className={`SideMenu-header ${className}`}>
       <Icon className="menu">
         <svg
           viewBox="0 0 24 24"
@@ -88,18 +88,16 @@ SideMenuHeader.defaultProps = {
   id: "",
 };
 
-type SideMenuItemProps = {
+type SideMenuItemProps = SingleWrapperProps & {
   desc: string;
   href: string;
-  className?: string;
-  children?: React.ReactNode;
   hasNotification?: boolean;
 };
 const SideMenuItem = ({
-  desc,
-  href,
   className,
   children,
+  desc,
+  href,
   hasNotification,
 }: SideMenuItemProps) => {
   // children: image | svg icon
@@ -117,8 +115,8 @@ const SideMenuItem = ({
   );
 };
 SideMenuItem.defaultProps = {
-  href: "",
   className: "",
+  href: "",
   hasNotification: false,
 };
 

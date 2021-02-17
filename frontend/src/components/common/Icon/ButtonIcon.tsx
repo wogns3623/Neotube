@@ -1,12 +1,8 @@
 import React from "react";
 import Icon from "./Icon";
+import { ClickableProps } from "utils/types";
 
-type IconProps = {
-  children: React.ReactNode;
-  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  className?: string;
-};
-const ButtonIcon = ({ children, className, onClick }: IconProps) => {
+const ButtonIcon = ({ children, className, onClick }: ClickableProps) => {
   return (
     <div className={`react-icon-button ${className}`}>
       <button type="button" onClick={onClick}>
