@@ -1,6 +1,6 @@
 import React from "react";
-import List from "components/List";
-import { Icon } from "components/Icon";
+import List from "components/common/List";
+import { Icon } from "components/common/Icon";
 import "styles/SideMenu.scss";
 
 type SideMenuHeaderProps = { className?: string; id?: string };

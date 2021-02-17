@@ -5,12 +5,11 @@ import "styles/List.scss";
 type ListProps = {
   children: React.ReactNode;
   className?: string;
-  id?: string;
   direction?: "row" | "column";
 };
-const List = ({ children, className, id, direction }: ListProps) => {
+const List = ({ children, className, direction }: ListProps) => {
   return (
-    <div id={id} className={`react-list react-list-${direction} ${className}`}>
+    <div className={`react-list react-list-${direction} ${className}`}>
       {children}
     </div>
   );
@@ -22,4 +21,10 @@ List.defaultProps = {
   direction: "row",
 };
 
+Object.defineProperty(List, "component_name", {
+  value: "List",
+  writable: false,
+});
+
+export type { ListProps };
 export default List;

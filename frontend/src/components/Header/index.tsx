@@ -1,8 +1,9 @@
 import React from "react";
-import List from "components/List";
-import SearchBar from "components/Header/SearchBar";
+import List from "components/common/List";
+import Menu from "components/common/menu";
+import { Icon, DescIcon } from "components/common/Icon";
 import { SideMenuHeader } from "components/SideMenu";
-import { Icon } from "components/Icon";
+import SearchBar from "components/Header/SearchBar";
 
 import "styles/Header.scss";
 
@@ -19,9 +20,9 @@ const Header = (props: HeaderProps) => {
   return (
     <header>
       <List className="menu-header">
-        <SideMenuHeader />
+        <SideMenuHeader className="left" />
 
-        <List id="middle">
+        <List className="middle">
           <SearchBar />
 
           <Icon className="mic">
@@ -37,18 +38,75 @@ const Header = (props: HeaderProps) => {
           </Icon>
         </List>
 
-        <List id="right">
-          <Icon className="upload">
-            <svg
-              viewBox="0 0 24 24"
-              preserveAspectRatio="xMidYMid meet"
-              focusable="false"
-            >
-              <g>
-                <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"></path>
-              </g>
-            </svg>
-          </Icon>
+        <List className="right">
+          <Menu
+            className="upload"
+            menuButton={
+              <svg
+                viewBox="0 0 24 24"
+                preserveAspectRatio="xMidYMid meet"
+                focusable="false"
+              >
+                <g>
+                  <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"></path>
+                </g>
+              </svg>
+            }
+          >
+            <Icon>
+              <svg
+                viewBox="0 0 24 24"
+                preserveAspectRatio="xMidYMid meet"
+                focusable="false"
+              >
+                <g>
+                  <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"></path>
+                </g>
+              </svg>
+            </Icon>
+            <DescIcon desc="동영상 업로드">
+              <svg
+                viewBox="0 0 24 24"
+                preserveAspectRatio="xMidYMid meet"
+                focusable="false"
+                // style="pointer-events: none; display: block; width: 100%; height: 100%;"
+              >
+                <g>
+                  <path
+                    d="M19,4H5A2.15,2.15,0,0,0,3,6V18a2.15,2.15,0,0,0,2,2H19a2.15,2.15,0,0,0,2-2V6A2.15,2.15,0,0,0,19,4ZM5,18H19V6H5Z"
+                    fill="#6f6f6f"
+                    fillRule="evenodd"
+                  ></path>
+                  <path
+                    d="M15,12,10,8v8Z"
+                    fill="#f80000"
+                    fillRule="evenodd"
+                  ></path>
+                </g>
+              </svg>
+            </DescIcon>
+            <DescIcon desc="동영상 업로드">
+              <svg
+                viewBox="0 0 24 24"
+                preserveAspectRatio="xMidYMid meet"
+                focusable="false"
+                // style="pointer-events: none; display: block; width: 100%; height: 100%;"
+              >
+                <g>
+                  <path
+                    d="M19,4H5A2.15,2.15,0,0,0,3,6V18a2.15,2.15,0,0,0,2,2H19a2.15,2.15,0,0,0,2-2V6A2.15,2.15,0,0,0,19,4ZM5,18H19V6H5Z"
+                    fill="#6f6f6f"
+                    fillRule="evenodd"
+                  ></path>
+                  <path
+                    d="M15,12,10,8v8Z"
+                    fill="#f80000"
+                    fillRule="evenodd"
+                  ></path>
+                </g>
+              </svg>
+            </DescIcon>
+          </Menu>
 
           <Icon className="notice">
             <svg

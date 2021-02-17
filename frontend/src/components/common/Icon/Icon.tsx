@@ -12,4 +12,9 @@ Icon.defaultProps = {
   className: "",
 };
 
+Object.defineProperty(Icon, "component_name", {
+  value: "Icon",
+  writable: false,
+});
+
 export default Icon;

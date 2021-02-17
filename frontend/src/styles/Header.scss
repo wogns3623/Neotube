@@ -12,7 +12,7 @@ header {
     padding: 0 16px;
     justify-content: space-between;
 
-    #middle {
+    .middle {
       flex: 0 1 708px;
 
       .react-icon.mic {
@@ -27,7 +27,7 @@ header {
       }
     }
 
-    #right {
+    .right {
       .react-icon {
         width: 24px;
         height: 24px;

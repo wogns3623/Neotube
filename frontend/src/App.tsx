@@ -15,6 +15,7 @@ function App() {
   useEffect(() => {
     // load video after mount
     axios.get("http://www.neotubei.kro.kr/neotubei/v1/guide/").then((res) => {
+      console.log(res.data);
       setGuide(res.data);
     });
   }, []);

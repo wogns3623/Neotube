@@ -60,6 +60,7 @@ const VideoContainer = (props: VideoContainerProps) => {
 
   useEffect(() => {
     // add scroll event to VideoContainer
+
     let infiScrollEvent = (event: Event): void => {
       let element = document.getElementsByClassName(
         "VideoContainer"
@@ -72,12 +73,19 @@ const VideoContainer = (props: VideoContainerProps) => {
         element.offsetTop -
         document.documentElement.clientHeight;
 
-      if (window.scrollY > elementHeight - threshold) setLoadVideo(true);
+      console.log(window.scrollY, elementHeight, elementHeight - threshold);
+
+      if (window.scrollY > elementHeight - threshold) {
+        console.log("set loadVideo true");
+        setLoadVideo(true);
+      }
     };
 
+    console.log("add infiscroll event");
     window.addEventListener("scroll", infiScrollEvent);
 
     return () => {
+      console.log("remove infiScroll event");
       window.removeEventListener("scroll", infiScrollEvent);
     };
   }, []);
@@ -89,16 +97,17 @@ const VideoContainer = (props: VideoContainerProps) => {
   useEffect(() => {
     // load additional video after scroll event
     if (loadVideo === true) {
-      setLoadVideo(false);
-
+      console.log("get additional video");
       setTimeout(() => {
         setVideoList((vl) => vl.concat(vl));
+        setLoadVideo(false);
       }, 1000);
 
       // axios
       //   .get("http://www.neotubei.kro.kr/neotubei/v1/browse/")
       //   .then((res) => {
       //     setVideoList((vl) => vl.concat(res.data));
+      //     setLoadVideo(false);
       //   });
     }
   }, [loadVideo]);
