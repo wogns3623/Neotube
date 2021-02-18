@@ -20,6 +20,9 @@ from .views import GuideAPIView, BrowseAPIView
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # * Django Third Pary Apps URL
+    path('accounts/', include('allauth.urls')),
+
     # * Django My Apps URL
     path('guide/', GuideAPIView.as_view(), name='guide'),
     path('browse/', BrowseAPIView.as_view(), name='browse'),
