@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "styles/VideoContainer.scss";
-// import "styles/Reset.css";
+import imageTest from "D:/Neotube/frontend/src/styles/images/ilbuni.png";
+// require() 안됨.
+// 상대경로 안됨
 
 export type VideoData = {
   channel: string;
@@ -30,10 +32,11 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
 
   return (
     <div className="video">
-      <figure className="thumnail">
+      <div className="thumnail" style={{ backgroundImage: `url(imageTest)` }}>
+        {/* <figure className="thumnail" background-image={imageTest}> */}
         <div className="lastview">a</div>
         <div className="addlist">b</div>
-      </figure>
+      </div>
       <div className="runtime">{runtime}분</div>
       <div className="videoDesc">
         <div className="videoImg">img</div>

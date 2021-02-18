@@ -32,6 +32,7 @@
 // reset
 figure,
 p {
+  text-align: start;
   margin: 0;
   padding: 0;
   border: 0;
@@ -97,7 +98,6 @@ p {
         height: 40px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;
         display: flex;
         justify-content: flex-start;
       }
