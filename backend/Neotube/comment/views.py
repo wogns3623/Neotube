@@ -1,13 +1,13 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from backend.Neotube.comment.models import Comment
+from comment.models import Comment
 # Create your views here.
 
 
 class CommentAPIView(APIView):
 
     def post(self, request):
-        # TODO request에서 댓글을 받아오는 메서드 (POST 방식)
+        #  request에서 댓글을 받아오는 메서드 (POST 방식)
         # TODO request에서 받은 댓글을 작성하는(: 댓글 데이터를 생성하는) 메서드
         return Response()  # TODO 요청응답 URL 200, 201 등의 요청 반환
 

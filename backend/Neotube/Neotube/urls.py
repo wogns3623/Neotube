@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.authtoken.views import obtain_auth_token
+
 from .views import GuideAPIView, BrowseAPIView
 
 urlpatterns = [
@@ -22,6 +24,8 @@ urlpatterns = [
 
     # * Django Third Pary Apps URL
     path('accounts/', include('allauth.urls')),
+    path('api-token-auth/', obtain_auth_token),
+
 
     # * Django My Apps URL
     path('guide/', GuideAPIView.as_view(), name='guide'),
