@@ -29,7 +29,7 @@ SECRET_KEY = 'z^=77w3cb5+5ke@6xqeppa261h#_0i+l4(+-aa7q$7t-3p3u_a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -125,7 +125,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -147,21 +146,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'  # * 미디어를 저장할때 사용하는 경로
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # * 미디어를 접근할때 사용하는 경로
 
-AUTH_USER_MODEL = 'auth.User'
-
-# CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = [
-    # 허용할 프론트엔드 도메인 추가 EX:
-    'http://127.0.0.1:8000',
-    'http://localhost:3000',
-    'http://www.neotubei.kro.kr',
-    'http://www.neotube.kro.kr',
-]
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ORIGIN_WHITELIST = [
+#     # 허용할 프론트엔드 도메인 추가 EX:
+#     'http://127.0.0.1:8000',
+#     'http://localhost:3000',
+#     'http://www.neotubei.kro.kr',
+#     'http://www.neotube.kro.kr',
+# ]
 
 SITE_ID = 1
 
