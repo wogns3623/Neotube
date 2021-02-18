@@ -31,4 +31,5 @@ urlpatterns = [
     path('guide/', GuideAPIView.as_view(), name='guide'),
     path('browse/', BrowseAPIView.as_view(), name='browse'),
     path('watch/', include('watch.urls')),
+    path('comment/', include('comment.urls')),
 ]
