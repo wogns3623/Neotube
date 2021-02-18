@@ -2,11 +2,11 @@ import React from "react";
 import List from "components/common/List";
 import { Icon } from "components/common/Icon";
 import "styles/SideMenu.scss";
+import { BasicProps, SingleWrapperProps } from "utils/types";
 
-type SideMenuHeaderProps = { className?: string; id?: string };
-const SideMenuHeader = ({ className, id }: SideMenuHeaderProps) => {
+const SideMenuHeader = ({ className }: BasicProps) => {
   return (
-    <List id={id} className={`SideMenu-header ${className}`}>
+    <List className={`SideMenu-header ${className ? className : ""}`}>
       <Icon className="menu">
         <svg
           viewBox="0 0 24 24"
@@ -83,29 +83,23 @@ const SideMenuHeader = ({ className, id }: SideMenuHeaderProps) => {
     </List>
   );
 };
-SideMenuHeader.defaultProps = {
-  className: "",
-  id: "",
-};
 
-type SideMenuItemProps = {
+type SideMenuItemProps = SingleWrapperProps & {
   desc: string;
   href: string;
-  className?: string;
-  children?: React.ReactNode;
   hasNotification?: boolean;
 };
 const SideMenuItem = ({
-  desc,
-  href,
   className,
   children,
+  desc,
+  href,
   hasNotification,
 }: SideMenuItemProps) => {
   // children: image | svg icon
   // desc: channel name | 홈, 인기, 구독 등
   return (
-    <div className={`side-menu-item ${className}`}>
+    <div className={`side-menu-item ${className ? className : ""}`}>
       <a href={href}>
         <List className="item-wrapper">
           <Icon>{children}</Icon>
@@ -118,7 +112,6 @@ const SideMenuItem = ({
 };
 SideMenuItem.defaultProps = {
   href: "",
-  className: "",
   hasNotification: false,
 };
 

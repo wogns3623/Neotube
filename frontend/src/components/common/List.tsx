@@ -1,30 +1,32 @@
 import React from "react";
 
 import "styles/List.scss";
+import { MultipleWrapperProps } from "utils/types";
 
-type ListProps = {
-  children: React.ReactNode;
-  className?: string;
+type ListProps = MultipleWrapperProps & {
   direction?: "row" | "column";
 };
 const List = ({ children, className, direction }: ListProps) => {
+  children.forEach((child) => {
+    console.log(
+      "list " + className + "'s children\n",
+      (child as JSX.Element).type.name
+    );
+  });
+
   return (
-    <div className={`react-list react-list-${direction} ${className}`}>
+    <div
+      className={`react-list react-list-${direction} ${
+        className ? className : ""
+      }`}
+    >
       {children}
     </div>
   );
 };
-
 List.defaultProps = {
-  className: "",
-  id: "",
   direction: "row",
 };
-
-Object.defineProperty(List, "component_name", {
-  value: "List",
-  writable: false,
-});
 
 export type { ListProps };
 export default List;

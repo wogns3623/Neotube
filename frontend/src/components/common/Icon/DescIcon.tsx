@@ -1,25 +1,24 @@
 import React from "react";
+import Icon from "./Icon";
 import List from "components/common/List";
-import { Icon } from "components/common/Icon";
+import { SingleWrapperProps } from "utils/types";
 
-type DescIconProps = {
+type DescIconProps = SingleWrapperProps & {
   desc: string;
   href: string;
-  className?: string;
-  children?: React.ReactNode;
   additionalIcon?: React.ReactNode;
 };
 const DescIcon = ({
-  desc,
-  href,
   className,
   children,
+  desc,
+  href,
   additionalIcon,
 }: DescIconProps) => {
   // children: image | svg icon
   // desc: channel name | 홈, 인기, 구독 등
   return (
-    <div className={`react-icon-desc ${className}`}>
+    <div className={`react-icon-desc ${className ? className : ""}`}>
       <a href={href}>
         <List className="item-wrapper">
           <Icon>{children}</Icon>
@@ -32,12 +31,6 @@ const DescIcon = ({
 };
 DescIcon.defaultProps = {
   href: "",
-  className: "",
 };
-
-Object.defineProperty(DescIcon, "component_name", {
-  value: "DescIcon",
-  writable: false,
-});
 
 export default DescIcon;

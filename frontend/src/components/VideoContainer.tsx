@@ -13,9 +13,9 @@ export type VideoData = {
   create_at: string;
 };
 
-interface VideoBoxProps {
+type VideoBoxProps = {
   videoData: VideoData;
-}
+};
 
 const VideoBox = ({ videoData }: VideoBoxProps) => {
   const {
@@ -54,9 +54,9 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
   );
 };
 
-interface VideoContainerProps {
+type VideoContainerProps = {
   videoList: VideoData[];
-}
+};
 
 const VideoContainer = (props: VideoContainerProps) => {
   const [loadVideo, setLoadVideo] = useState(false);

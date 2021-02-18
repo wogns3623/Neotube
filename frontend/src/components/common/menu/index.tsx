@@ -3,16 +3,20 @@ import List, { ListProps } from "components/common/List";
 
 import "styles/Menu.scss";
 import ButtonIcon from "components/common/Icon/ButtonIcon";
+import { ClickableProps } from "utils/types";
 
-interface MenuProps {
+const MenuButton = ({ className, children }: ClickableProps) => {
+  return (
+    <div className={`react-menu-button ${className ? className : ""}`}>
+      {children}
+    </div>
+  );
+};
+
+type MenuProps = ListProps & {
   menuButton: React.ReactNode;
-}
-const Menu = ({
-  className,
-  children,
-  direction,
-  menuButton,
-}: ListProps & MenuProps) => {
+};
+const Menu = ({ className, children, direction, menuButton }: MenuProps) => {
   const [isOpen, setIsOpen] = useState(menuButton ? false : true);
 
   const handleOpenMenu = (value: boolean) => {
@@ -21,7 +25,7 @@ const Menu = ({
 
   return (
     <div
-      className={`react-menu ${className}`}
+      className={`react-menu ${className ? className : ""}`}
       onBlur={() => {
         handleOpenMenu(false);
       }}
