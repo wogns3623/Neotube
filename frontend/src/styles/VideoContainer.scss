@@ -1,0 +1,193 @@
+// .VideoContainer {
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+
+//   .spinner {
+//     display: none;
+//     color: white;
+
+//     &.active {
+//       display: block;
+//     }
+//   }
+// }
+
+// .video-section {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: flex-start;
+//   width: 100%;
+// }
+
+// .video-box {
+//   width: calc(100% / 5 - 16px - 0.01px);
+//   height: 300px;
+//   margin: 0 8px 40px 8px;
+//   background-color: rgb(167, 167, 167);
+// }
+
+//////////////// jjh/////////////////////////
+// reset
+figure,
+p {
+  text-align: start;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.VideoContainer {
+  margin-top: 24px;
+  min-height: 100vh;
+  width: 100%;
+  padding: 1rem;
+}
+
+// VideoBox element
+.video {
+  display: flex;
+  flex-direction: column;
+  margin: 0 8px 40px 8px;
+  width: calc(100% - 16px);
+
+  .thumnail {
+    height: 0;
+    padding-bottom: 60%;
+    background-color: #9e9e9e;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .lastview {
+      margin-bottom: 5px;
+      background: #cfcfcf;
+    }
+    .addlist {
+      background: #cfcfcf;
+    }
+  }
+
+  .runtime {
+    background: #707070;
+    align-self: flex-end;
+  }
+
+  .videoDesc {
+    flex: 1 auto;
+    background-color: #212121;
+    display: flex;
+    height: 94px;
+
+    .videoImg {
+      width: 48px;
+      height: 48px;
+      margin: 12px 12px 0 0;
+    }
+
+    .videoContent {
+      flex: 1 1 auto;
+      max-width: calc(100% - 72px);
+
+      .videoName {
+        margin-top: 12px;
+        height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .videoChannel {
+        height: 18px;
+        font-size: 12px;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .likesUpload {
+        height: 18px;
+        font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: flex;
+        justify-content: flex-start;
+      }
+    }
+
+    .hiddenAdd {
+      margin-top: 12px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+// // 반응형
+// // 1칸 search: none
+// // 2칸 search: none
+// // 2칸+Sidebar + search: none
+// // 3칸+Sidebar
+// // 4칸+Sidebar
+// // 4칸+SideMenu or 5칸+Sidebar
+
+/* 2칸 search: none */
+@media (min-width: 600px) {
+  .video-section {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .video {
+    width: calc(50% - 20px);
+  }
+  // add search none
+}
+
+/* 2칸+Sidebar + search: none */
+@media (max-width: 680px) {
+  .SideMenu {
+    display: none;
+  }
+}
+
+/* 3칸+Sidebar */
+@media (min-width: 790px) {
+  .video {
+    width: calc(33.333% - 16px);
+  }
+}
+
+/* 4칸+Sidebar */
+@media (min-width: 900px) {
+  .video {
+    width: calc(25% - 16px);
+  }
+}
+
+/* 5칸+Sidebar */
+// @media (min-width: 1785px) {
+//   .video {
+//     width: calc(20% - 16px);
+//   }
+// }
+
+/* 4칸+SideMenu */
+@media (min-width: 1200px) {
+  .video {
+    width: calc(25% - 16px);
+  }
+}
+
+@media (min-width: 1350px) {
+  .SideMenu {
+    width: 240px;
+  }
+}

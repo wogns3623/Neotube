@@ -1,0 +1,47 @@
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  display: flex;
+  background-color: #202020;
+
+  .menu-header {
+    width: 100%;
+    display: flex;
+    padding: 0 16px;
+    justify-content: space-between;
+
+    .middle {
+      flex: 0 1 708px;
+
+      .react-icon.mic {
+        width: 24px;
+        height: 24px;
+        padding: 8px;
+        margin-right: 8px;
+      }
+
+      .SearchBar {
+        margin-left: 40px;
+      }
+    }
+
+    .right {
+      .react-icon {
+        width: 24px;
+        height: 24px;
+        padding: 8px;
+        margin-right: 8px;
+
+        &.user {
+          width: 32px;
+          height: 32px;
+          & > img {
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+}

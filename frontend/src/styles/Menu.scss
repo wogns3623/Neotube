@@ -1,0 +1,17 @@
+.react-menu {
+  position: relative;
+  &-button {
+    & > button {
+      color: white;
+      background-color: inherit;
+      border: none;
+    }
+  }
+  &-list {
+    display: none;
+    position: absolute;
+    &.visible {
+      display: block;
+    }
+  }
+}
