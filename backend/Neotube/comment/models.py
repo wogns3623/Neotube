@@ -7,10 +7,12 @@ from video.models import Video
 
 class Comment(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    reply_comment = models.ForeignKey(
+        'self', on_delete=models.CASCADE, related_name='reply', null=True)
     commenter = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     comment = models.TextField()
-    is_pinned_comment = models.BooleanField()
+    is_pinned_comment = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
