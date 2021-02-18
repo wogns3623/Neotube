@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "styles/VideoContainer.scss";
+// import "styles/Reset.css";
 
 export type VideoData = {
   channel: string;
@@ -26,26 +27,29 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
     views,
     create_at,
   } = videoData;
+
   return (
-    <div className="video-box">
-      <a href={video}>
-        <div className="thumbnail">
-          <img alt={title} src={thumbnail} />
-          <div className="runtime">{runtime}</div>
-        </div>
-        <div className="detail">
-          <div className="channel-icon"></div>
-          <div className="meta">
-            <div className="title">{title}</div>
-            <div className="channel-name">{channel}</div>
-            <div className="etc">
-              <div className="views">{views}</div>
-              <div className="created">{create_at}</div>
-            </div>
+    <div className="video">
+      <figure className="thumnail">
+        <div className="lastview">a</div>
+        <div className="addlist">b</div>
+      </figure>
+      <div className="runtime">{runtime}분</div>
+      <div className="videoDesc">
+        <div className="videoImg">img</div>
+        <div className="videoContent">
+          <div className="videoName">
+            <p className="videoName-item">{thumbnail}</p>
           </div>
-          <div className="menu"></div>
+          <div className="videoChannel">
+            <p className="videoChannel-item">{channel}</p>
+          </div>
+          <div className="likesUpload">
+            좋아요{views} . {create_at}
+          </div>
         </div>
-      </a>
+        <div className="hiddenAdd">...</div>
+      </div>
     </div>
   );
 };
