@@ -31,17 +31,23 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
   } = videoData;
 
   const BackgroundStyle = {
+    paddingBottom: `60%`,
+    backgroundColor: `#9e9e9e`,
+    backgroundRepeat: `no-repeat`,
+    backgroundPosition: `top`,
+    backgroundSize: `cover`,
     backgroundImage: `url(${imageTest})`,
   };
 
   return (
     <div className="video">
-      <div className="thumnail" style={BackgroundStyle}>
-        {/* <figure className="thumnail" background-image={imageTest}> */}
-        <div className="lastview">a</div>
-        <div className="addlist">b</div>
-      </div>
-      <div className="runtime">{runtime}분</div>
+      <figure className="thumnail" style={BackgroundStyle}>
+        <div className="hidden">
+          <div className="lastview">a</div>
+          <div className="addlist">b</div>
+        </div>
+        <div className="runtime">{runtime}분</div>
+      </figure>
       <div className="videoDesc">
         <div className="videoImg">img</div>
         <div className="videoContent">

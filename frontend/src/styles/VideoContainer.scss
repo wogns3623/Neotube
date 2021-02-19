@@ -54,27 +54,25 @@ p {
 
   .thumnail {
     height: 0;
-    padding-bottom: 60%;
-    background-color: #9e9e9e;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 
-    .lastview {
-      margin-bottom: 5px;
-      background: #cfcfcf;
-    }
-    .addlist {
-      background: #cfcfcf;
-    }
-  }
+    .hidden {
+      position: absolute;
 
-  .runtime {
-    background: #707070;
-    align-self: flex-end;
+      .lastview {
+        margin-bottom: 5px;
+        background: #cfcfcf;
+      }
+      .addlist {
+        background: #cfcfcf;
+      }
+    }
+    .runtime {
+      padding-top: calc((100% - 40px) * 0.6);
+      align-self: flex-end;
+    }
   }
 
   .videoDesc {
@@ -132,15 +130,16 @@ p {
 }
 
 // // 반응형
-// // 1칸 search: none
-// // 2칸 search: none
-// // 2칸+Sidebar + search: none
+// // 1칸 Sidebar: none search: none
+// // 2칸 Sidebar: none search: none
+// // 2칸 Sidebar: none
+// // 2칸+Sidebar
 // // 3칸+Sidebar
 // // 4칸+Sidebar
 // // 4칸+SideMenu or 5칸+Sidebar
 
-/* 2칸 search: none */
-@media (min-width: 600px) {
+/* 2칸 Sidebar: none search: none */
+@media (min-width: 560px) {
   .video-section {
     display: flex;
     flex-wrap: wrap;
@@ -151,10 +150,21 @@ p {
   // add search none
 }
 
-/* 2칸+Sidebar + search: none */
-@media (max-width: 680px) {
-  .SideMenu {
+/* 2칸 Sidebar: none */
+@media (max-width: 620px) {
+  .SearchBar {
     display: none;
+  }
+  // 돋보기 display:block; 추가
+}
+
+/* 2칸+Sidebar */
+@media (min-width: 680px) {
+  .SideMenu {
+    display: block;
+  }
+  .VideoContainer {
+    margin-left: 72px;
   }
 }
 
@@ -189,5 +199,8 @@ p {
 @media (min-width: 1350px) {
   .SideMenu {
     width: 240px;
+  }
+  .VideoContainer {
+    margin-left: 240px;
   }
 }
