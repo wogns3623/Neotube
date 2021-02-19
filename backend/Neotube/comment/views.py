@@ -19,12 +19,22 @@ class CommentAPIView(APIView):
     def delete(self, request):
         comment = Comment.objects.get(pk=request.data['id'])
         comment.delete()
-        # TODO 요청응답 300??? 등의 요청 반환
         return Response(status=status.HTTP_202_ACCEPTED)
 
     def patch(self, request):
-        number = 1
-        # TODO reuqest에서 댓글 pk 받아 오기
-        # TODO request에서 받아온 댓글 pk를 DB에서 검색 ex) temp = Comment.objects.get(pk=number)
-        # TODO reqeust에서 받아온 댓글 pk를 통해 댓글 수정 ex) temp.comment(reqeust['comment'])
-        return Response()  # TODO 요청응답 300??? 등의 요청 반환
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors, status=status.HTTP_304_NOT_MODIFIED)
+
+
+'''
+Sample Json
+{
+    "id": 3,
+    "comment": "댓글 수정",
+    "commenter": 1,
+    "video": 2
+}
+'''
