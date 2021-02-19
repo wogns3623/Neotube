@@ -10,4 +10,5 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ('id', 'video', 'commenter', 'comment')
+        # fields = ('video', 'commenter', 'comment')        # ! 생성
+        fields = ('id', 'video', 'commenter', 'comment')  # ! 수정

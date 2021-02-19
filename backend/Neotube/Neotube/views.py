@@ -13,7 +13,7 @@ class BasicPagination(PageNumberPagination):
     page_size_query_param = 'limit'
 
 
-class GuideAPIView(APIView, PaginationHandlerMixin):
+class GuideAPIView(APIView):
 
     def get(self, request):
         query_set = Video.objects.all()[:20]
@@ -21,7 +21,7 @@ class GuideAPIView(APIView, PaginationHandlerMixin):
         return Response(serializer.data)
 
 
-class BrowseAPIView(APIView):
+class BrowseAPIView(APIView, PaginationHandlerMixin):
     pagination_class = BasicPagination
     serializer_class = SimpleVideoSerializer
 

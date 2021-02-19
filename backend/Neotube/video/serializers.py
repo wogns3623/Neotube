@@ -19,7 +19,6 @@ class SimpleVideoSerializer(serializers.ModelSerializer):
 
 class VideoSerializer(serializers.ModelSerializer):
     # ! Default로 모델들의 이름이 정의가 되어있음.
-
     category = serializers.CharField(source='category.category')
     uploader = UserSerializer()
     tag_set = TagSerializer(many=True)
