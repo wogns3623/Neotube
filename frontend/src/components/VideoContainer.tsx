@@ -30,9 +30,13 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
     create_at,
   } = videoData;
 
+  const BackgroundStyle = {
+    backgroundImage: `url(${imageTest})`,
+  };
+
   return (
     <div className="video">
-      <div className="thumnail" style={{ backgroundImage: `url(imageTest)` }}>
+      <div className="thumnail" style={BackgroundStyle}>
         {/* <figure className="thumnail" background-image={imageTest}> */}
         <div className="lastview">a</div>
         <div className="addlist">b</div>
