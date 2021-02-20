@@ -19,6 +19,19 @@ type VideoBoxProps = {
   videoData: VideoData;
 };
 
+// todo list
+// position공부해서 화면 조정하기
+// react 이벤트 핸들링 하기
+// - videoview
+// - menu Onclick : sidevar->sidemenu
+// - 영상 이미지 focus : 영상 출력(0.5초 뒤) + runtime:none(0.5초 뒤) hidden: ''(바로)
+// - hidden focus: overflow만들기
+
+// creaste-at = 현재시간 - 게시시간 만들기
+// videoName 두줄 + ... 만들기
+
+// hiddenadd focus: block, onclik: overflow뜨기
+
 const VideoBox = ({ videoData }: VideoBoxProps) => {
   const {
     channel,
@@ -30,8 +43,7 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
     create_at,
   } = videoData;
 
-  const BackgroundStyle = {
-    paddingBottom: `60%`,
+  const ThunmbnailImg = {
     backgroundColor: `#9e9e9e`,
     backgroundRepeat: `no-repeat`,
     backgroundPosition: `top`,
@@ -39,27 +51,53 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
     backgroundImage: `url(${imageTest})`,
   };
 
+  const ChannelImg = {
+    backgroundColor: `gold`,
+    backgroundRepeat: `no-repeat`,
+    backgroundPosition: `top`,
+    backgroundSize: `150%`,
+    backgroundImage: `url(${imageTest})`,
+  };
+
+  // ? 변수로 받아오는 값은 css가 안걸림... 왜죠...?
+  // ? line97은 왜 안걸릴까..?
+  const Overflow = {
+    overflow: `hidden`,
+    textOverflow: `ellipsis`,
+    // lineClamp: `2`,
+    // ? CSSProperties 형식에서 에러뜸
+    // ! webkt 프레임워크 사용해서 해결 가능 -> 사용할 것인가?
+  };
+
   return (
     <div className="video">
-      <figure className="thumnail" style={BackgroundStyle}>
+      <figure className="thumnail" style={ThunmbnailImg}>
         <div className="hidden">
           <div className="lastview">a</div>
           <div className="addlist">b</div>
         </div>
-        <div className="runtime">{runtime}분</div>
+        <div className="runtime">
+          <div className="runtime-item">
+            {(runtime - (runtime % 60)) / 60}:{runtime % 60}
+          </div>
+        </div>
       </figure>
       <div className="videoDesc">
-        <div className="videoImg">img</div>
+        <div className="videoImg" style={ChannelImg}>
+          {/* <img src={ChannelImg.backgroundImage} /> */}
+        </div>
         <div className="videoContent">
           <div className="videoName">
-            <p className="videoName-item">{thumbnail}</p>
+            <p className="videoName-item" style={Overflow}>
+              {thumbnail}
+            </p>
           </div>
           <div className="videoChannel">
             <p className="videoChannel-item">{channel}</p>
           </div>
-          <div className="likesUpload">
-            좋아요{views} . {create_at}
-          </div>
+          <p className="likesUpload" style={Overflow}>
+            좋아요 {views} • {create_at}
+          </p>
         </div>
         <div className="hiddenAdd">...</div>
       </div>

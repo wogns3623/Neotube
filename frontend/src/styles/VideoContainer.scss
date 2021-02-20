@@ -45,15 +45,26 @@ p {
   padding: 1rem;
 }
 
+.video-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // width: calc(80% - 16px);
+  // height: calc(80vw - 16px);
+}
+
 // VideoBox element
 .video {
   display: flex;
   flex-direction: column;
   margin: 0 8px 40px 8px;
-  width: calc(100% - 16px);
+  width: calc(80% - 16px);
+  // 처음에 너무 꽉차있어서 줄임
+  height: calc(60vw - 16px);
 
   .thumnail {
-    height: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -70,8 +81,14 @@ p {
       }
     }
     .runtime {
-      padding-top: calc((100% - 40px) * 0.6);
+      padding-top: calc((100% - 34px) * 0.6);
       align-self: flex-end;
+      .runtime-item {
+        border-radius: 0.1em;
+        padding: 0 0.2rem;
+        font-size: 0.9rem;
+        background: rgba(0, 0, 0, 0.8);
+      }
     }
   }
 
@@ -82,9 +99,10 @@ p {
     height: 94px;
 
     .videoImg {
-      width: 48px;
-      height: 48px;
+      width: 36px;
+      height: 36px;
       margin: 12px 12px 0 0;
+      border-radius: 50%;
     }
 
     .videoContent {
@@ -94,10 +112,6 @@ p {
       .videoName {
         margin-top: 12px;
         height: 40px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: flex;
-        justify-content: flex-start;
       }
 
       .videoChannel {
@@ -110,9 +124,9 @@ p {
       .likesUpload {
         height: 18px;
         font-size: 12px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+        // white-space: nowrap;
         display: flex;
         justify-content: flex-start;
       }
@@ -139,19 +153,18 @@ p {
 // // 4칸+SideMenu or 5칸+Sidebar
 
 /* 2칸 Sidebar: none search: none */
-@media (min-width: 560px) {
+@media (min-width: 510px) {
   .video-section {
-    display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
   }
   .video {
-    width: calc(50% - 20px);
+    width: calc(50% - 16px);
+    height: calc(50% - 16px);
   }
-  // add search none
 }
 
 /* 2칸 Sidebar: none */
-@media (max-width: 620px) {
+@media (max-width: 656px) {
   .SearchBar {
     display: none;
   }
@@ -159,7 +172,7 @@ p {
 }
 
 /* 2칸+Sidebar */
-@media (min-width: 680px) {
+@media (min-width: 810px) {
   .SideMenu {
     display: block;
   }
@@ -169,34 +182,23 @@ p {
 }
 
 /* 3칸+Sidebar */
-@media (min-width: 790px) {
+@media (min-width: 890px) {
   .video {
     width: calc(33.333% - 16px);
+    height: calc(33.333% - 16px);
   }
 }
 
 /* 4칸+Sidebar */
-@media (min-width: 900px) {
+@media (min-width: 1145px) {
   .video {
     width: calc(25% - 16px);
+    height: calc(25% - 16px);
   }
 }
-
-/* 5칸+Sidebar */
-// @media (min-width: 1785px) {
-//   .video {
-//     width: calc(20% - 16px);
-//   }
-// }
 
 /* 4칸+SideMenu */
-@media (min-width: 1200px) {
-  .video {
-    width: calc(25% - 16px);
-  }
-}
-
-@media (min-width: 1350px) {
+@media (min-width: 1330px) {
   .SideMenu {
     width: 240px;
   }
@@ -204,3 +206,10 @@ p {
     margin-left: 240px;
   }
 }
+
+/* 5칸+Sidebar */
+// @media (min-width: 1800px) {
+//   .video {
+//     width: calc(20% - 16px);
+//   }
+// }
