@@ -139,7 +139,7 @@ p {
 // // 4칸+SideMenu or 5칸+Sidebar
 
 /* 2칸 Sidebar: none search: none */
-@media (min-width: 560px) {
+@media (min-width: 520px) {
   .video-section {
     display: flex;
     flex-wrap: wrap;
@@ -151,7 +151,7 @@ p {
 }
 
 /* 2칸 Sidebar: none */
-@media (max-width: 620px) {
+@media (max-width: 656px) {
   .SearchBar {
     display: none;
   }
@@ -159,7 +159,7 @@ p {
 }
 
 /* 2칸+Sidebar */
-@media (min-width: 680px) {
+@media (min-width: 810px) {
   .SideMenu {
     display: block;
   }
@@ -169,34 +169,21 @@ p {
 }
 
 /* 3칸+Sidebar */
-@media (min-width: 790px) {
+@media (min-width: 890px) {
   .video {
     width: calc(33.333% - 16px);
   }
 }
 
 /* 4칸+Sidebar */
-@media (min-width: 900px) {
+@media (min-width: 1145px) {
   .video {
     width: calc(25% - 16px);
   }
 }
-
-/* 5칸+Sidebar */
-// @media (min-width: 1785px) {
-//   .video {
-//     width: calc(20% - 16px);
-//   }
-// }
 
 /* 4칸+SideMenu */
-@media (min-width: 1200px) {
-  .video {
-    width: calc(25% - 16px);
-  }
-}
-
-@media (min-width: 1350px) {
+@media (min-width: 1330px) {
   .SideMenu {
     width: 240px;
   }
@@ -204,3 +191,10 @@ p {
     margin-left: 240px;
   }
 }
+
+/* 5칸+Sidebar */
+// @media (min-width: 1800px) {
+//   .video {
+//     width: calc(20% - 16px);
+//   }
+// }
