@@ -3,7 +3,6 @@ import axios from "axios";
 import Header from "components/Header";
 import { SideMenu } from "components/SideMenu";
 import VideoContainer, { VideoData } from "components/VideoContainer";
-
 import "styles/App.scss";
 
 function App() {
