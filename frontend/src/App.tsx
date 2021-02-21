@@ -22,7 +22,7 @@ function App() {
           thumbnail: "thumbnail/2021/10/02/05/21/fiveDice.png",
           runtime: 192,
           views: 1,
-          create_at: "2021년 2월 5일 1:10 오전",
+          create_at: "2021/2/5 1:10",
         },
       ],
       user: undefined,
