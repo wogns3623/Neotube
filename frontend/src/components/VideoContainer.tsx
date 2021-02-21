@@ -22,16 +22,12 @@ type VideoBoxProps = {
 };
 
 // todo list
-// position공부해서 화면 조정하기
+// position공부해서 화면 조정하기 (0)
 // react 이벤트 핸들링 하기
-// - videoview
-// - menu Onclick : sidevar->sidemenu
+// - videoview 띄우기
 // - 영상 이미지 focus : 영상 출력(0.5초 뒤) + runtime:none(0.5초 뒤) hidden: ''(바로)
 // - hidden focus: overflow만들기
-
-// creaste-at = 현재시간 - 게시시간 만들기
 // videoName 두줄 + ... 만들기
-
 // hiddenadd focus: block, onclik: overflow뜨기
 
 const VideoBox = ({ videoData }: VideoBoxProps) => {
@@ -97,11 +93,7 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
           <div className="videoChannel">
             <p className="videoChannel-item">{channel}</p>
           </div>
-          {/* 여기를 어떻게 해야 되지,,? */}
-          <CreateAt createAtDate={none} />
-          {/* <p className="likesUpload" style={Overflow}>
-            좋아요 {views} • {create_at}
-          </p> */}
+          <CreateAt views={views} create_at={create_at} />
         </div>
         <div className="hiddenAdd">...</div>
       </div>
