@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "styles/VideoContainer.scss";
 import imageTest from "D:/Neotube/frontend/src/styles/images/ilbuni.png";
+import CreateAt from "./CreateAt";
+import { getTsBuildInfoEmitOutputFilePath } from "typescript";
 // require() 안됨.
 // 상대경로 안됨
 
@@ -95,9 +97,11 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
           <div className="videoChannel">
             <p className="videoChannel-item">{channel}</p>
           </div>
-          <p className="likesUpload" style={Overflow}>
+          {/* 여기를 어떻게 해야 되지,,? */}
+          <CreateAt createAtDate={none} />
+          {/* <p className="likesUpload" style={Overflow}>
             좋아요 {views} • {create_at}
-          </p>
+          </p> */}
         </div>
         <div className="hiddenAdd">...</div>
       </div>
