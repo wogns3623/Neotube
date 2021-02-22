@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Header from "components/Header";
 import { SideMenu } from "components/SideMenu";
 import VideoContainer, { VideoData } from "components/VideoContainer";
 
@@ -37,14 +36,13 @@ const Home = () => {
         setGuide(json);
       });
   }, []);
+
   return (
     <>
-      <Header />
       <main className="Home">
         <SideMenu />
         <VideoContainer videoList={guide.video} />
       </main>
-      <nav className="overlay"></nav>
     </>
   );
 };

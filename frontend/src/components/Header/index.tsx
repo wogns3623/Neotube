@@ -6,7 +6,7 @@ import GoogleLogin, {
 
 import List from "components/List";
 import Menu, { MenuButton } from "components/Menu";
-import { Icon, DescIcon } from "components/Icon";
+import Icon, { DescIcon } from "components/Icon";
 import { SideMenuHeader } from "components/SideMenu";
 import SearchBar from "components/Header/SearchBar";
 import config from "config.json";
@@ -56,7 +56,7 @@ const Header = () => {
         .then((res) => res.json())
         .then((json) => {
           localStorage.setItem("neotube_token", json.token);
-          if (json.username && json.token) {
+          if (json.token) {
             // 유저 생성 완료
           } else {
             // 이미 유저가 존재하면 로그인 시도
@@ -69,7 +69,7 @@ const Header = () => {
             })
               .then((res) => res.json())
               .then((json) => {
-                if (json.user && json.user.username && json.token) {
+                if (json.token) {
                   // login success
                 }
               });

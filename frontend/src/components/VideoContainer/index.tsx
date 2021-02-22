@@ -113,6 +113,8 @@ const VideoContainer = (props: VideoContainerProps) => {
     }
   }, [loadVideo]);
 
+  console.log(videoList);
+
   return (
     <div className="VideoContainer">
       <section className="video-section">

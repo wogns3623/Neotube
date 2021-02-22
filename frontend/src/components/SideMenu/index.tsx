@@ -1,6 +1,6 @@
 import React from "react";
 import List from "components/List";
-import { Icon } from "components/Icon";
+import Icon from "components/Icon";
 import { BasicProps, SingleWrapperProps } from "types";
 import "./SideMenu.scss";
 

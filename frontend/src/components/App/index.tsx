@@ -8,6 +8,7 @@ import { Home } from "pages/index";
 import { UserContext } from "context";
 
 import "./App.scss";
+import Header from "components/Header";
 
 /* TODO: 로그인 & 토큰 관리를 하나의 후크로 분리하기
  * const {isAuthenticated, userProfile} = useAuth(googleLoginParams, googleLogoutParams, token)
@@ -81,15 +82,16 @@ function App() {
   }, [isAuthenticated, signOut]);
 
   return (
-    <div className="App">
-      <UserContext.Provider value={{ profile: userProfile }}>
+    <UserContext.Provider value={{ profile: userProfile }}>
+      <div className="App">
+        <Header />
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />
           </Switch>
         </BrowserRouter>
-      </UserContext.Provider>
-    </div>
+      </div>
+    </UserContext.Provider>
   );
 }
 
