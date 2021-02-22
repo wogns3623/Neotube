@@ -1,7 +1,7 @@
 import React from "react";
 import { SingleWrapperProps } from "utils/types";
 
-import "styles/Icon.scss";
+import "./Icon.scss";
 
 const Icon = ({ children, className }: SingleWrapperProps) => {
   return (

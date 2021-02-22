@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "./Icon";
-import List from "components/common/List";
+import List from "components/List";
 import { SingleWrapperProps } from "utils/types";
 
 type DescIconProps = SingleWrapperProps & {

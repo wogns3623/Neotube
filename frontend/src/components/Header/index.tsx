@@ -4,13 +4,13 @@ import GoogleLogin, {
   GoogleLoginResponseOffline,
 } from "react-google-login";
 
-import List from "components/common/List";
-import Menu, { MenuButton } from "components/common/menu";
-import { Icon, DescIcon } from "components/common/Icon";
+import List from "components/List";
+import Menu, { MenuButton } from "components/Menu";
+import { Icon, DescIcon } from "components/Icon";
 import { SideMenuHeader } from "components/SideMenu";
-import SearchBar from "components/common/Header/SearchBar";
+import SearchBar from "components/Header/SearchBar";
 
-import "styles/Header.scss";
+import "./Header.scss";
 
 type UserInfo = {
   username: string | null;

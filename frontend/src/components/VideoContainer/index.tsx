@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "styles/VideoContainer.scss";
+
+import "./VideoContainer.scss";
 
 export type VideoData = {
   uploader: number;

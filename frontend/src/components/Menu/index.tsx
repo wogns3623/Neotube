@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import List, { ListProps } from "components/common/List";
+import List, { ListProps } from "components/List";
 
-import "styles/Menu.scss";
 import { ClickableProps } from "utils/types";
+import "./Menu.scss";
 
 const MenuButton = ({ className, children, onClick }: ClickableProps) => {
   return (

@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
-import LoginRoute from "components/common/LoginRoute";
-import { Home } from "pages";
+import LoginRoute from "components/Route/LoginRoute";
+import { Home } from "Domain";
 
-import "styles/App.scss";
+import "./App.scss";
 
 function App() {
   return (

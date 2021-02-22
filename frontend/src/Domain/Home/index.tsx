@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "components/common/Header";
+import Header from "components/Header";
 import { SideMenu } from "components/SideMenu";
 import VideoContainer, { VideoData } from "components/VideoContainer";
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import "styles/List.scss";
+import "./List.scss";
 import { MultipleWrapperProps } from "utils/types";
 
 type ListProps = MultipleWrapperProps & {
