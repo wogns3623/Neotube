@@ -29,7 +29,9 @@ SECRET_KEY = 'z^=77w3cb5+5ke@6xqeppa261h#_0i+l4(+-aa7q$7t-3p3u_a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '*',
+]
 
 
 # Application definition
@@ -46,19 +48,24 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # * Django Third-Party Apps
+    # ! REST_FRAMEWORK
     'rest_framework',
     'rest_framework.authtoken',
 
+    # ! Social Login
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
 
+    # ! CORS 설정
+    'corsheaders',
+
     # * Django My Apps
+    'user.apps.UserConfig',
     'video.apps.VideoConfig',
     'comment.apps.CommentConfig',
     'feed.apps.FeedConfig',
-    'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'Neotube.urls'
@@ -76,7 +84,9 @@ ROOT_URLCONF = 'Neotube.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'Neotube', 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -150,7 +160,9 @@ MEDIA_URL = '/media/'  # * 미디어를 저장할때 사용하는 경로
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # * 미디어를 접근할때 사용하는 경로
 
+# ! CORS 설정
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 # CORS_ORIGIN_ALLOW_ALL = False
 # CORS_ORIGIN_WHITELIST = [
 #     # 허용할 프론트엔드 도메인 추가 EX:
@@ -183,7 +195,8 @@ JWT_AUTH = {
 
 AUTH_USER_MODEL = 'user.SocialLoginUser'
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 
 ACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_QUERY_EMAIL = True

@@ -13,17 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
+from django.views.generic import TemplateView
 
 from .views import GuideAPIView, BrowseAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', TemplateView.as_view(template_name="login/index.html"), name='login'),
 
     # * Django Third Pary Apps URL
-    path('accounts/', include('allauth.urls')),
+    path('accounts/', include('user.urls')),
     path('api-token-auth/', obtain_auth_token),
 
 
@@ -33,3 +37,6 @@ urlpatterns = [
     path('watch/', include('watch.urls')),
     path('comment/', include('comment.urls')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL,
+                      document_root=settings.MEDIA_ROOT)
