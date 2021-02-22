@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import List, { ListProps } from "components/List";
 
-import { ClickableProps } from "utils/types";
+import { ClickableProps } from "types";
 import "./Menu.scss";
 
 const MenuButton = ({ className, children, onClick }: ClickableProps) => {
@@ -27,7 +27,7 @@ const Menu = ({ className, children, direction }: ListProps) => {
     setIsOpen(value);
   };
 
-  const renderMenuButton = (
+  const renderButton = (
     <MenuButton
       className="react-menu-button"
       onClick={() => {
@@ -38,22 +38,29 @@ const Menu = ({ className, children, direction }: ListProps) => {
     </MenuButton>
   );
 
+  const renderList = (
+    <List
+      className={`react-menu-list${!isOpen ? " disable" : ""}`}
+      direction={direction}
+    >
+      {children.filter((child) => {
+        return (child as JSX.Element).type.name !== "MenuButton";
+      })}
+    </List>
+  );
+
   return (
     <div
       className={`react-menu ${className ? className : ""}`}
-      onBlur={() => {
-        handleOpenMenu(false);
-      }}
+      onBlur={() => handleOpenMenu(false)}
     >
-      {renderMenuButton}
-      <List
-        className={`react-menu-list${isOpen ? " visible" : ""}`}
-        direction={direction}
-      >
-        {children}
-      </List>
+      {renderButton}
+      {renderList}
     </div>
   );
+};
+Menu.defaultProps = {
+  direction: "column",
 };
 
 export default Menu;

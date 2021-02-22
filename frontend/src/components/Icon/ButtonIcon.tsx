@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "./Icon";
-import { ClickableProps } from "utils/types";
+import { ClickableProps } from "types";
 
 const ButtonIcon = ({ children, className, onClick }: ClickableProps) => {
   return (

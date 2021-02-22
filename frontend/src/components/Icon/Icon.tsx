@@ -1,5 +1,5 @@
 import React from "react";
-import { SingleWrapperProps } from "utils/types";
+import { SingleWrapperProps } from "types";
 
 import "./Icon.scss";
 

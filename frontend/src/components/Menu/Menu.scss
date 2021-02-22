@@ -5,13 +5,22 @@
       color: white;
       background-color: inherit;
       border: none;
+      outline: none;
     }
   }
   &-list {
-    display: none;
     position: absolute;
-    &.visible {
-      display: block;
+
+    background-color: rgba(33, 33, 33, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+
+    width: max-content;
+
+    padding: 5px 0;
+
+    &.disable {
+      display: none;
     }
   }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "./Icon";
 import List from "components/List";
-import { SingleWrapperProps } from "utils/types";
+import { SingleWrapperProps } from "types";
 
 type DescIconProps = SingleWrapperProps & {
   desc: string;

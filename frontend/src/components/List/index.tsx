@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./List.scss";
-import { MultipleWrapperProps } from "utils/types";
+import { MultipleWrapperProps } from "types";
 
 type ListProps = MultipleWrapperProps & {
   direction?: "row" | "column";
