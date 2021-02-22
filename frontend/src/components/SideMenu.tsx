@@ -1,13 +1,13 @@
 import React from "react";
-import Menu from "components/Menu";
-import Icon from "components/Icon";
+import List from "components/common/List";
+import { Icon } from "components/common/Icon";
 import "styles/SideMenu.scss";
+import { BasicProps, SingleWrapperProps } from "utils/types";
 
-type SideMenuHeaderProps = { className?: string; id?: string };
-const SideMenuHeader = ({ className, id }: SideMenuHeaderProps) => {
+const SideMenuHeader = ({ className }: BasicProps) => {
   return (
-    <Menu id={id} className={`SideMenu-header ${className}`}>
-      <Icon className="Icon-menu">
+    <List className={`SideMenu-header ${className ? className : ""}`}>
+      <Icon className="menu">
         <svg
           viewBox="0 0 24 24"
           preserveAspectRatio="xMidYMid meet"
@@ -21,7 +21,7 @@ const SideMenuHeader = ({ className, id }: SideMenuHeaderProps) => {
           </g>
         </svg>
       </Icon>
-      <Icon className="Icon-logo">
+      <Icon className="logo">
         <svg
           viewBox="0 0 200 60"
           preserveAspectRatio="xMidYMid meet"
@@ -80,37 +80,31 @@ const SideMenuHeader = ({ className, id }: SideMenuHeaderProps) => {
           </g>
         </svg>
       </Icon>
-    </Menu>
+    </List>
   );
 };
-SideMenuHeader.defaultProps = {
-  className: "",
-  id: "",
-};
 
-type SideMenuItemProps = {
+type SideMenuItemProps = SingleWrapperProps & {
   desc: string;
   href: string;
-  className?: string;
-  children?: React.ReactNode;
   hasNotification?: boolean;
 };
 const SideMenuItem = ({
-  desc,
-  href,
   className,
   children,
+  desc,
+  href,
   hasNotification,
 }: SideMenuItemProps) => {
   // children: image | svg icon
   // desc: channel name | 홈, 인기, 구독 등
   return (
-    <div className={`MenuItem ${className}`}>
+    <div className={`side-menu-item ${className ? className : ""}`}>
       <a href={href}>
-        <Menu className="item-wrapper">
+        <List className="item-wrapper">
           <Icon>{children}</Icon>
           <div className="desc">{desc}</div>
-        </Menu>
+        </List>
         <div className={`notificator ${hasNotification ? "active" : ""}`} />
       </a>
     </div>
@@ -118,14 +112,13 @@ const SideMenuItem = ({
 };
 SideMenuItem.defaultProps = {
   href: "",
-  className: "",
   hasNotification: false,
 };
 
 const SideMenu = () => {
   return (
     <div className="SideMenu">
-      <Menu className="general" direction="column">
+      <List className="general" direction="column">
         <SideMenuItem desc="홈">
           <svg
             viewBox="0 0 24 24"
@@ -159,8 +152,8 @@ const SideMenu = () => {
             </g>
           </svg>
         </SideMenuItem>
-      </Menu>
-      <Menu className="personal" direction="column">
+      </List>
+      <List className="personal" direction="column">
         <SideMenuItem desc="홈">
           <svg
             viewBox="0 0 24 24"
@@ -227,8 +220,8 @@ const SideMenu = () => {
             </g>
           </svg>
         </SideMenuItem>
-      </Menu>
-      <Menu className="subscribe" direction="column">
+      </List>
+      <List className="subscribe" direction="column">
         <div className="menu-desc">구독</div>
         <SideMenuItem desc="홈" hasNotification={true}>
           <svg
@@ -296,8 +289,8 @@ const SideMenu = () => {
             </g>
           </svg>
         </SideMenuItem>
-      </Menu>
-      <Menu className="setting" direction="column">
+      </List>
+      <List className="setting" direction="column">
         <SideMenuItem desc="홈">
           <svg
             viewBox="0 0 24 24"
@@ -364,8 +357,8 @@ const SideMenu = () => {
             </g>
           </svg>
         </SideMenuItem>
-      </Menu>
-      <Menu className="footer" direction="column">
+      </List>
+      <List className="footer" direction="column">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a ligula
           interdum, malesuada augue eu, ultrices tortor. Etiam a laoreet ex, id
@@ -379,7 +372,7 @@ const SideMenu = () => {
         <p>
           Nullam at rhoncus est, mattis venenatis enim. Nulla eu finibus eros.
         </p>
-      </Menu>
+      </List>
     </div>
   );
 };

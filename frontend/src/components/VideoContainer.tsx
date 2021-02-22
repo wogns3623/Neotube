@@ -1,46 +1,46 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "styles/VideoContainer.scss";
 
-type VideoData = {
-  channel: string;
+export type VideoData = {
+  uploader: number;
   title: string;
+  thumb_nail: string;
   video: string;
-  thumbnail: string;
-  runtime: number;
-  views: number;
-  create_at: string;
+  description?: string;
+  run_time: number;
+  watch_count: number;
+  created_at: string;
 };
 
-interface VideoBoxProps {
+type VideoBoxProps = {
   videoData: VideoData;
-}
+};
 
 const VideoBox = ({ videoData }: VideoBoxProps) => {
   const {
-    channel,
+    uploader,
     title,
     video,
-    thumbnail,
-    runtime,
-    views,
-    create_at,
+    thumb_nail,
+    run_time,
+    watch_count,
+    created_at,
   } = videoData;
   return (
     <div className="video-box">
       <a href={video}>
         <div className="thumbnail">
-          <img alt={title} src={thumbnail} />
-          <div className="runtime">{runtime}</div>
+          <img alt={title} src={thumb_nail} />
+          <div className="runtime">{run_time}</div>
         </div>
         <div className="detail">
           <div className="channel-icon"></div>
           <div className="meta">
             <div className="title">{title}</div>
-            <div className="channel-name">{channel}</div>
+            <div className="channel-name">{uploader}</div>
             <div className="etc">
-              <div className="views">{views}</div>
-              <div className="created">{create_at}</div>
+              <div className="views">{watch_count}</div>
+              <div className="created">{created_at}</div>
             </div>
           </div>
           <div className="menu"></div>
@@ -50,27 +50,16 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
   );
 };
 
-interface VideoSectionProps {
-  children: React.ReactNode;
-  className?: string;
-}
-const VideoSection = ({ children, className }: VideoSectionProps) => {
-  return <section className={`video-section ${className}`}>{children}</section>;
-};
-VideoSection.defaultProps = {
-  className: "",
-};
-
-interface VideoContainerProps {
+type VideoContainerProps = {
   videoList: VideoData[];
-}
+};
 
-const VideoContainer = ({ videoList }: VideoContainerProps) => {
+const VideoContainer = (props: VideoContainerProps) => {
   const [loadVideo, setLoadVideo] = useState(false);
+  const [videoList, setVideoList] = useState([] as VideoData[]);
 
   useEffect(() => {
     // add scroll event to VideoContainer
-    console.log("add event listener");
 
     let infiScrollEvent = (event: Event): void => {
       let element = document.getElementsByClassName(
@@ -84,38 +73,52 @@ const VideoContainer = ({ videoList }: VideoContainerProps) => {
         element.offsetTop -
         document.documentElement.clientHeight;
 
-      console.log(elementHeight, window.scrollY);
+      console.log(window.scrollY, elementHeight, elementHeight - threshold);
 
-      if (window.scrollY > elementHeight - threshold) setLoadVideo(true);
+      if (window.scrollY > elementHeight - threshold) {
+        console.log("set loadVideo true");
+        setLoadVideo(true);
+      }
     };
 
+    console.log("add infiscroll event");
     window.addEventListener("scroll", infiScrollEvent);
 
     return () => {
+      console.log("remove infiScroll event");
       window.removeEventListener("scroll", infiScrollEvent);
     };
   }, []);
 
   useEffect(() => {
+    setVideoList(props.videoList);
+  }, [props.videoList]);
+
+  useEffect(() => {
     // load additional video after scroll event
     if (loadVideo === true) {
-      setTimeout(() => {
-        setLoadVideo(false);
-        // setVideoData(videoData + 30);
-        // axios.get("http://www.neotubei.kro.kr/neotubei/v1/browse/");
-      }, 1000);
+      // console.log("get additional video");
+      // setTimeout(() => {
+      //   setVideoList((vl) => vl.concat(vl));
+      //   setLoadVideo(false);
+      // }, 1000);
+
+      fetch("http://www.neotubei.kro.kr/neotubei/v1/browse/")
+        .then((res) => res.json())
+        .then((json) => {
+          setVideoList((vl) => vl.concat(json.video));
+          setLoadVideo(false);
+        });
     }
   }, [loadVideo]);
 
-  let videoBoxes = [];
-
-  for (let i = 0; i < videoList.length; i++) {
-    videoBoxes.push(<VideoBox videoData={videoList[i]}></VideoBox>);
-  }
-
   return (
     <div className="VideoContainer">
-      <VideoSection>{videoBoxes}</VideoSection>
+      <section className="video-section">
+        {videoList.map((videoInfo, index) => {
+          return <VideoBox videoData={videoInfo} key={index}></VideoBox>;
+        })}
+      </section>
       <div className={`spinner ${loadVideo ? "active" : ""}`}>
         it's spinner!
       </div>

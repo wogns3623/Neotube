@@ -1,10 +1,17 @@
 .react-menu {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  &-column {
-    flex-direction: column;
+  position: relative;
+  &-button {
+    & > button {
+      color: white;
+      background-color: inherit;
+      border: none;
+    }
+  }
+  &-list {
+    display: none;
+    position: absolute;
+    &.visible {
+      display: block;
+    }
   }
 }
