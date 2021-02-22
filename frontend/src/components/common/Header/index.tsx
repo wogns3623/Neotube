@@ -1,9 +1,14 @@
 import React from "react";
+import GoogleLogin, {
+  GoogleLoginResponse,
+  GoogleLoginResponseOffline,
+} from "react-google-login";
+
 import List from "components/common/List";
-import Menu from "components/common/menu";
+import Menu, { MenuButton } from "components/common/menu";
 import { Icon, DescIcon } from "components/common/Icon";
 import { SideMenuHeader } from "components/SideMenu";
-import SearchBar from "components/Header/SearchBar";
+import SearchBar from "components/common/Header/SearchBar";
 
 import "styles/Header.scss";
 
@@ -17,6 +22,64 @@ interface HeaderProps {
 }
 
 const Header = (props: HeaderProps) => {
+  const onLogin = (
+    googleUser: GoogleLoginResponse | GoogleLoginResponseOffline
+  ) => {
+    if ((googleUser as GoogleLoginResponse).accessToken === undefined) {
+      console.log("offline, code is ", googleUser.code);
+    } else {
+      googleUser = googleUser as GoogleLoginResponse;
+      console.log(googleUser);
+      let profile = googleUser.getBasicProfile();
+
+      let username = profile.getName();
+      let email = profile.getEmail();
+      let id = profile.getId();
+      let firstname = profile.getGivenName();
+      let lastname = profile.getFamilyName();
+
+      let data = {
+        username: username,
+        first_name: firstname,
+        last_name: lastname,
+        email: email,
+        id: id,
+        provider: "google",
+      };
+
+      // 유저 생성 시도
+      fetch("http://www.neotubei.kro.kr/account/google/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          localStorage.token = json.token;
+          // if (json.username && json.token) {
+          //   // 유저 생성 완료
+          // } else {
+          //   // 이미 유저가 존재하면 로그인 시도
+          //   fetch("http://www.neotubei.kro.kr/login/", {
+          //     method: "POST",
+          //     headers: {
+          //       "Content-Type": "application/json",
+          //     },
+          //     body: JSON.stringify(data),
+          //   })
+          //     .then((res) => res.json())
+          //     .then((json) => {
+          //       if (json.user && json.user.username && json.token) {
+          //         // login success
+          //       }
+          //     });
+          // }
+        });
+    }
+  };
+
   return (
     <header>
       <List className="menu-header">
@@ -39,20 +102,20 @@ const Header = (props: HeaderProps) => {
         </List>
 
         <List className="right">
-          <Menu
-            className="upload"
-            menuButton={
-              <svg
-                viewBox="0 0 24 24"
-                preserveAspectRatio="xMidYMid meet"
-                focusable="false"
-              >
-                <g>
-                  <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"></path>
-                </g>
-              </svg>
-            }
-          >
+          <Menu className="upload">
+            <MenuButton>
+              <Icon>
+                <svg
+                  viewBox="0 0 24 24"
+                  preserveAspectRatio="xMidYMid meet"
+                  focusable="false"
+                >
+                  <g>
+                    <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"></path>
+                  </g>
+                </svg>
+              </Icon>
+            </MenuButton>
             <Icon>
               <svg
                 viewBox="0 0 24 24"
@@ -130,9 +193,16 @@ const Header = (props: HeaderProps) => {
               />
             </Icon>
           ) : (
-            <a href="http://www.neotubei.kro.kr/accounts/google/login/">
-              로그인
-            </a>
+            <GoogleLogin
+              clientId="781581892874-5fo0b3utssf5n6eidrm0qqgcjoulr12p.apps.googleusercontent.com"
+              buttonText="login"
+              onSuccess={onLogin}
+              onFailure={(res) => console.log(res)}
+              isSignedIn={true}
+            />
+            // <a href="http://www.neotubei.kro.kr/accounts/google/login/">
+            //   로그인
+            // </a>
           )}
         </List>
       </List>

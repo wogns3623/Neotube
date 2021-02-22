@@ -2,26 +2,41 @@ import React, { useState } from "react";
 import List, { ListProps } from "components/common/List";
 
 import "styles/Menu.scss";
-import ButtonIcon from "components/common/Icon/ButtonIcon";
 import { ClickableProps } from "utils/types";
 
-const MenuButton = ({ className, children }: ClickableProps) => {
+const MenuButton = ({ className, children, onClick }: ClickableProps) => {
   return (
     <div className={`react-menu-button ${className ? className : ""}`}>
-      {children}
+      <button type="button" onClick={onClick}>
+        {children}
+      </button>
     </div>
   );
 };
-
-type MenuProps = ListProps & {
-  menuButton: React.ReactNode;
+MenuButton.defaultProps = {
+  onClick: (e: React.MouseEvent<any, MouseEvent>) => {},
 };
-const Menu = ({ className, children, direction, menuButton }: MenuProps) => {
-  const [isOpen, setIsOpen] = useState(menuButton ? false : true);
+
+const Menu = ({ className, children, direction }: ListProps) => {
+  const menuButtonChild = children.find((child) => {
+    return (child as JSX.Element).type.name === "MenuButton";
+  });
+  const [isOpen, setIsOpen] = useState(menuButtonChild ? false : true);
 
   const handleOpenMenu = (value: boolean) => {
     setIsOpen(value);
   };
+
+  const renderMenuButton = (
+    <MenuButton
+      className="react-menu-button"
+      onClick={() => {
+        handleOpenMenu(!isOpen);
+      }}
+    >
+      {menuButtonChild}
+    </MenuButton>
+  );
 
   return (
     <div
@@ -30,14 +45,7 @@ const Menu = ({ className, children, direction, menuButton }: MenuProps) => {
         handleOpenMenu(false);
       }}
     >
-      <ButtonIcon
-        className="react-menu-button"
-        onClick={() => {
-          handleOpenMenu(!isOpen);
-        }}
-      >
-        {menuButton}
-      </ButtonIcon>
+      {renderMenuButton}
       <List
         className={`react-menu-list${isOpen ? " visible" : ""}`}
         direction={direction}
@@ -49,3 +57,4 @@ const Menu = ({ className, children, direction, menuButton }: MenuProps) => {
 };
 
 export default Menu;
+export { MenuButton };
