@@ -1,7 +1,7 @@
 import React from "react";
 import List from "components/List";
 import { Icon } from "components/Icon";
-import { BasicProps, SingleWrapperProps } from "utils/types";
+import { BasicProps, SingleWrapperProps } from "types";
 import "./SideMenu.scss";
 
 const SideMenuHeader = ({ className }: BasicProps) => {

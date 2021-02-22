@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import GoogleLogin, {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
@@ -9,19 +9,15 @@ import Menu, { MenuButton } from "components/Menu";
 import { Icon, DescIcon } from "components/Icon";
 import { SideMenuHeader } from "components/SideMenu";
 import SearchBar from "components/Header/SearchBar";
+import config from "config.json";
 
 import "./Header.scss";
+import { UserContext } from "context";
 
-type UserInfo = {
-  username: string | null;
-  img: string | null;
-};
+// TODO: 다른곳에서도 구글 로그인 버튼이 필요할 수 있으니 따로 분리하기(ex: SideMenu)
+const Header = () => {
+  const user = useContext(UserContext);
 
-interface HeaderProps {
-  userInfo: UserInfo | undefined;
-}
-
-const Header = (props: HeaderProps) => {
   const onLogin = (
     googleUser: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => {
@@ -37,18 +33,20 @@ const Header = (props: HeaderProps) => {
       let id = profile.getId();
       let firstname = profile.getGivenName();
       let lastname = profile.getFamilyName();
+      let image = profile.getImageUrl();
 
       let data = {
         username: username,
-        first_name: firstname,
-        last_name: lastname,
         email: email,
         id: id,
+        first_name: firstname,
+        last_name: lastname,
+        image: image,
         provider: "google",
       };
 
       // 유저 생성 시도
-      fetch("http://www.neotubei.kro.kr/account/google/", {
+      fetch(`${config.APIServer}/account/google/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,25 +55,25 @@ const Header = (props: HeaderProps) => {
       })
         .then((res) => res.json())
         .then((json) => {
-          localStorage.token = json.token;
-          // if (json.username && json.token) {
-          //   // 유저 생성 완료
-          // } else {
-          //   // 이미 유저가 존재하면 로그인 시도
-          //   fetch("http://www.neotubei.kro.kr/login/", {
-          //     method: "POST",
-          //     headers: {
-          //       "Content-Type": "application/json",
-          //     },
-          //     body: JSON.stringify(data),
-          //   })
-          //     .then((res) => res.json())
-          //     .then((json) => {
-          //       if (json.user && json.user.username && json.token) {
-          //         // login success
-          //       }
-          //     });
-          // }
+          localStorage.setItem("neotube_token", json.token);
+          if (json.username && json.token) {
+            // 유저 생성 완료
+          } else {
+            // 이미 유저가 존재하면 로그인 시도
+            fetch(`${config.APIServer}login/`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            })
+              .then((res) => res.json())
+              .then((json) => {
+                if (json.user && json.user.username && json.token) {
+                  // login success
+                }
+              });
+          }
         });
     }
   };
@@ -116,17 +114,7 @@ const Header = (props: HeaderProps) => {
                 </svg>
               </Icon>
             </MenuButton>
-            <Icon>
-              <svg
-                viewBox="0 0 24 24"
-                preserveAspectRatio="xMidYMid meet"
-                focusable="false"
-              >
-                <g>
-                  <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"></path>
-                </g>
-              </svg>
-            </Icon>
+
             <DescIcon desc="동영상 업로드">
               <svg
                 viewBox="0 0 24 24"
@@ -183,26 +171,23 @@ const Header = (props: HeaderProps) => {
             </svg>
           </Icon>
 
-          {props.userInfo !== undefined ? (
+          {user.profile ? (
             <Icon className="user">
               <img
                 alt="아바타 이미지"
                 height="32"
                 width="32"
-                src={props.userInfo.img as string}
+                src={user.profile.image as string}
               />
             </Icon>
           ) : (
             <GoogleLogin
-              clientId="781581892874-5fo0b3utssf5n6eidrm0qqgcjoulr12p.apps.googleusercontent.com"
+              clientId={config.googleAPI.clientId}
               buttonText="login"
               onSuccess={onLogin}
-              onFailure={(res) => console.log(res)}
+              onFailure={(err) => console.log(err)}
               isSignedIn={true}
             />
-            // <a href="http://www.neotubei.kro.kr/accounts/google/login/">
-            //   로그인
-            // </a>
           )}
         </List>
       </List>

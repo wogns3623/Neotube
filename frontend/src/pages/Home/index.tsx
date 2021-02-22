@@ -6,12 +6,10 @@ import VideoContainer, { VideoData } from "components/VideoContainer";
 const Home = () => {
   const [guide, setGuide] = useState({
     video: [] as VideoData[],
-    user: undefined,
   });
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   // load guide data after mount
+  // TODO: guide api에서 유저 정보 분리하기
   useEffect(() => {
     let tempData = {
       video: [
@@ -29,7 +27,6 @@ const Home = () => {
           created_at: "2021-02-16T02:15:59.959096+09:00",
         },
       ],
-      user: undefined,
     };
     setGuide(tempData);
 
@@ -42,7 +39,7 @@ const Home = () => {
   }, []);
   return (
     <>
-      <Header userInfo={guide.user} />
+      <Header />
       <main className="Home">
         <SideMenu />
         <VideoContainer videoList={guide.video} />
