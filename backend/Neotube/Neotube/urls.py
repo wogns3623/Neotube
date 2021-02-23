@@ -17,8 +17,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token, refresh_jwt_token
 from django.views.generic import TemplateView
+from django_pydenticon.views import image as pydenticon_image
 
 from .views import GuideAPIView, BrowseAPIView
 
@@ -28,7 +29,12 @@ urlpatterns = [
 
     # * Django Third Pary Apps URL
     path('accounts/', include('user.urls')),
-    path('api-token-auth/', obtain_auth_token),
+    path('identicon/image/<path:data>/',
+         pydenticon_image, name='pydenticon_image'),
+
+    path('api-token-auth/', obtain_jwt_token),
+    path('api-token-verify/', verify_jwt_token),
+    path('api-token-refresh/', refresh_jwt_token),
 
 
     # * Django My Apps URL

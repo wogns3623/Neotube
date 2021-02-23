@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import GoogleLoginView
+from .views import GoogleLoginView, GoogleRefreshTokenView, DecodeCurrentUserView
 
 
 urlpatterns = [
-    path('login/google/', GoogleLoginView.as_view(), name='google_login'),
+    path('current/', DecodeCurrentUserView.as_view(), name='current'),
+    path('login/google/', GoogleLoginView.as_view(), name='login'),
+    path('refresh/google/', GoogleRefreshTokenView.as_view(), name='refresh'),
 ]
