@@ -42,6 +42,7 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
   } = videoData;
 
   const ThunmbnailImg = {
+    paddingBottom: `60%`,
     backgroundColor: `#9e9e9e`,
     backgroundRepeat: `no-repeat`,
     backgroundPosition: `top`,
@@ -74,16 +75,9 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
           <div className="lastview">a</div>
           <div className="addlist">b</div>
         </div>
-        <div className="runtime">
-          <div className="runtime-item">
-            {(runtime - (runtime % 60)) / 60}:{runtime % 60}
-          </div>
-        </div>
       </figure>
       <div className="videoDesc">
-        <div className="videoImg" style={ChannelImg}>
-          {/* <img src={ChannelImg.backgroundImage} /> */}
-        </div>
+        <div className="videoImg" style={ChannelImg}></div>
         <div className="videoContent">
           <div className="videoName">
             <p className="videoName-item" style={Overflow}>
@@ -95,7 +89,14 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
           </div>
           <CreateAt view={views} create={create_at} />
         </div>
-        <div className="hiddenAdd">...</div>
+        <div className="hiddenAdd">
+          <div className="Add">⁝</div>
+          <div className="runtime">
+            <div className="runtime-item">
+              {(runtime - (runtime % 60)) / 60}:{runtime % 60}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

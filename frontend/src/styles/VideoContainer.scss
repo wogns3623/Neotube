@@ -59,13 +59,10 @@ p {
   display: flex;
   flex-direction: column;
   margin: 0 8px 40px 8px;
-  width: calc(80% - 16px);
   // 처음에 너무 꽉차있어서 줄임
-  height: calc(60vw - 16px);
 
   .thumnail {
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -79,16 +76,6 @@ p {
       }
       .addlist {
         background: #cfcfcf;
-      }
-    }
-    .runtime {
-      // padding-top: calc((100% - 34px) * 0.6);
-      align-self: flex-end;
-      .runtime-item {
-        border-radius: 0.1em;
-        padding: 0 0.2rem;
-        font-size: 0.9rem;
-        background: rgba(0, 0, 0, 0.8);
       }
     }
   }
@@ -134,12 +121,24 @@ p {
     }
 
     .hiddenAdd {
-      margin-top: 12px;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      .Add {
+        margin-top: 12px;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .runtime {
+        position: relative;
+        bottom: 60px;
+        .runtime-item {
+          border-radius: 0.1em;
+          padding: 0 0.2rem;
+          font-size: 0.9rem;
+          background: rgba(0, 0, 0, 0.8);
+        }
+      }
     }
   }
 }
@@ -160,7 +159,6 @@ p {
   }
   .video {
     width: calc(45% - 16px);
-    height: calc(45vw - 16px);
   }
 }
 
@@ -186,7 +184,6 @@ p {
 @media (min-width: 890px) {
   .video {
     width: calc(33.333% - 16px);
-    height: calc(33.333vw - 16px);
   }
 }
 
@@ -194,7 +191,6 @@ p {
 @media (min-width: 1145px) {
   .video {
     width: calc(25% - 16px);
-    height: calc(25vw - 16px);
   }
 }
 
