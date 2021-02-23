@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "styles/VideoContainer.scss";
-import imageTest from "D:/Neotube/frontend/src/styles/images/ilbuni.png";
+// import imageTest from "D:/Neotube/frontend/src/styles/images/ilbuni.png";
+// import videoTest from "D:/Neotube/frontend/src/styles/images/test.mp4/";
+// import videoTest from "D:/Neotube/frontend/src/styles/images/에러.png";
 import CreateAt from "./CreateAt";
-import { getTsBuildInfoEmitOutputFilePath } from "typescript";
 // require() 안됨.
 // 상대경로 안됨
 
@@ -41,50 +42,25 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
     create_at,
   } = videoData;
 
-  const ThunmbnailImg = {
-    paddingBottom: `60%`,
-    backgroundColor: `#9e9e9e`,
-    backgroundRepeat: `no-repeat`,
-    backgroundPosition: `top`,
-    backgroundSize: `cover`,
-    backgroundImage: `url(${imageTest})`,
-  };
-
-  const ChannelImg = {
-    backgroundColor: `gold`,
-    backgroundRepeat: `no-repeat`,
-    backgroundPosition: `top`,
-    backgroundSize: `150%`,
-    backgroundImage: `url(${imageTest})`,
-  };
-
-  const Overflow = {
-    overflow: `hidden`,
-    textOverflow: `ellipsis`,
-    // * 호환 : 크롬 O 파이어폭스 x
-    // * 크롬은 scss에서 사용x , 파이어폭스는 tsx에서 사용x 이게 뭐야 ㅅㅂ
-    // lineClamp: `2`,
-    // ? CSSProperties 형식에서 에러뜸
-    // ! webkt 프레임워크 사용해서 해결 가능 -> 사용할 것인가?
-  };
-
+  // TODO mouseOn-(video):on , (background-img):hidden
+  // TODO mouseOn- hiddenAdd:on
   return (
     <div className="video">
-      <figure className="thumnail" style={ThunmbnailImg}>
+      <figure className="thumnail">
+        <video className="backVideo"></video>
         <div className="hidden">
           <div className="lastview">a</div>
           <div className="addlist">b</div>
         </div>
       </figure>
       <div className="videoDesc">
-        <div className="videoImg" style={ChannelImg}></div>
+        <div className="videoImg"></div>
         <div className="videoContent">
           <div className="videoName">
-            <p
-              className="videoName-item"
-              style={{ overflow: `hidden`, textOverflow: `ellipsis` }}
-            >
-              {thumbnail}
+            <p className="videoName-item">
+              {" "}
+              {/*style={{ overflow: `hidden`, textOverflow: `ellipsis` }}*/}
+              {title} {thumbnail}
             </p>
           </div>
           <div className="videoChannel">

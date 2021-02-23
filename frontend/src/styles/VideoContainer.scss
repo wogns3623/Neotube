@@ -63,13 +63,28 @@ p {
 
   .thumnail {
     width: 100%;
+    height: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    padding-bottom: 60%;
+    background-color: #9e9e9e;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    background-image: url(./images/ilbuni.png);
 
+    // .backVideo {
+    //   display: none;
+    //   // visibility: hidden;
+    //   height: 0;
+    //   width: 100%;
+    //   padding-bottom: 60%;
+    // }
     .hidden {
       position: absolute;
-
+      // display: none;
+      visibility: hidden;
       .lastview {
         margin-bottom: 5px;
         background: #cfcfcf;
@@ -91,6 +106,11 @@ p {
       height: 36px;
       margin: 12px 12px 0 0;
       border-radius: 50%;
+      background-color: gold;
+      background-repeat: no-repeat;
+      background-position: top;
+      background-size: 150%;
+      background-image: url(./images/ilbuni.png);
     }
 
     .videoContent {
@@ -105,9 +125,13 @@ p {
         margin-top: 12px;
         height: 40px;
         font-size: 15px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-clamp: 2;
+        // ! 크롬은 되는데 파이어폭스는 안됨
+        // ! 파이어폭스는 inline으로 해야됨
+        p {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-clamp: 2;
+        }
       }
 
       .videoChannel {
@@ -141,12 +165,70 @@ p {
 
     .hiddenAdd {
       .Add {
+        visibility: hidden;
         margin-top: 12px;
         width: 24px;
         height: 24px;
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+    }
+  }
+
+  &:hover {
+    .backVideo,
+    .hidden,
+    .hiddenAdd > .Add {
+      visibility: visible;
+    }
+    .runtime {
+      animation: fadeout 1s;
+      -moz-animation: fadeout 1s;
+      // 파이어폭스 호환
+      -webkit-animation: fadeout 1s;
+      // 크롬&사파리 호환
+      -o-animation: fadeout 1s;
+      // 오페라 호환
+      animation-fill-mode: forwards;
+      // * none(default), forwards(끝 유지), backwards(시작 유지), both(
+
+      @keyframes fadeout {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+    }
+    .hidden {
+      .lastview {
+        &:hover {
+          background: red;
+        }
+      }
+      .addlist {
+        &:hover {
+          background: blue;
+        }
+      }
+    }
+    .thumnail {
+      background-image: url(./images/에러.png);
+      animation: fadein 2s;
+      -moz-animation: fadein 2s;
+      -webkit-animation: fadein 2s;
+      -o-animation: fadein 2s;
+      animation-fill-mode: forwards;
+
+      @keyframes fadein {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
     }
   }
