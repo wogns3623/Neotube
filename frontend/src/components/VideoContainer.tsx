@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "styles/VideoContainer.scss";
-// import imageTest from "D:/Neotube/frontend/src/styles/images/ilbuni.png";
-// import videoTest from "D:/Neotube/frontend/src/styles/images/test.mp4/";
-// import videoTest from "D:/Neotube/frontend/src/styles/images/에러.png";
 import CreateAt from "./CreateAt";
 // require() 안됨.
 // 상대경로 안됨
@@ -42,15 +39,21 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
     create_at,
   } = videoData;
 
-  // TODO mouseOn-(video):on , (background-img):hidden
-  // TODO mouseOn- hiddenAdd:on
+  // TODO mouseOn- (desc,menu):on
+  // TODO
   return (
     <div className="video">
       <figure className="thumnail">
         <video className="backVideo"></video>
         <div className="hidden">
-          <div className="lastview">a</div>
-          <div className="addlist">b</div>
+          <div className="lastview">
+            <span className="lastview-item1">나중에 볼 동영상</span>
+            <span className="lastview-item2"> ☑</span>
+          </div>
+          <div className="addlist">
+            <span className="addlist-item1">목록에 추가</span>
+            <span className="addlist-item2"> +</span>
+          </div>
         </div>
       </figure>
       <div className="videoDesc">
@@ -58,8 +61,6 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
         <div className="videoContent">
           <div className="videoName">
             <p className="videoName-item">
-              {" "}
-              {/*style={{ overflow: `hidden`, textOverflow: `ellipsis` }}*/}
               {title} {thumbnail}
             </p>
           </div>
@@ -67,11 +68,11 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
             <p className="videoChannel-item">{channel}</p>
           </div>
           <CreateAt view={views} create={create_at} />
-          <a className="runtime">
-            <a className="runtime-item">
+          <span className="runtime">
+            <span className="runtime-item">
               {(runtime - (runtime % 60)) / 60}:{runtime % 60}
-            </a>
-          </a>
+            </span>
+          </span>
         </div>
         <div className="hiddenAdd">
           <div className="Add">⁝</div>

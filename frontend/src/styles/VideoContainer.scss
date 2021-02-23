@@ -74,23 +74,38 @@ p {
     background-size: cover;
     background-image: url(./images/ilbuni.png);
 
-    // .backVideo {
-    //   display: none;
-    //   // visibility: hidden;
-    //   height: 0;
-    //   width: 100%;
-    //   padding-bottom: 60%;
-    // }
     .hidden {
       position: absolute;
-      // display: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
       visibility: hidden;
       .lastview {
+        margin-top: 2px;
         margin-bottom: 5px;
-        background: #cfcfcf;
+        background: #1b1b1b;
+        height: 24px;
+        display: flex;
+        justify-content: flex-end;
+        .lastview-item1 {
+          display: none;
+          margin: 0 10px;
+        }
+        .lastview-item2 {
+          margin: 0 4px;
+        }
       }
       .addlist {
-        background: #cfcfcf;
+        background: #1b1b1b;
+        display: flex;
+        justify-content: flex-end;
+        .addlist-item1 {
+          display: none;
+          margin: 0 10px;
+        }
+        .addlist-item2 {
+          margin: 0 5px;
+        }
       }
     }
   }
@@ -178,7 +193,6 @@ p {
 
   &:hover {
     .backVideo,
-    .hidden,
     .hiddenAdd > .Add {
       visibility: visible;
     }
@@ -204,13 +218,49 @@ p {
     }
     .hidden {
       .lastview {
-        &:hover {
-          background: red;
+        visibility: visible;
+        transition: width 2s;
+        &:hover .lastview-item1 {
+          display: block;
+          animation: slidein 2s;
+          -moz-animation: slidein 2s;
+          -webkit-animation: slidein 2s;
+          -o-animation: slidein 2s;
+          // animation-direction: reverse;
+          animation-fill-mode: forwards;
+          @keyframes slidein {
+            from {
+              width: 0%;
+              height: 24px;
+            }
+            to {
+              width: 100%;
+              height: 24px;
+            }
+          }
         }
       }
+
       .addlist {
-        &:hover {
-          background: blue;
+        visibility: visible;
+        &:hover .addlist-item1 {
+          display: block;
+          animation: slidein 2s;
+          -moz-animation: slidein 2s;
+          -webkit-animation: slidein 2s;
+          -o-animation: slidein 2s;
+          // animation-direction: reverse;
+          animation-fill-mode: forwards;
+          @keyframes slidein {
+            from {
+              width: 0%;
+              height: 24px;
+            }
+            to {
+              width: 100%;
+              height: 24px;
+            }
+          }
         }
       }
     }
