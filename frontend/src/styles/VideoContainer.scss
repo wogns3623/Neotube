@@ -95,28 +95,47 @@ p {
 
     .videoContent {
       flex: 1 1 auto;
+      // 파이어폭스 0 크롬x
+      // flex: 1 1;
       max-width: calc(100% - 72px);
+      display: flex;
+      flex-direction: column;
 
       .videoName {
         margin-top: 12px;
         height: 40px;
+        font-size: 15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-clamp: 2;
       }
 
       .videoChannel {
         height: 18px;
         font-size: 12px;
-        display: flex;
-        justify-content: flex-start;
       }
 
       .likesUpload {
         height: 18px;
         font-size: 12px;
-        // overflow: hidden;
-        // text-overflow: ellipsis;
-        // white-space: nowrap;
         display: flex;
-        justify-content: flex-start;
+      }
+
+      // ? 원래 div였는데 그렇게하면 inline-block scss안먹힘 왜지??
+      .runtime {
+        // display: inline-block;
+        // width: 36px;
+        position: relative;
+        text-align: right;
+        height: 0;
+        bottom: 110px;
+        left: 22px;
+        .runtime-item {
+          border-radius: 0.2em;
+          padding: 0 0.2rem;
+          // font-size: 0.7rem;
+          background: rgba(0, 0, 0, 0.8);
+        }
       }
     }
 
@@ -128,16 +147,6 @@ p {
         display: flex;
         justify-content: center;
         align-items: center;
-      }
-      .runtime {
-        position: relative;
-        bottom: 60px;
-        .runtime-item {
-          border-radius: 0.1em;
-          padding: 0 0.2rem;
-          font-size: 0.9rem;
-          background: rgba(0, 0, 0, 0.8);
-        }
       }
     }
   }

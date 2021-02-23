@@ -58,11 +58,11 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
     backgroundImage: `url(${imageTest})`,
   };
 
-  // ? 변수로 받아오는 값은 css가 안걸림... 왜죠...?
-  // ? line97은 왜 안걸릴까..?
   const Overflow = {
     overflow: `hidden`,
     textOverflow: `ellipsis`,
+    // * 호환 : 크롬 O 파이어폭스 x
+    // * 크롬은 scss에서 사용x , 파이어폭스는 tsx에서 사용x 이게 뭐야 ㅅㅂ
     // lineClamp: `2`,
     // ? CSSProperties 형식에서 에러뜸
     // ! webkt 프레임워크 사용해서 해결 가능 -> 사용할 것인가?
@@ -80,7 +80,10 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
         <div className="videoImg" style={ChannelImg}></div>
         <div className="videoContent">
           <div className="videoName">
-            <p className="videoName-item" style={Overflow}>
+            <p
+              className="videoName-item"
+              style={{ overflow: `hidden`, textOverflow: `ellipsis` }}
+            >
               {thumbnail}
             </p>
           </div>
@@ -88,14 +91,14 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
             <p className="videoChannel-item">{channel}</p>
           </div>
           <CreateAt view={views} create={create_at} />
+          <a className="runtime">
+            <a className="runtime-item">
+              {(runtime - (runtime % 60)) / 60}:{runtime % 60}
+            </a>
+          </a>
         </div>
         <div className="hiddenAdd">
           <div className="Add">⁝</div>
-          <div className="runtime">
-            <div className="runtime-item">
-              {(runtime - (runtime % 60)) / 60}:{runtime % 60}
-            </div>
-          </div>
         </div>
       </div>
     </div>
