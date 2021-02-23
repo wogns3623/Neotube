@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "styles/VideoContainer.scss";
+import "VideoContainer.scss";
 import imageTest from "D:/Neotube/frontend/src/styles/images/ilbuni.png";
 import CreateAt from "./CreateAt";
-import { getTsBuildInfoEmitOutputFilePath } from "typescript";
 // require() 안됨.
 // 상대경로 안됨
 
 export type VideoData = {
-  channel: string;
+  uploader: number;
   title: string;
+  thumb_nail: string;
   video: string;
-  thumbnail: string;
-  runtime: number;
-  views: number;
-  create_at: string;
+  description?: string;
+  run_time: number;
+  watch_count: number;
+  created_at: string;
 };
 
 type VideoBoxProps = {
@@ -32,13 +32,13 @@ type VideoBoxProps = {
 
 const VideoBox = ({ videoData }: VideoBoxProps) => {
   const {
-    channel,
+    uploader,
     title,
     video,
-    thumbnail,
-    runtime,
-    views,
-    create_at,
+    thumb_nail,
+    run_time,
+    watch_count,
+    created_at,
   } = videoData;
 
   const ThunmbnailImg = {
@@ -148,20 +148,22 @@ const VideoContainer = (props: VideoContainerProps) => {
   useEffect(() => {
     // load additional video after scroll event
     if (loadVideo === true) {
-      console.log("get additional video");
-      setTimeout(() => {
-        setVideoList((vl) => vl.concat(vl));
-        setLoadVideo(false);
-      }, 1000);
+      // console.log("get additional video");
+      // setTimeout(() => {
+      //   setVideoList((vl) => vl.concat(vl));
+      //   setLoadVideo(false);
+      // }, 1000);
 
-      // axios
-      //   .get("http://www.neotubei.kro.kr/neotubei/v1/browse/")
-      //   .then((res) => {
-      //     setVideoList((vl) => vl.concat(res.data));
-      //     setLoadVideo(false);
-      //   });
+      fetch("http://www.neotubei.kro.kr/neotubei/v1/browse/")
+        .then((res) => res.json())
+        .then((json) => {
+          setVideoList((vl) => vl.concat(json.video));
+          setLoadVideo(false);
+        });
     }
   }, [loadVideo]);
+
+  console.log(videoList);
 
   return (
     <div className="VideoContainer">

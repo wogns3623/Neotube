@@ -1,7 +1,9 @@
 import React from "react";
-import { SingleWrapperProps } from "utils/types";
+import ButtonIcon from "./ButtonIcon";
+import DescIcon from "./DescIcon";
+import { SingleWrapperProps } from "types";
 
-import "styles/Icon.scss";
+import "./Icon.scss";
 
 const Icon = ({ children, className }: SingleWrapperProps) => {
   return (
@@ -10,3 +12,4 @@ const Icon = ({ children, className }: SingleWrapperProps) => {
 };
 
 export default Icon;
+export { ButtonIcon, DescIcon };

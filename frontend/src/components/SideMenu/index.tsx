@@ -1,8 +1,8 @@
 import React from "react";
-import List from "components/common/List";
-import { Icon } from "components/common/Icon";
-import "styles/SideMenu.scss";
-import { BasicProps, SingleWrapperProps } from "utils/types";
+import List from "components/List";
+import Icon from "components/Icon";
+import { BasicProps, SingleWrapperProps } from "types";
+import "./SideMenu.scss";
 
 const SideMenuHeader = ({ className }: BasicProps) => {
   return (
