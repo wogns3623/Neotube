@@ -93,7 +93,7 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
           <div className="videoChannel">
             <p className="videoChannel-item">{channel}</p>
           </div>
-          <CreateAt views={views} create_at={create_at} />
+          <CreateAt view={views} create={create_at} />
         </div>
         <div className="hiddenAdd">...</div>
       </div>

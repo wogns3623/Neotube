@@ -2,11 +2,11 @@ import React from "react";
 // import "styles/Crate-at.scss";
 
 type CreateAtProps = {
-  views: number;
-  create_at: string;
+  view: number;
+  create: string;
 };
 
-const CreateAt = ({ views, create_at }: CreateAtProps) => {
+const CreateAt = ({ view, create }: CreateAtProps) => {
   function dateDiff(date1: Date, date2: Date) {
     const diffSeconds = (date1.getTime() - date2.getTime()) / 1000;
     // 시간차이 초단위
@@ -35,11 +35,11 @@ const CreateAt = ({ views, create_at }: CreateAtProps) => {
     }
   }
 
-  const at = dateDiff(new Date(), new Date(create_at));
+  const at = dateDiff(new Date(), new Date(create));
 
   return (
     <p className="likesUpload">
-      좋아요 {views} • {at}
+      좋아요 {view} • {at}
     </p>
   );
 };
