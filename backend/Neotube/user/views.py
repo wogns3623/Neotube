@@ -1,13 +1,13 @@
 from django.conf import settings
 from django.http import HttpResponse
-from rest_framework.response import Response
 from django.views.generic import View
-from user.models import SocialLoginUser
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+
+from user.models import SocialLoginUser
+
 import requests
 import json
-import bcrypt
 import jwt
 # Create your views here.
 
@@ -29,11 +29,6 @@ class GoogleLoginView(View):
         }
 
         google_response = requests.post(url, headers=headers, data=body)
-        print(google_response.text)
-
-        # ! google_response로부터 access_token 받기
-        google_response_dict = json.loads(google_response.text)
-        token = google_response_dict.get('access_token')
 
         return HttpResponse(f'{google_response.text}')
 
@@ -57,7 +52,7 @@ class GoogleLoginView(View):
             user.set_password('google' + user.username)
             user.save()
 
-        url = 'http://127.0.0.1:8000/api-token-auth/'
+        url = 'http://127.0.0.1:8000/accounts/auth/'
 
         body = {
             'username': user.username,
@@ -72,7 +67,6 @@ class GoogleLoginView(View):
 
 
 class GoogleRefreshTokenView(View):
-    @csrf_exempt
     def post(self, request):
         token = json.loads(request.body)['token']
         print(token)

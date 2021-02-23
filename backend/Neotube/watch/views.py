@@ -16,7 +16,7 @@ class BasicPagination(PageNumberPagination):
 
 class WatchVideoView(APIView):
 
-    def post(self, request, pk):
+    def get(self, request, pk):
         query_set = Video.objects.get(pk=pk)
         serializer = VideoSerializer(query_set)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -26,7 +26,7 @@ class WatchNextAPIView(APIView, PaginationHandlerMixin):
     pagination_class = BasicPagination
     serializer_class = SimpleVideoSerializer
 
-    def post(self, request, pk):
+    def get(self, request, pk):
         query_set = Video.objects.all()
         page = self.paginate_queryset(queryset=query_set)
         serializer = self.get_paginated_response(
