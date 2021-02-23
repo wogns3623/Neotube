@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "styles/VideoContainer.scss";
-import imageTest from "D:/Neotube/frontend/src/styles/images/ilbuni.png";
+// import imageTest from "D:/Neotube/frontend/src/styles/images/ilbuni.png";
+// import videoTest from "D:/Neotube/frontend/src/styles/images/test.mp4/";
+// import videoTest from "D:/Neotube/frontend/src/styles/images/에러.png";
 import CreateAt from "./CreateAt";
-import { getTsBuildInfoEmitOutputFilePath } from "typescript";
 // require() 안됨.
 // 상대경로 안됨
 
@@ -41,61 +42,40 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
     create_at,
   } = videoData;
 
-  const ThunmbnailImg = {
-    backgroundColor: `#9e9e9e`,
-    backgroundRepeat: `no-repeat`,
-    backgroundPosition: `top`,
-    backgroundSize: `cover`,
-    backgroundImage: `url(${imageTest})`,
-  };
-
-  const ChannelImg = {
-    backgroundColor: `gold`,
-    backgroundRepeat: `no-repeat`,
-    backgroundPosition: `top`,
-    backgroundSize: `150%`,
-    backgroundImage: `url(${imageTest})`,
-  };
-
-  // ? 변수로 받아오는 값은 css가 안걸림... 왜죠...?
-  // ? line97은 왜 안걸릴까..?
-  const Overflow = {
-    overflow: `hidden`,
-    textOverflow: `ellipsis`,
-    // lineClamp: `2`,
-    // ? CSSProperties 형식에서 에러뜸
-    // ! webkt 프레임워크 사용해서 해결 가능 -> 사용할 것인가?
-  };
-
+  // TODO mouseOn-(video):on , (background-img):hidden
+  // TODO mouseOn- hiddenAdd:on
   return (
     <div className="video">
-      <figure className="thumnail" style={ThunmbnailImg}>
+      <figure className="thumnail">
+        <video className="backVideo"></video>
         <div className="hidden">
           <div className="lastview">a</div>
           <div className="addlist">b</div>
         </div>
-        <div className="runtime">
-          <div className="runtime-item">
-            {(runtime - (runtime % 60)) / 60}:{runtime % 60}
-          </div>
-        </div>
       </figure>
       <div className="videoDesc">
-        <div className="videoImg" style={ChannelImg}>
-          {/* <img src={ChannelImg.backgroundImage} /> */}
-        </div>
+        <div className="videoImg"></div>
         <div className="videoContent">
           <div className="videoName">
-            <p className="videoName-item" style={Overflow}>
-              {thumbnail}
+            <p className="videoName-item">
+              {" "}
+              {/*style={{ overflow: `hidden`, textOverflow: `ellipsis` }}*/}
+              {title} {thumbnail}
             </p>
           </div>
           <div className="videoChannel">
             <p className="videoChannel-item">{channel}</p>
           </div>
-          <CreateAt views={views} create_at={create_at} />
+          <CreateAt view={views} create={create_at} />
+          <a className="runtime">
+            <a className="runtime-item">
+              {(runtime - (runtime % 60)) / 60}:{runtime % 60}
+            </a>
+          </a>
         </div>
-        <div className="hiddenAdd">...</div>
+        <div className="hiddenAdd">
+          <div className="Add">⁝</div>
+        </div>
       </div>
     </div>
   );
