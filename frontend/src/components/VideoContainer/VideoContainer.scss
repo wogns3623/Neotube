@@ -1,28 +1,215 @@
+// .VideoContainer {
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+
+//   .spinner {
+//     display: none;
+//     color: white;
+
+//     &.active {
+//       display: block;
+//     }
+//   }
+// }
+
+// .video-section {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: flex-start;
+//   width: 100%;
+// }
+
+// .video-box {
+//   width: calc(100% / 5 - 16px - 0.01px);
+//   height: 300px;
+//   margin: 0 8px 40px 8px;
+//   background-color: rgb(167, 167, 167);
+// }
+
+//////////////// jjh/////////////////////////
+// reset
+figure,
+p {
+  text-align: start;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 .VideoContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .spinner {
-    display: none;
-    color: white;
-
-    &.active {
-      display: block;
-    }
-  }
+  margin-top: 24px;
+  min-height: 100vh;
+  width: 100%;
+  padding: 1rem;
 }
 
 .video-section {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  // width: calc(80% - 16px);
+  // height: calc(80vw - 16px);
 }
 
-.video-box {
-  width: calc(100% / 5 - 16px - 0.01px);
-  height: 300px;
+// VideoBox element
+.video {
+  display: flex;
+  flex-direction: column;
   margin: 0 8px 40px 8px;
-  background-color: rgb(167, 167, 167);
+  width: calc(80% - 16px);
+  // 처음에 너무 꽉차있어서 줄임
+  height: calc(60vw - 16px);
+
+  .thumnail {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .hidden {
+      position: absolute;
+
+      .lastview {
+        margin-bottom: 5px;
+        background: #cfcfcf;
+      }
+      .addlist {
+        background: #cfcfcf;
+      }
+    }
+    .runtime {
+      padding-top: calc((100% - 34px) * 0.6);
+      align-self: flex-end;
+      .runtime-item {
+        border-radius: 0.1em;
+        padding: 0 0.2rem;
+        font-size: 0.9rem;
+        background: rgba(0, 0, 0, 0.8);
+      }
+    }
+  }
+
+  .videoDesc {
+    flex: 1 auto;
+    background-color: #212121;
+    display: flex;
+    height: 94px;
+
+    .videoImg {
+      width: 36px;
+      height: 36px;
+      margin: 12px 12px 0 0;
+      border-radius: 50%;
+    }
+
+    .videoContent {
+      flex: 1 1 auto;
+      max-width: calc(100% - 72px);
+
+      .videoName {
+        margin-top: 12px;
+        height: 40px;
+      }
+
+      .videoChannel {
+        height: 18px;
+        font-size: 12px;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .likesUpload {
+        height: 18px;
+        font-size: 12px;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+        // white-space: nowrap;
+        display: flex;
+        justify-content: flex-start;
+      }
+    }
+
+    .hiddenAdd {
+      margin-top: 12px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
+
+// // 반응형
+// // 1칸 Sidebar: none search: none
+// // 2칸 Sidebar: none search: none
+// // 2칸 Sidebar: none
+// // 2칸+Sidebar
+// // 3칸+Sidebar
+// // 4칸+Sidebar
+// // 4칸+SideMenu or 5칸+Sidebar
+
+/* 2칸 Sidebar: none search: none */
+@media (min-width: 520px) {
+  .video-section {
+    flex-flow: row wrap;
+  }
+  .video {
+    width: calc(50% - 16px);
+    height: calc(50% - 16px);
+  }
+}
+
+/* 2칸 Sidebar: none */
+@media (max-width: 656px) {
+  .SearchBar {
+    display: none;
+  }
+  // 돋보기 display:block; 추가
+}
+
+/* 2칸+Sidebar */
+@media (min-width: 810px) {
+  .SideMenu {
+    display: block;
+  }
+  .VideoContainer {
+    margin-left: 72px;
+  }
+}
+
+/* 3칸+Sidebar */
+@media (min-width: 890px) {
+  .video {
+    width: calc(33.333% - 16px);
+    height: calc(33.333% - 16px);
+  }
+}
+
+/* 4칸+Sidebar */
+@media (min-width: 1145px) {
+  .video {
+    width: calc(25% - 16px);
+    height: calc(25% - 16px);
+  }
+}
+
+/* 4칸+SideMenu */
+@media (min-width: 1330px) {
+  .SideMenu {
+    width: 240px;
+  }
+  .VideoContainer {
+    margin-left: 240px;
+  }
+}
+
+/* 5칸+Sidebar */
+// @media (min-width: 1800px) {
+//   .video {
+//     width: calc(20% - 16px);
+//   }
+// }
