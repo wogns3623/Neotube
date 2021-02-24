@@ -1,10 +1,11 @@
 import React from "react";
-import Icon, { IconProps } from "../index";
+import Icon from "../index";
 import List from "components/List";
+import { SingleWrapperProps } from "types";
 
 import "./DescIcon.scss";
 
-type DescIconProps = IconProps & {
+type DescIconProps = SingleWrapperProps & {
   desc: string;
   href: string;
   additionalIcon?: React.ReactNode;
@@ -12,7 +13,6 @@ type DescIconProps = IconProps & {
 const DescIcon = ({
   className,
   children,
-  type,
   desc,
   href,
   additionalIcon,
@@ -23,7 +23,7 @@ const DescIcon = ({
     <div className={`react-icon-desc ${className ? className : ""}`}>
       <a href={href}>
         <List className="item-wrapper">
-          <Icon type={type}>{children}</Icon>
+          <Icon>{children}</Icon>
           <div className="desc">{desc}</div>
         </List>
         <div className="additional-icon">{additionalIcon}</div>
