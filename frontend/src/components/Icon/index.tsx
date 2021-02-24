@@ -1,11 +1,22 @@
 import React from "react";
 import ButtonIcon from "./ButtonIcon";
 import DescIcon from "./DescIcon";
-import { SingleWrapperProps } from "types";
+import { BasicProps } from "types";
+import { SvgEnum, svgList } from "assets/svg";
 
 import "./Icon.scss";
 
-const Icon = ({ children, className }: SingleWrapperProps) => {
+export type IconProps = BasicProps & {
+  children?: React.ReactNode;
+  type?: SvgEnum;
+};
+
+const Icon = ({ className, children, type }: IconProps) => {
+  if (type && !className) className = type;
+  if (type) {
+    children = svgList[type];
+  }
+
   return (
     <div className={`react-icon ${className ? className : ""}`}>{children}</div>
   );

@@ -104,7 +104,7 @@ const VideoContainer = (props: VideoContainerProps) => {
       //   setLoadVideo(false);
       // }, 1000);
 
-      fetch("http://www.neotubei.kro.kr/neotubei/v1/browse/")
+      fetch("http://www.neotubei.kro.kr/browse/")
         .then((res) => res.json())
         .then((json) => {
           setVideoList((vl) => vl.concat(json.video));
