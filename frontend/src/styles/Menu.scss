@@ -1,3 +1,4 @@
+//  TODO 어디서 사용하는가에 따라 창 position 다르게 만들기
 .react-menu {
   position: relative;
   &-button {
@@ -14,5 +15,9 @@
       display: block;
       background: #e0e0e0;
     }
+  }
+  &.add {
+    width: 24px;
+    background: red;
   }
 }

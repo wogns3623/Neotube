@@ -7,4 +7,10 @@
   &-column {
     flex-direction: column;
   }
+  & .right {
+    flex-shrink: 0;
+  }
+  & .sideSubmit {
+    visibility: hidden;
+  }
 }
