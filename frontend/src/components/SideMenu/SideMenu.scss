@@ -17,64 +17,9 @@
   }
 }
 
-.side-menu-item {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 40px;
-
-  a {
-    display: flex;
-    align-items: center;
-    width: 192px;
-    height: 100%;
-    padding: 0 24px;
-    color: inherit;
-    text-decoration: none;
-
-    .item-wrapper {
-      flex: 1 0 auto;
-      justify-content: flex-start;
-
-      .react-icon {
-        width: 24px;
-        height: 24px;
-        margin-right: 24px;
-        fill: #909090;
-      }
-    }
-    .notificator {
-      display: none;
-
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      margin: 0 6px;
-      background-color: #3ea6ff;
-
-      &.active {
-        display: block;
-      }
-    }
-  }
-
-  &:hover {
-    background-color: #383838;
-  }
-
-  &.selected {
-    background-color: #383838;
-
-    .react-icon {
-      fill: white;
-    }
-  }
-}
-
 .SideMenu {
-  display: none;
   position: fixed;
-  width: 72px;
+  width: 240px;
   height: calc(100% - 50px); // 100% - header height
   background-color: #202020;
   color: white;
@@ -111,6 +56,56 @@
       margin: 0 24px;
       display: flex;
       align-items: center;
+    }
+
+    .react-icon-desc {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 40px;
+
+      a {
+        display: flex;
+        align-items: center;
+        width: 192px;
+        height: 100%;
+        padding: 0 24px;
+        color: inherit;
+        text-decoration: none;
+
+        .item-wrapper {
+          flex: 1 0 auto;
+          justify-content: flex-start;
+
+          .react-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 24px;
+            fill: #909090;
+          }
+        }
+        .notificator {
+          display: block;
+
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          margin: 0 6px;
+          background-color: #3ea6ff;
+        }
+      }
+
+      &:hover {
+        background-color: #383838;
+      }
+
+      &.selected {
+        background-color: #383838;
+
+        .react-icon {
+          fill: white;
+        }
+      }
     }
   }
 
