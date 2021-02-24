@@ -58,54 +58,14 @@
       align-items: center;
     }
 
-    .react-icon-desc {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      height: 40px;
+    .notificator {
+      display: block;
 
-      a {
-        display: flex;
-        align-items: center;
-        width: 192px;
-        height: 100%;
-        padding: 0 24px;
-        color: inherit;
-        text-decoration: none;
-
-        .item-wrapper {
-          flex: 1 0 auto;
-          justify-content: flex-start;
-
-          .react-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 24px;
-            fill: #909090;
-          }
-        }
-        .notificator {
-          display: block;
-
-          width: 4px;
-          height: 4px;
-          border-radius: 50%;
-          margin: 0 6px;
-          background-color: #3ea6ff;
-        }
-      }
-
-      &:hover {
-        background-color: #383838;
-      }
-
-      &.selected {
-        background-color: #383838;
-
-        .react-icon {
-          fill: white;
-        }
-      }
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      margin: 0 6px;
+      background-color: #3ea6ff;
     }
   }
 

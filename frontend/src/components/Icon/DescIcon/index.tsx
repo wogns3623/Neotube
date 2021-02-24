@@ -25,8 +25,8 @@ const DescIcon = ({
         <List className="item-wrapper">
           <Icon type={type}>{children}</Icon>
           <div className="desc">{desc}</div>
+          <div className="additional-icon">{additionalIcon}</div>
         </List>
-        <div className="additional-icon">{additionalIcon}</div>
       </a>
     </div>
   );
