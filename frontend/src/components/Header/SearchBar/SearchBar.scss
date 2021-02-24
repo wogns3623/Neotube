@@ -17,7 +17,7 @@
       background: none;
       border: none;
       outline: none;
-      flex: 1 1 0;
+      flex: 1 1 auto;
       color: inherit;
     }
 
@@ -26,7 +26,7 @@
     }
   }
 
-  .react-icon.submit {
+  .react-icon.search {
     width: 65px;
     display: flex;
     align-items: center;
