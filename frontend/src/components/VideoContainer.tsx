@@ -19,14 +19,9 @@ type VideoBoxProps = {
   videoData: VideoData;
 };
 
-// todo list
-// position공부해서 화면 조정하기 (0)
+// TODO list
 // react 이벤트 핸들링 하기
-// - videoview 띄우기
-// - 영상 이미지 focus : 영상 출력(0.5초 뒤) + runtime:none(0.5초 뒤) hidden: ''(바로)
-// - hidden focus: overflow만들기
-// videoName 두줄 + ... 만들기
-// hiddenadd focus: block, onclik: overflow뜨기
+// hiddenadd focus: block, onclick: overflow뜨기
 
 const VideoBox = ({ videoData }: VideoBoxProps) => {
   const {
@@ -40,15 +35,16 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
   } = videoData;
 
   // TODO mouseOn- (desc):on
-  // TODO animation 한번에 글씨 써지게끔 만들기
-  // TODO 돋보기 on/off
+  // TODO animation 한번에 글씨 써지게끔 만들기 overflow로 감싸기
   // TODO addmenu- window위치에따라 어느 방향으로 뜰지
   return (
     <div className="video">
       <figure className="thumnail">
         <div className="hidden">
           <div className="lastview">
-            <span className="lastview-item1">나중에 볼 동영상</span>
+            <span className="lastview-item1">
+              <div className="overlay1">나중에 볼 동영상</div>
+            </span>
             <span className="lastview-item2">
               <svg
                 viewBox="0 0 24 24"
@@ -62,12 +58,14 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
             </span>
           </div>
           <div className="addlist">
-            <span className="addlist-item1">목록에 추가</span>
+            <span className="addlist-item1">
+              <div className="overlay2">목록에 추가</div>
+            </span>
             <span className="addlist-item2">
               <svg
                 viewBox="0 0 24 24"
-                // preserveAspectRatio="xMidYMid meet"
-                // focusable="false"
+                preserveAspectRatio="xMidYMid meet"
+                focusable="false"
               >
                 <g>
                   <path d="M9,10 L18,10 L18,12 L9,12 L9,10 Z M6,6 L18,6 L18,8 L6,8 L6,6 Z M12,14 L18,14 L18,16 L12,16 L12,14 Z M6,12 L6,18 L10,15 L6,12 Z"></path>
@@ -96,7 +94,6 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
           </span>
         </div>
         <div className="hiddenAdd">
-          {/* <div className="Add">⁝</div> */}
           <Menu
             className="add"
             menuButton={
@@ -113,9 +110,9 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
           >
             <Icon>
               <svg
-                viewBox="0 0 24 24"
-                preserveAspectRatio="xMidYMid meet"
-                focusable="false"
+              // viewBox="0 0 24 24"
+              // preserveAspectRatio="xMidYMid meet"
+              // focusable="false"
               >
                 <g>
                   <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"></path>
@@ -124,10 +121,10 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
             </Icon>
             <DescIcon desc="동영상 업로드">
               <svg
-                viewBox="0 0 24 24"
-                preserveAspectRatio="xMidYMid meet"
-                focusable="false"
-                // style="pointer-events: none; display: block; width: 100%; height: 100%;"
+              // viewBox="0 0 24 24"
+              // preserveAspectRatio="xMidYMid meet"
+              // focusable="false"
+              // style="pointer-events: none; display: block; width: 100%; height: 100%;"
               >
                 <g>
                   <path
@@ -145,10 +142,10 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
             </DescIcon>
             <DescIcon desc="동영상 업로드">
               <svg
-                viewBox="0 0 24 24"
-                preserveAspectRatio="xMidYMid meet"
-                focusable="false"
-                // style="pointer-events: none; display: block; width: 100%; height: 100%;"
+              // viewBox="0 0 24 24"
+              // preserveAspectRatio="xMidYMid meet"
+              // focusable="false"
+              // style="pointer-events: none; display: block; width: 100%; height: 100%;"
               >
                 <g>
                   <path

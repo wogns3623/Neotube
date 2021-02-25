@@ -16,6 +16,7 @@ interface HeaderProps {
   userInfo: UserInfo | undefined;
 }
 
+// TODO 돋보기 on/off (complete)
 const Header = (props: HeaderProps) => {
   return (
     <header>
@@ -50,9 +51,9 @@ const Header = (props: HeaderProps) => {
             className="upload"
             menuButton={
               <svg
-              // viewBox="0 0 24 24"
-              // preserveAspectRatio="xMidYMid meet"
-              // focusable="false"
+                viewBox="0 0 24 24"
+                preserveAspectRatio="xMidYMid meet"
+                focusable="false"
               >
                 <g>
                   <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"></path>
@@ -62,9 +63,9 @@ const Header = (props: HeaderProps) => {
           >
             <Icon>
               <svg
-              // viewBox="0 0 24 24"
-              // preserveAspectRatio="xMidYMid meet"
-              // focusable="false"
+                viewBox="0 0 24 24"
+                preserveAspectRatio="xMidYMid meet"
+                focusable="false"
               >
                 <g>
                   <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"></path>
@@ -73,10 +74,10 @@ const Header = (props: HeaderProps) => {
             </Icon>
             <DescIcon desc="동영상 업로드">
               <svg
-              // viewBox="0 0 24 24"
-              // preserveAspectRatio="xMidYMid meet"
-              // focusable="false"
-              // // style="pointer-events: none; display: block; width: 100%; height: 100%;"
+                viewBox="0 0 24 24"
+                preserveAspectRatio="xMidYMid meet"
+                focusable="false"
+                // // style="pointer-events: none; display: block; width: 100%; height: 100%;"
               >
                 <g>
                   <path

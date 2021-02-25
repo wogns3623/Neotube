@@ -11,13 +11,25 @@
   &-list {
     display: none;
     position: absolute;
+    left: 30px;
     &.visible {
       display: block;
+      position: absolute;
       background: #e0e0e0;
     }
   }
   &.add {
     width: 24px;
     background: red;
+    .react-menu-list.visible {
+      z-index: 1;
+      display: block;
+      position: absolute;
+      width: 150px;
+      background: #e0e0e0;
+      body {
+        position: fixed;
+      }
+    }
   }
 }

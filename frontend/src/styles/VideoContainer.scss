@@ -76,6 +76,7 @@ p {
     background-size: cover;
     background-image: url(./images/ilbuni.png);
 
+    // TODO 글자 한번에 뜨도록 overflow만들기 (compelte)
     .hidden {
       position: absolute;
       display: flex;
@@ -85,29 +86,45 @@ p {
       .lastview {
         margin-top: 2px;
         margin-bottom: 5px;
-        background: #1b1b1b;
         height: 24px;
         display: flex;
         justify-content: flex-end;
         .lastview-item1 {
-          display: none;
-          margin: 0 10px;
+          display: absolute;
+          overflow: hidden;
+          .overlay1 {
+            padding: 0 2px 0 8px;
+            height: 24px;
+            background: #1b1b1b;
+            transform: translateX(100%);
+            transition: transform 0.4s;
+          }
         }
         .lastview-item2 {
+          background: #1b1b1b;
           width: 24px;
+          fill: white;
         }
       }
       .addlist {
-        background: #1b1b1b;
         height: 24px;
         display: flex;
         justify-content: flex-end;
         .addlist-item1 {
-          display: none;
-          margin: 0 10px;
+          display: absolute;
+          overflow: hidden;
+          .overlay2 {
+            padding: 0 2px 0 8px;
+            height: 24px;
+            background: #1b1b1b;
+            transform: translateX(100%);
+            transition: transform 0.4s;
+          }
         }
         .addlist-item2 {
+          background: #1b1b1b;
           width: 24px;
+          fill: white;
         }
       }
     }
@@ -213,24 +230,16 @@ p {
         }
       }
     }
-    // TODO 글자 한번에 뜨도록 overflow만들기
+
+    // TODO 글자 한번에 뜨도록 overflow만들기 (compelte)
     .hidden {
       .lastview {
         visibility: visible;
         transition: width 2s;
         &:hover .lastview-item1 {
           display: block;
-          animation: slidein 2s;
-          animation-fill-mode: forwards;
-          @keyframes slidein {
-            from {
-              width: 0%;
-              height: 24px;
-            }
-            to {
-              width: 100%;
-              height: 24px;
-            }
+          .overlay1 {
+            transform: translateX(0);
           }
         }
       }
@@ -239,17 +248,8 @@ p {
         visibility: visible;
         &:hover .addlist-item1 {
           display: block;
-          animation: slidein 2s;
-          animation-fill-mode: forwards;
-          @keyframes slidein {
-            from {
-              width: 0%;
-              height: 24px;
-            }
-            to {
-              width: 100%;
-              height: 24px;
-            }
+          .overlay2 {
+            transform: translateX(0);
           }
         }
       }
@@ -295,10 +295,6 @@ p {
   .SearchBar {
     display: none;
   }
-  //  TODO 돋보기 visibility: visible;
-  // .react-list > .submit {
-  //   visibility: visible;
-  // }
 }
 
 /* 2칸+Sidebar */

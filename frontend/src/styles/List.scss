@@ -10,7 +10,10 @@
   & .right {
     flex-shrink: 0;
   }
-  & .sideSubmit {
-    visibility: hidden;
+
+  @media (min-width: 711px) {
+    & .sideSubmit {
+      visibility: hidden;
+    }
   }
 }
