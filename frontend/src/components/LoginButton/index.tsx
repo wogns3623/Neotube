@@ -17,35 +17,16 @@ const LoginButton = () => {
       googleUser = googleUser as GoogleLoginResponse;
       console.log(googleUser);
       let profile = googleUser.getBasicProfile();
-
-      let username = profile.getName();
-      let email = profile.getEmail();
-      let id = profile.getId();
-      let firstname = profile.getGivenName();
-      let lastname = profile.getFamilyName();
-      let image = profile.getImageUrl();
+      console.log(profile);
 
       let data = {
-        username: username,
-        email: email,
-        id: id,
-        first_name: firstname,
-        last_name: lastname,
-        image: image,
+        username: profile.getName(),
+        email: profile.getEmail(),
+        id: profile.getId(),
+        first_name: profile.getGivenName(),
+        last_name: profile.getFamilyName(),
+        image: profile.getImageUrl(),
       };
-
-      // 유저 생성 시도
-      // fetch(`${config.APIServer}/accounts/login/google/`, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(data),
-      // })
-      //   .then((res) => res.json())
-      //   .then((json) => {
-      //     localStorage.setItem("neotube_token", json.token);
-      //   });
 
       myFetch(`${config.APIServer}/accounts/login/google/`, {
         method: "POST",

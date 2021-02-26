@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useInfiscrollEvent } from "hook/useInfiscrollEvent";
+import { useInfiscrollEvent } from "hook/event";
 import myFetch from "utils/myFetch";
 import config from "config.json";
 
