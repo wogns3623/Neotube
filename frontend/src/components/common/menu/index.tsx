@@ -16,6 +16,8 @@ const MenuButton = ({ className, children }: ClickableProps) => {
 type MenuProps = ListProps & {
   menuButton: React.ReactNode;
 };
+
+// TODO 메뉴창 뜨면 스크롤 정지
 const Menu = ({ className, children, direction, menuButton }: MenuProps) => {
   const [isOpen, setIsOpen] = useState(menuButton ? false : true);
 

@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+// ? <a>태그 쓰니깐 anchors뭐시기 뭐여,,
 import React, { useEffect, useState } from "react";
 import "styles/VideoContainer.scss";
 import CreateAt from "./CreateAt";
 import { DescIcon, Icon } from "components/common/Icon";
 import Menu from "./common/menu";
 // require() 안됨.
+import { ClickableProps } from "utils/types";
 
 export type VideoData = {
   channel: string;
@@ -19,10 +22,6 @@ type VideoBoxProps = {
   videoData: VideoData;
 };
 
-// TODO list
-// react 이벤트 핸들링 하기
-// hiddenadd focus: block, onclick: overflow뜨기
-
 const VideoBox = ({ videoData }: VideoBoxProps) => {
   const {
     channel,
@@ -34,9 +33,11 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
     create_at,
   } = videoData;
 
-  // TODO mouseOn- (desc):on
-  // TODO animation 한번에 글씨 써지게끔 만들기 overflow로 감싸기
-  // TODO addmenu- window위치에따라 어느 방향으로 뜰지
+  // TODO hover: 하이퍼링크 + title + a태그말고 onClick으로하기 (comptlete)
+  // TODO animation 한번에 글씨 써지게끔 만들기 overflow로 감싸기 (complete)
+  // TODO addmenu- window위치에따라 어느 방향으로 뜰지(window기준), on: 스크롤이벤트x
+  // TODO thumbnail, videoDesc을 나눠서 component만들기
+  // TODO tooltip 만들기 (header-icon, videoview-channelname)
   return (
     <div className="video">
       <figure className="thumnail">
@@ -76,10 +77,22 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
         </div>
       </figure>
       <div className="videoDesc">
-        <div className="videoImg"></div>
+        {/* <a
+          href={"https://www.google.com/"}
+          className="videoImg"
+          title={channel}
+        /> */}
+        <div
+          className="videoImg"
+          title={channel}
+          onClick={() => (window.location.href = "https://www.google.com")}
+        />
         <div className="videoContent">
-          <div className="videoName">
-            <p className="videoName-item">
+          <div
+            className="videoName"
+            onClick={() => (window.location.href = "https://www.google.com/")}
+          >
+            <p className="videoName-item" title={title + thumbnail}>
               {title} {thumbnail}
             </p>
           </div>
@@ -108,17 +121,6 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
               </svg>
             }
           >
-            <Icon>
-              <svg
-              // viewBox="0 0 24 24"
-              // preserveAspectRatio="xMidYMid meet"
-              // focusable="false"
-              >
-                <g>
-                  <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"></path>
-                </g>
-              </svg>
-            </Icon>
             <DescIcon desc="동영상 업로드">
               <svg
               // viewBox="0 0 24 24"

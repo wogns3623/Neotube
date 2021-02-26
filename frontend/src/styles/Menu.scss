@@ -23,12 +23,15 @@
     background: red;
     .react-menu-list.visible {
       z-index: 1;
-      display: block;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: flex-start;
       position: absolute;
       width: 150px;
       background: #e0e0e0;
-      body {
-        position: fixed;
+      & svg {
+        width: 30px;
+        height: 30px;
       }
     }
   }
