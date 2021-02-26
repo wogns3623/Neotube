@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import myFetch from "utils/myFetch";
+import config from "config.json";
 
 import "./VideoContainer.scss";
 
@@ -91,25 +93,19 @@ const VideoContainer = (props: VideoContainerProps) => {
     };
   }, []);
 
+  // reset videoList using props
   useEffect(() => {
     setVideoList(props.videoList);
   }, [props.videoList]);
 
+  // load additional video after scroll event
   useEffect(() => {
-    // load additional video after scroll event
     if (loadVideo === true) {
       // console.log("get additional video");
-      // setTimeout(() => {
-      //   setVideoList((vl) => vl.concat(vl));
-      //   setLoadVideo(false);
-      // }, 1000);
-
-      fetch("http://www.neotubei.kro.kr/browse/")
-        .then((res) => res.json())
-        .then((json) => {
-          setVideoList((vl) => vl.concat(json.video));
-          setLoadVideo(false);
-        });
+      myFetch(`${config.APIServer}/browse/`).then((res) => {
+        setVideoList((vl) => vl.concat(res.jsonBody.video));
+        setLoadVideo(false);
+      });
     }
   }, [loadVideo]);
 

@@ -9,6 +9,8 @@ import { UserContext } from "context";
 
 import "./App.scss";
 import Header from "components/Header";
+import myFetch from "utils/myFetch";
+import { useAuth } from "utils/myFetchMiddleware";
 
 /* TODO: 로그인 & 토큰 관리를 하나의 후크로 분리하기
  * const {isAuthenticated, userProfile} = useAuth(googleLoginParams, googleLogoutParams, token)
@@ -38,31 +40,14 @@ function App() {
   useEffect(() => {
     if (isAuthenticated) {
       // validate token
-      fetch(`${config.APIServer}/validate/`, {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem("neotube_token")}`,
-        },
-      })
+      myFetch(`${config.APIServer}/accounts/validate/`)
         .then(() => {
-          // token is valid
-          // get current user information
-          fetch(`${config.APIServer}/user/current/`, {
-            headers: {
-              Authorization: `JWT ${localStorage.getItem("neotube_token")}`,
-            },
-          })
-            .then((res) => res.json())
-            .then((json) => {
-              setUserProfile(json.user);
-              // refresh token
-              fetch(`${config.APIServer}/refresh/`, {
-                headers: {
-                  Authorization: `JWT ${localStorage.getItem("neotube_token")}`,
-                },
-              })
-                .then((res) => res.json())
-                .then((json) => {
-                  localStorage.setItem("neotube_token", json.token);
+          myFetch(`${config.APIServer}/accounts/current/`)
+            .then((res) => {
+              setUserProfile(res.jsonBody.user);
+              myFetch(`${config.APIServer}/accounts/refresh/`)
+                .then((res) => {
+                  localStorage.setItem("neotube_token", res.jsonBody.token);
                 })
                 .catch((err) => {
                   console.log(err);
@@ -74,10 +59,50 @@ function App() {
             });
         })
         .catch((err) => {
-          // token is not valid
           console.log(err);
           signOut();
         });
+
+      // fetch(`${config.APIServer}/accounts/validate/`, {
+      //   headers: {
+      //     Authorization: `JWT ${localStorage.getItem("neotube_token")}`,
+      //   },
+      // })
+      //   .then(() => {
+      //     // token is valid
+      //     // get current user information
+      //     fetch(`${config.APIServer}/accounts/current/`, {
+      //       headers: {
+      //         Authorization: `JWT ${localStorage.getItem("neotube_token")}`,
+      //       },
+      //     })
+      //       .then((res) => res.json())
+      //       .then((json) => {
+      //         setUserProfile(json.user);
+      //         // refresh token
+      //         fetch(`${config.APIServer}/accounts/refresh/`, {
+      //           headers: {
+      //             Authorization: `JWT ${localStorage.getItem("neotube_token")}`,
+      //           },
+      //         })
+      //           .then((res) => res.json())
+      //           .then((json) => {
+      //             localStorage.setItem("neotube_token", json.token);
+      //           })
+      //           .catch((err) => {
+      //             console.log(err);
+      //           });
+      //       })
+      //       .catch((err) => {
+      //         console.log(err);
+      //         signOut();
+      //       });
+      //   })
+      //   .catch((err) => {
+      //     // token is not valid
+      //     console.log(err);
+      //     signOut();
+      //   });
     }
   }, [isAuthenticated, signOut]);
 

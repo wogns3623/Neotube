@@ -5,6 +5,8 @@ import GoogleLogin, {
 } from "react-google-login";
 
 import config from "config.json";
+import myFetch from "utils/myFetch";
+import { parseBody } from "utils/myFetchMiddleware";
 
 const LoginButton = () => {
   const onLogin = (
@@ -31,39 +33,30 @@ const LoginButton = () => {
         first_name: firstname,
         last_name: lastname,
         image: image,
-        provider: "google",
       };
 
       // 유저 생성 시도
-      fetch(`${config.APIServer}/accounts/google/`, {
+      // fetch(`${config.APIServer}/accounts/login/google/`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(data),
+      // })
+      //   .then((res) => res.json())
+      //   .then((json) => {
+      //     localStorage.setItem("neotube_token", json.token);
+      //   });
+
+      myFetch(`${config.APIServer}/accounts/login/google/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      })
-        .then((res) => res.json())
-        .then((json) => {
-          localStorage.setItem("neotube_token", json.token);
-          if (json.token) {
-            // 유저 생성 완료
-          } else {
-            // 이미 유저가 존재하면 로그인 시도
-            fetch(`${config.APIServer}login/`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(data),
-            })
-              .then((res) => res.json())
-              .then((json) => {
-                if (json.token) {
-                  // login success
-                }
-              });
-          }
-        });
+      }).then((res) => {
+        localStorage.setItem("neotube_token", res.jsonBody.token);
+      });
     }
   };
 

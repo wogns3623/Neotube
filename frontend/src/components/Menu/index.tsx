@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import List, { ListProps } from "components/List";
 
 import { ClickableProps } from "types";
@@ -17,15 +17,23 @@ MenuButton.defaultProps = {
   onClick: (e: React.MouseEvent<any, MouseEvent>) => {},
 };
 
+type DirectionEnum = "up" | "down" | "left" | "right";
+
 const Menu = ({ className, children, direction }: ListProps) => {
   const menuButtonChild = children.find((child) => {
     return (child as JSX.Element).type.name === "MenuButton";
   });
   const [isOpen, setIsOpen] = useState(menuButtonChild ? false : true);
+  const [openDirection, setOpenDirection] = useState([
+    "down",
+    "left",
+  ] as DirectionEnum[]);
 
   const handleOpenMenu = (value: boolean) => {
     setIsOpen(value);
   };
+
+  // useEffect(() => {})
 
   const renderedButton = useMemo(
     () =>
@@ -38,10 +46,12 @@ const Menu = ({ className, children, direction }: ListProps) => {
     [menuButtonChild]
   );
 
-  const renderList = useMemo(
+  const renderedList = useMemo(
     () => (
       <List
-        className={`react-menu-list${!isOpen ? " disable" : ""}`}
+        className={`react-menu-list ${
+          !isOpen ? "disable" : ""
+        } ${openDirection.map((value) => "direction-" + value).join(" ")}`}
         direction={direction}
       >
         {children.filter((child) => {
@@ -49,7 +59,7 @@ const Menu = ({ className, children, direction }: ListProps) => {
         })}
       </List>
     ),
-    [direction, children, isOpen]
+    [direction, children, isOpen, openDirection]
   );
 
   return (
@@ -58,7 +68,7 @@ const Menu = ({ className, children, direction }: ListProps) => {
       onBlur={() => handleOpenMenu(false)}
     >
       {renderedButton}
-      {renderList}
+      {renderedList}
     </div>
   );
 };
