@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+
+import { useInfiscrollEvent } from "hook/useInfiscrollEvent";
 import myFetch from "utils/myFetch";
 import config from "config.json";
 
@@ -61,37 +63,7 @@ const VideoContainer = (props: VideoContainerProps) => {
   const [loadVideo, setLoadVideo] = useState(false);
   const [videoList, setVideoList] = useState([] as VideoData[]);
 
-  useEffect(() => {
-    // add scroll event to VideoContainer
-
-    let infiScrollEvent = (event: Event): void => {
-      let element = document.getElementsByClassName(
-        "VideoContainer"
-      )[0] as HTMLElement;
-
-      let threshold = 100;
-
-      let elementHeight =
-        element.offsetHeight +
-        element.offsetTop -
-        document.documentElement.clientHeight;
-
-      console.log(window.scrollY, elementHeight, elementHeight - threshold);
-
-      if (window.scrollY > elementHeight - threshold) {
-        console.log("set loadVideo true");
-        setLoadVideo(true);
-      }
-    };
-
-    console.log("add infiscroll event");
-    window.addEventListener("scroll", infiScrollEvent);
-
-    return () => {
-      console.log("remove infiScroll event");
-      window.removeEventListener("scroll", infiScrollEvent);
-    };
-  }, []);
+  useInfiscrollEvent(() => setLoadVideo(true), 100);
 
   // reset videoList using props
   useEffect(() => {

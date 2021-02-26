@@ -4,9 +4,8 @@ import GoogleLogin, {
   GoogleLoginResponseOffline,
 } from "react-google-login";
 
-import config from "config.json";
 import myFetch from "utils/myFetch";
-import { parseBody } from "utils/myFetchMiddleware";
+import config from "config.json";
 
 const LoginButton = () => {
   const onLogin = (

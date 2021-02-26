@@ -2,15 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import { useGoogleLogout } from "react-google-login";
 
-import config from "config.json";
 // import LoginRoute from "components/Route/LoginRoute";
+import Header from "components/Header";
 import { Home } from "pages/index";
 import { UserContext } from "context";
+import myFetch from "utils/myFetch";
+import config from "config.json";
 
 import "./App.scss";
-import Header from "components/Header";
-import myFetch from "utils/myFetch";
-import { useAuth } from "utils/myFetchMiddleware";
 
 /* TODO: 로그인 & 토큰 관리를 하나의 후크로 분리하기
  * const {isAuthenticated, userProfile} = useAuth(googleLoginParams, googleLogoutParams, token)
