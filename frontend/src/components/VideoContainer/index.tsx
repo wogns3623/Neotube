@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-
+import CreateAt, { WatchCount } from "./CalcFnc";
+// import CreateAt from "./CreateAt";
+import Icon, { DescIcon } from "components/Icon";
 import "./VideoContainer.scss";
+import Menu, { MenuButton } from "components/Menu";
 
 export type VideoData = {
   uploader: number;
@@ -19,38 +22,35 @@ type VideoBoxProps = {
 
 const VideoBox = ({ videoData }: VideoBoxProps) => {
   const {
-    channel,
+    uploader,
     title,
     video,
-    thumbnail,
-    runtime,
-    views,
-    create_at,
+    thumb_nail,
+    description,
+    run_time,
+    watch_count,
+    created_at,
   } = videoData;
 
-  // TODO hover: 하이퍼링크 + title + a태그말고 onClick으로하기 (comptlete)
-  // TODO animation 한번에 글씨 써지게끔 만들기 overflow로 감싸기 (complete)
+  // TODO hover: 하이퍼링크 + title + a태그만들기 ,  (comptlete)
   // TODO addmenu- window위치에따라 어느 방향으로 뜰지(window기준), on: 스크롤이벤트x
-  // TODO thumbnail, videoDesc을 나눠서 component만들기
-  // TODO tooltip 만들기 (header-icon, videoview-channelname)
+  // TODO thumb_nail, videoDesc을 나눠서 component만들기
+  // TODO tooltip 만들기 (header-icon, videoview-uploadername)
+  // TODO svg분리하기 (complete)
+  // TODO menu 사용법 바뀐거대로 수정 (complete)
+  // TODO 좀 더 간결하게 만들고 최대한 안 감싸게 만들기
+  // TODO backgroundImage => img태그로 바꾸기 (?)
+
   return (
     <div className="video">
-      <figure className="thumnail">
+      <figure className="thumb_nail">
         <div className="hidden">
           <div className="lastview">
             <span className="lastview-item1">
               <div className="overlay1">나중에 볼 동영상</div>
             </span>
             <span className="lastview-item2">
-              <svg
-                viewBox="0 0 24 24"
-                preserveAspectRatio="xMidYMid meet"
-                focusable="false"
-              >
-                <g>
-                  <path d="M12 3.67c-4.58 0-8.33 3.75-8.33 8.33s3.75 8.33 8.33 8.33 8.33-3.75 8.33-8.33S16.58 3.67 12 3.67zm3.5 11.83l-4.33-2.67v-5h1.25v4.34l3.75 2.25-.67 1.08z"></path>
-                </g>
-              </svg>
+              <Icon type="lastView" />
             </span>
           </div>
           <div className="addlist">
@@ -58,106 +58,43 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
               <div className="overlay2">목록에 추가</div>
             </span>
             <span className="addlist-item2">
-              <svg
-                viewBox="0 0 24 24"
-                preserveAspectRatio="xMidYMid meet"
-                focusable="false"
-              >
-                <g>
-                  <path d="M9,10 L18,10 L18,12 L9,12 L9,10 Z M6,6 L18,6 L18,8 L6,8 L6,6 Z M12,14 L18,14 L18,16 L12,16 L12,14 Z M6,12 L6,18 L10,15 L6,12 Z"></path>
-                </g>
-              </svg>
+              <Icon type="addList" />
             </span>
           </div>
         </div>
+        <span className="run_time">
+          <span className="run_time-item">
+            {(run_time - (run_time % 60)) / 60}:{run_time % 60}
+          </span>
+        </span>
       </figure>
+
       <div className="videoDesc">
-        {/* <a
-          href={"https://www.google.com/"}
-          className="videoImg"
-          title={channel}
-        /> */}
-        <div
-          className="videoImg"
-          title={channel}
-          onClick={() => (window.location.href = "https://www.google.com")}
-        />
+        <div className="videoImg" title={title} />
         <div className="videoContent">
           <div
             className="videoName"
             onClick={() => (window.location.href = "https://www.google.com/")}
           >
-            <p className="videoName-item" title={title + thumbnail}>
-              {title} {thumbnail}
+            <p className="videoName-item" title={title + thumb_nail}>
+              {title} {thumb_nail}
             </p>
           </div>
-          <div className="videoChannel">
-            <p className="videoChannel-item">{channel}</p>
+          <div className="videouploader">
+            <p className="videouploader-item">{uploader}</p>
           </div>
-          <CreateAt view={views} create={create_at} />
-          <span className="runtime">
-            <span className="runtime-item">
-              {(runtime - (runtime % 60)) / 60}:{runtime % 60}
-            </span>
-          </span>
+          <div className="viewDesc">
+            <WatchCount watch_count={watch_count} />
+            <CreateAt created_at={created_at} />
+          </div>
         </div>
         <div className="hiddenAdd">
-          <Menu
-            className="add"
-            menuButton={
-              <svg
-                viewBox="0 0 24 24"
-                preserveAspectRatio="xMidYMid meet"
-                focusable="false"
-              >
-                <g>
-                  <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-                </g>
-              </svg>
-            }
-          >
-            <DescIcon desc="동영상 업로드">
-              <svg
-              // viewBox="0 0 24 24"
-              // preserveAspectRatio="xMidYMid meet"
-              // focusable="false"
-              // style="pointer-events: none; display: block; width: 100%; height: 100%;"
-              >
-                <g>
-                  <path
-                    d="M19,4H5A2.15,2.15,0,0,0,3,6V18a2.15,2.15,0,0,0,2,2H19a2.15,2.15,0,0,0,2-2V6A2.15,2.15,0,0,0,19,4ZM5,18H19V6H5Z"
-                    fill="#6f6f6f"
-                    fillRule="evenodd"
-                  ></path>
-                  <path
-                    d="M15,12,10,8v8Z"
-                    fill="#f80000"
-                    fillRule="evenodd"
-                  ></path>
-                </g>
-              </svg>
-            </DescIcon>
-            <DescIcon desc="동영상 업로드">
-              <svg
-              // viewBox="0 0 24 24"
-              // preserveAspectRatio="xMidYMid meet"
-              // focusable="false"
-              // style="pointer-events: none; display: block; width: 100%; height: 100%;"
-              >
-                <g>
-                  <path
-                    d="M19,4H5A2.15,2.15,0,0,0,3,6V18a2.15,2.15,0,0,0,2,2H19a2.15,2.15,0,0,0,2-2V6A2.15,2.15,0,0,0,19,4ZM5,18H19V6H5Z"
-                    fill="#6f6f6f"
-                    fillRule="evenodd"
-                  ></path>
-                  <path
-                    d="M15,12,10,8v8Z"
-                    fill="#f80000"
-                    fillRule="evenodd"
-                  ></path>
-                </g>
-              </svg>
-            </DescIcon>
+          <Menu className="add">
+            <MenuButton>
+              <Icon type="hiddenMenu" />
+            </MenuButton>
+            <DescIcon desc="동영상 업로드" type="upload" />
+            <DescIcon desc="동영상 업로드" type="upload" />
           </Menu>
         </div>
       </div>
