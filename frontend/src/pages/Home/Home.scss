@@ -9,11 +9,17 @@
 
 /* 2칸 Sidebar: none search: none */
 @media (min-width: 520px) {
+  .videoView {
+    flex-flow: row wrap;
+  }
   .video-section {
     flex-flow: row wrap;
   }
   .video {
-    width: calc(45% - 16px);
+    width: calc(50vw - 16px - 30px);
+    .thumb_nail {
+      height: calc((50vw - 16px - 30px) * 0.625);
+    }
   }
 }
 
@@ -32,19 +38,31 @@
   .VideoContainer {
     margin-left: 72px;
   }
+  .video {
+    width: calc(((95vw - 72px - 30px) / 2) - 16px);
+    .thumb_nail {
+      height: calc((((95vw - 72px - 30px) / 2) - 16px) * 0.625);
+    }
+  }
 }
 
 /* 3칸+Sidebar */
 @media (min-width: 890px) {
   .video {
-    width: calc(33.333% - 16px);
+    width: calc(((95vw - 72px - 30px) / 3) - 16px);
+    .thumb_nail {
+      height: calc((((95vw - 72px - 30px) / 3) - 16px) * 0.625);
+    }
   }
 }
 
 /* 4칸+Sidebar */
 @media (min-width: 1145px) {
   .video {
-    width: calc(25% - 16px);
+    width: calc(((95vw - 72px - 30px) / 4) - 16px);
+    .thumb_nail {
+      height: calc((((95vw - 72px - 30px) / 4) - 16px) * 0.625);
+    }
   }
 }
 
@@ -56,11 +74,22 @@
   .VideoContainer {
     margin-left: 240px;
   }
+  .video {
+    width: calc(((95vw - 240px - 30px) / 4) - 16px);
+    .thumb_nail {
+      height: calc((((95vw - 240px - 30px) / 4) - 16px) * 0.625);
+    }
+  }
 }
 
 /* 5칸+Sidebar */
 // @media (min-width: 1800px) {
 //   .video {
-//     width: calc(20% - 16px);
+//     width: calc(((95vw - 72px - 30px) / 5) - 16px);
+//     .thumb_nail {
+//       height: calc((((95vw - 72px - 30px) / 5) - 16px) * 0.625);
+//     }
 //   }
 // }
+
+// *******씨브레 빡센겨

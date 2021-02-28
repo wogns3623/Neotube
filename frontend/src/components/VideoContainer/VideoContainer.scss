@@ -19,7 +19,7 @@ p {
   justify-content: center;
   align-items: center;
   // width: calc(80% - 16px);
-  // height: calc(80vw - 16px);
+  // height: 60vw;
 }
 
 // VideoBox element
@@ -27,7 +27,8 @@ p {
   display: flex;
   flex-direction: column;
   margin: 0 8px 40px 8px;
-  width: 80%;
+  // TODO 다시 80으로 복귀
+  width: 80vw;
 
   &:hover {
     .thumb_nail {
