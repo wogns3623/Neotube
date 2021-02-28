@@ -1,0 +1,66 @@
+// 반응형
+// 1칸 Sidebar: none search: none
+// 2칸 Sidebar: none search: none
+// 2칸 Sidebar: none
+// 2칸+Sidebar
+// 3칸+Sidebar
+// 4칸+Sidebar
+// 4칸+SideMenu or 5칸+Sidebar
+
+/* 2칸 Sidebar: none search: none */
+@media (min-width: 520px) {
+  .video-section {
+    flex-flow: row wrap;
+  }
+  .video {
+    width: calc(45% - 16px);
+  }
+}
+
+/* 2칸 Sidebar: none */
+@media (max-width: 711px) {
+  .SearchBar {
+    display: none;
+  }
+}
+
+/* 2칸+Sidebar */
+@media (min-width: 810px) {
+  .SideMenu {
+    display: block;
+  }
+  .VideoContainer {
+    margin-left: 72px;
+  }
+}
+
+/* 3칸+Sidebar */
+@media (min-width: 890px) {
+  .video {
+    width: calc(33.333% - 16px);
+  }
+}
+
+/* 4칸+Sidebar */
+@media (min-width: 1145px) {
+  .video {
+    width: calc(25% - 16px);
+  }
+}
+
+/* 4칸+SideMenu */
+@media (min-width: 1330px) {
+  .SideMenu {
+    width: 240px;
+  }
+  .VideoContainer {
+    margin-left: 240px;
+  }
+}
+
+/* 5칸+Sidebar */
+// @media (min-width: 1800px) {
+//   .video {
+//     width: calc(20% - 16px);
+//   }
+// }
