@@ -6,6 +6,7 @@ import { make } from "./make";
 import { search } from "./search";
 import { upload } from "./upload";
 import { notice } from "./notice";
+import { arrowDown } from "./arrow";
 
 export const svgList = {
   home: home,
@@ -16,6 +17,7 @@ export const svgList = {
   search: search,
   upload: upload,
   notice: notice,
+  arrowDown: arrowDown,
 };
 
 export type SvgEnum =
@@ -26,4 +28,5 @@ export type SvgEnum =
   | "make"
   | "upload"
   | "notice"
-  | "search";
+  | "search"
+  | "arrowDown";

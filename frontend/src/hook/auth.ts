@@ -33,21 +33,16 @@ export function useTokenAuth() {
           myFetch(`${config.APIServer}/accounts/current/`)
             .then((res) => {
               setUserProfile(res.jsonBody.user);
-              myFetch(`${config.APIServer}/accounts/refresh/`)
-                .then((res) => {
-                  localStorage.setItem("neotube_token", res.jsonBody.token);
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
+              myFetch(`${config.APIServer}/accounts/refresh/`).then((res) => {
+                console.log("set token in refresh", res.jsonBody.token);
+                localStorage.setItem("neotube_token", res.jsonBody.token);
+              });
             })
             .catch((err) => {
-              console.log(err);
               signOut();
             });
         })
         .catch((err) => {
-          console.log(err);
           signOut();
         });
     }

@@ -14,7 +14,7 @@ export function useInfiscrollEvent(listener: () => void, threshold: number) {
         element.offsetTop -
         document.documentElement.clientHeight;
 
-      console.log(window.scrollY, elementHeight, elementHeight - threshold);
+      // console.log(window.scrollY, elementHeight, elementHeight - threshold);
 
       if (window.scrollY > elementHeight - threshold) {
         console.log("set loadVideo true");
@@ -22,11 +22,11 @@ export function useInfiscrollEvent(listener: () => void, threshold: number) {
       }
     };
 
-    console.log("add infiscroll event");
+    // console.log("add infiscroll event");
     window.addEventListener("scroll", infiScrollEvent);
 
     return () => {
-      console.log("remove infiScroll event");
+      // console.log("remove infiScroll event");
       window.removeEventListener("scroll", infiScrollEvent);
     };
   }, [listener, threshold]);

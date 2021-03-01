@@ -6,7 +6,6 @@ const Home = () => {
   const [videoList, setVideoList] = useState([] as VideoData[]);
 
   // load guide data after mount
-  // TODO: guide api에서 유저 정보 분리하기
   useEffect(() => {
     let tempData = [
       {
