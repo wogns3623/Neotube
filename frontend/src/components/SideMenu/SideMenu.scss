@@ -18,8 +18,9 @@
 }
 
 .SideMenu {
+  display: none;
   position: fixed;
-  width: 240px;
+  width: 72px;
   height: calc(100% - 50px); // 100% - header height
   background-color: #202020;
   color: white;

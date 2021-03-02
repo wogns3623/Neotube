@@ -1,8 +1,11 @@
+// TODO serchBar: hidden + 돋보기 생성
+
 header {
   position: fixed;
+  z-index: 2;
   top: 0;
   width: 100%;
-  height: 50px;
+  height: 56px;
   display: flex;
   background-color: #202020;
 

@@ -5,6 +5,7 @@ import { ClickableProps } from "types";
 import "./Menu.scss";
 import { DescIcon } from "components/Icon";
 
+// TODO addmenu- window위치에따라 어느 방향으로 뜰지(window기준), on: 스크롤이벤트x
 const MenuButton = ({ className, children, onClick }: ClickableProps) => {
   return (
     <div className={`react-menu-button ${className ? className : ""}`}>
@@ -51,22 +52,22 @@ const Menu = ({ className, children, direction, alwaysOpen }: MenuProps) => {
     }
   }, [menuButtonChild]);
 
-  // const renderedList = useMemo(() => {
-  //   let listChildren = children.filter((child) => {
-  //     return (child as JSX.Element).type.name !== "MenuButton";
-  //   });
+  const renderedList = useMemo(() => {
+    let listChildren = children.filter((child) => {
+      return (child as JSX.Element).type.name !== "MenuButton";
+    });
 
-  //   return (
-  //     <List
-  //       className={`react-menu-list ${
-  //         alwaysOpen && isOpen ? "" : "disable"
-  //       } ${openDirection.map((value) => "direction-" + value).join(" ")}`}
-  //       direction={direction}
-  //     >
-  //       {listChildren}
-  //     </List>
-  //   );
-  // }, [direction, children, alwaysOpen, isOpen, openDirection]);
+    return (
+      <List
+        className={`react-menu-list ${
+          alwaysOpen && isOpen ? "" : "disable"
+        } ${openDirection.map((value) => "direction-" + value).join(" ")}`}
+        direction={direction}
+      >
+        {listChildren}
+      </List>
+    );
+  }, [direction, children, alwaysOpen, isOpen, openDirection]);
 
   // TODO: scroll막는 이벤트 등록하기
 
@@ -76,7 +77,7 @@ const Menu = ({ className, children, direction, alwaysOpen }: MenuProps) => {
       onBlur={() => handleOpenMenu(false)}
     >
       {renderedButton}
-      {/* {renderedList} */}
+      {renderedList}
     </div>
   );
 };

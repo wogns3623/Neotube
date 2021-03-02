@@ -7,6 +7,9 @@ import { search } from "./search";
 import { upload } from "./upload";
 import { notice } from "./notice";
 import { arrowDown, arrowUp } from "./arrow";
+import { addList } from "./addList";
+import { lastView } from "./lastView";
+import { hiddenMenu } from "./hiddenMenu";
 
 export const svgList = {
   home: home,
@@ -19,6 +22,9 @@ export const svgList = {
   notice: notice,
   arrowDown: arrowDown,
   arrowUp: arrowUp,
+  addList: addList,
+  lastView: lastView,
+  hiddenMenu: hiddenMenu,
 };
 
 export type SvgEnum =
@@ -31,4 +37,7 @@ export type SvgEnum =
   | "notice"
   | "search"
   | "arrowDown"
-  | "arrowUp";
+  | "arrowUp"
+  | "addList"
+  | "lastView"
+  | "hiddenMenu";

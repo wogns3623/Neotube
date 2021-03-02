@@ -1,0 +1,97 @@
+// 반응형
+// 1칸 Sidebar: none search: none
+// 2칸 Sidebar: none search: none
+// 2칸 Sidebar: none
+// 2칸+Sidebar
+// 3칸+Sidebar
+// 4칸+Sidebar
+// 4칸+SideMenu or 5칸+Sidebar
+
+/* 2칸 Sidebar: none search: none */
+
+// TODO scss 함수 사용해서 간결화하기
+@media (min-width: 520px) {
+  .videoView {
+    flex-flow: row wrap;
+  }
+  .video-section {
+    flex-flow: row wrap;
+  }
+  .video {
+    width: calc(50vw - 30px - 16px);
+    .thumb_nail {
+      height: calc((50vw - 30px - 16px) * 0.625);
+    }
+  }
+}
+
+/* 2칸 Sidebar: none */
+@media (max-width: 711px) {
+  .SearchBar {
+    display: none;
+  }
+}
+
+/* 2칸+Sidebar */
+@media (min-width: 810px) {
+  .SideMenu {
+    display: block;
+  }
+  .VideoContainer {
+    margin-left: 72px;
+  }
+  .video {
+    width: calc(((95vw - 72px - 30px) / 2) - 16px);
+    .thumb_nail {
+      height: calc((((95vw - 72px - 30px) / 2) - 16px) * 0.625);
+    }
+  }
+}
+
+/* 3칸+Sidebar */
+@media (min-width: 890px) {
+  .video {
+    width: calc(((95vw - 72px - 30px) / 3) - 16px);
+    .thumb_nail {
+      height: calc((((95vw - 72px - 30px) / 3) - 16px) * 0.625);
+    }
+  }
+}
+
+/* 4칸+Sidebar */
+@media (min-width: 1145px) {
+  .video {
+    width: calc(((95vw - 72px - 30px) / 4) - 16px);
+    .thumb_nail {
+      height: calc((((95vw - 72px - 30px) / 4) - 16px) * 0.625);
+    }
+  }
+}
+
+/* 4칸+SideMenu */
+@media (min-width: 1330px) {
+  .SideMenu {
+    width: 240px;
+  }
+  .VideoContainer {
+    margin-left: 240px;
+  }
+  .video {
+    width: calc(((95vw - 240px - 30px) / 4) - 16px);
+    .thumb_nail {
+      height: calc((((95vw - 240px - 30px) / 4) - 16px) * 0.625);
+    }
+  }
+}
+
+/* 5칸+Sidebar */
+// @media (min-width: 1800px) {
+//   .video {
+//     width: calc(((95vw - 72px - 30px) / 5) - 16px);
+//     .thumb_nail {
+//       height: calc((((95vw - 72px - 30px) / 5) - 16px) * 0.625);
+//     }
+//   }
+// }
+
+// *******씨브레 빡센겨
