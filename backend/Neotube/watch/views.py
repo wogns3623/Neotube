@@ -9,7 +9,6 @@ from video.serializers import VideoSerializer, SimpleVideoSerializer
 from Neotube.pagination import PaginationHandlerMixin
 # Create your views here.
 
-
 class BasicPagination(PageNumberPagination):
     page_size_query_param = 'limit'
 
@@ -17,10 +16,6 @@ class BasicPagination(PageNumberPagination):
 class WatchVideoView(APIView):
 
     def get(self, request, pk):
-        query_set = Video.objects.get(pk=pk)
-        serializer = VideoSerializer(query_set)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
 
 class WatchNextAPIView(APIView, PaginationHandlerMixin):
     pagination_class = BasicPagination
@@ -32,3 +27,4 @@ class WatchNextAPIView(APIView, PaginationHandlerMixin):
         serializer = self.get_paginated_response(
             self.serializer_class(page,  many=True).data)
         return Response(serializer.data, status=status.HTTP_200_OK)
+

@@ -33,21 +33,17 @@ class GoogleLoginView(View):
         return HttpResponse(f'{google_response.text}')
 
     def post(self, request):
-        # ! Google access_token을 제공받아서 구글에 정볼를 얻어옴.
-        google_access_token = request.META['HTTP_AUTHORIZATION']
-        url = f'https://www.googleapis.com/oauth2/v1/userinfo?access_token={google_access_token}'
-        google_response = requests.get(url)
-        google_response_dict = json.loads(google_response.text)
+        user_status = json.loads(request.body)
 
         user, created = SocialLoginUser.objects.get_or_create(
-            username=google_response_dict['email'],
-            social_id=google_response_dict['id']
+            username=user_status['username'],
+            social_id=user_status['id']
         )
 
         if created:
-            user.first_name = google_response_dict['family_name']
-            user.last_name = google_response_dict['given_name']
-            user.email = google_response_dict['email']
+            user.first_name = user_status['last_name']
+            user.last_name = user_status['first_name']
+            user.email = user_status['email']
             user.social = "google"
             user.set_password('google' + user.username)
             user.save()

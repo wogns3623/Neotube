@@ -23,6 +23,7 @@ const Home = () => {
       },
     ];
     setVideoList(tempData);
+    
 
     fetch("http://www.neotubei.kro.kr/guide/")
       .then((res) => res.json())
@@ -33,12 +34,10 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-      <main className="Home">
-        <SideMenu />
-        <VideoContainer videoList={videoList} />
-      </main>
-    </>
+    <main className="Home">
+      <SideMenu />
+      <VideoContainer videoList={videoList} />
+    </main>
   );
 };
 
