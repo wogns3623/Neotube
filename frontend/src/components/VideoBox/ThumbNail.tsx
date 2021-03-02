@@ -12,7 +12,7 @@ type ThumbNailProps = {
 const ThumbNail = ({ thumb_nail, video, run_time }: ThumbNailProps) => {
   return (
     <a href=" " className="thumb_nail">
-      <img src={TestImg} alt="썸네일" width="100%" height="100%" />
+      <img src={TestImg} alt="썸네일" />
       <div className="hidden">
         <div className="lastview">
           <span className="lastview-item1">

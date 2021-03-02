@@ -27,12 +27,12 @@ const Home = () => {
     ];
     setVideoList(tempData);
 
-    fetch("http://www.neotubei.kro.kr/guide/")
-      .then((res) => res.json())
-      .then((json) => {
-        // console.log(json);
-        setVideoList(json);
-      });
+    // fetch("http://www.neotubei.kro.kr/guide/")
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //     // console.log(json);
+    //     setVideoList(json);
+    //   });
   }, []);
 
   return (
