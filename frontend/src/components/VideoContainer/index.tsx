@@ -73,15 +73,14 @@ const VideoContainer = (props: VideoContainerProps) => {
   // load additional video after scroll event
   useEffect(() => {
     if (loadVideo === true) {
-      // console.log("get additional video");
+      console.log("get additional video");
       myFetch(`${config.APIServer}/browse/`).then((res) => {
+        console.log("add video", res.jsonBody);
         setVideoList((vl) => vl.concat(res.jsonBody.video));
         setLoadVideo(false);
       });
     }
   }, [loadVideo]);
-
-  console.log(videoList);
 
   return (
     <div className="VideoContainer">

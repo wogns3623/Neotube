@@ -46,7 +46,6 @@ const LoginButton = () => {
       buttonText="login"
       onSuccess={onLogin}
       onFailure={(err) => console.log(err)}
-      isSignedIn={true}
     />
   );
 };
