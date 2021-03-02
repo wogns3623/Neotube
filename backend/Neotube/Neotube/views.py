@@ -1,12 +1,11 @@
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.serializers import Serializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 
 from video.models import Video
-from video.serializers import VideoSerializer, SimpleVideoSerializer
-from Neotube.pagination import PaginationHandlerMixin
+from video.serializers import SimpleVideoSerializer
+from .pagination import PaginationHandlerMixin
 # Create your views here.
 
 
@@ -14,19 +13,19 @@ class BasicPagination(PageNumberPagination):
     page_size_query_param = 'limit'
 
 
-class WatchVideoView(APIView):
+class GuideAPIView(APIView):
 
-    def post(self, request, pk):
-        query_set = Video.objects.get(pk=pk)
-        serializer = VideoSerializer(query_set)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    def get(self, request):
+        query_set = Video.objects.all()[:20]
+        serializer = SimpleVideoSerializer(query_set, many=True)
+        return Response(serializer.data)
 
 
-class WatchNextAPIView(APIView, PaginationHandlerMixin):
+class BrowseAPIView(APIView, PaginationHandlerMixin):
     pagination_class = BasicPagination
     serializer_class = SimpleVideoSerializer
 
-    def post(self, request, pk):
+    def get(self, request):
         query_set = Video.objects.all()
         page = self.paginate_queryset(queryset=query_set)
         serializer = self.get_paginated_response(

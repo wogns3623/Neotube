@@ -15,12 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import TemplateView
+from rest_framework.authtoken.views import obtain_auth_token
+
+from .views import GuideAPIView, BrowseAPIView
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='login/index.html')),
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    path('neotubei/v1/guide/', include('guide.urls')),
 
+    # * Django Third Pary Apps URL
+    path('accounts/', include('allauth.urls')),
+    path('api-token-auth/', obtain_auth_token),
+
+
+    # * Django My Apps URL
+    path('guide/', GuideAPIView.as_view(), name='guide'),
+    path('browse/', BrowseAPIView.as_view(), name='browse'),
+    path('watch/', include('watch.urls')),
+    path('comment/', include('comment.urls')),
 ]
