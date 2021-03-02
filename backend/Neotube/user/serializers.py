@@ -8,4 +8,4 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SocialLoginUser
-        fields = ['username', 'email', 'subscriber', '_is_pinned_comment']
+        fields = ['username', 'email', 'subscriber']

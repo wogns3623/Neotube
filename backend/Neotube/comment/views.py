@@ -21,7 +21,7 @@ class CreateCommentAPIView(APIView):
 
 class ModifyAPIView(APIView):
     # TODO 댓글 수정 및 삭제 요청 처리하기
-    def delete(self, pk):
+    def delete(self, request, pk):
         comment = Comment.objects.get(pk=pk)
         comment.delete()
         return Response(status=status.HTTP_202_ACCEPTED)
@@ -29,6 +29,9 @@ class ModifyAPIView(APIView):
     def patch(self, request, pk):
         tmp_data = request.data
         tmp_data['id'] = pk
+        comment = Comment.objects.get(pk=pk)
+        tmp_data['video'] = comment.video.pk
+        tmp_data['commenter'] = comment.commenter.pk
         print(tmp_data)
         serializer = CommentSerializer(data=tmp_data)
         if serializer.is_valid():

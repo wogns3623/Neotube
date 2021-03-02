@@ -5,7 +5,7 @@ from .models import Comment, CommentLike, CommentDisLike
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['pk']
 
 
 @admin.register(CommentLike)
