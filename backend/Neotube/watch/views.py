@@ -16,6 +16,8 @@ class BasicPagination(PageNumberPagination):
 class WatchVideoView(APIView):
 
     def get(self, request, pk):
+        pass
+
 
 class WatchNextAPIView(APIView, PaginationHandlerMixin):
     pagination_class = BasicPagination

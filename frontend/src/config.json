@@ -2,5 +2,5 @@
   "googleAPI": {
     "clientId": "781581892874-5fo0b3utssf5n6eidrm0qqgcjoulr12p.apps.googleusercontent.com"
   },
-  "APIServer": "http://www.neotubei.kro.kr"
+  "APIServer": "http://localhost:8000"
 }

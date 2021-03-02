@@ -1,15 +1,6 @@
 //  TODO 어디서 사용하는가에 따라 창 position 다르게 만들기
 .react-menu {
   position: relative;
-  &-button {
-    & > button {
-      color: white;
-      background-color: inherit;
-      border: none;
-      outline: none;
-      padding: 0;
-    }
-  }
 
   &-list {
     position: absolute;
