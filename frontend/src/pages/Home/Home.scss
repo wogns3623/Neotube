@@ -8,6 +8,8 @@
 // 4칸+SideMenu or 5칸+Sidebar
 
 /* 2칸 Sidebar: none search: none */
+
+// TODO scss 함수 사용해서 간결화하기
 @media (min-width: 520px) {
   .videoView {
     flex-flow: row wrap;
@@ -16,9 +18,9 @@
     flex-flow: row wrap;
   }
   .video {
-    width: calc(50vw - 16px - 30px);
+    width: calc(50vw - 30px - 16px);
     .thumb_nail {
-      height: calc((50vw - 16px - 30px) * 0.625);
+      height: calc((50vw - 30px - 16px) * 0.625);
     }
   }
 }
