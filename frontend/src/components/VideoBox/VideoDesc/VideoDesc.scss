@@ -1,0 +1,55 @@
+.videoDesc {
+  flex: 1 auto;
+  background-color: #212121;
+  display: flex;
+  height: 94px;
+
+  .videoImg {
+    width: 36px;
+    height: 36px;
+    margin: 12px 12px 0 0;
+    border-radius: 50%;
+    background-color: gold;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 150%;
+  }
+
+  .videoContent {
+    flex: 1 1 auto;
+    max-width: calc(100% - 72px);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    .videoName {
+      color: white;
+      text-decoration: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      // 왜 또 안먹히냐,,,
+      margin: 12px 0 6px 0;
+      height: 40px;
+      font-size: 14px;
+    }
+    .videoChannel {
+      height: 18px;
+      font-size: 12px;
+    }
+    .viewDesc {
+      display: flex;
+    }
+  }
+
+  .hiddenAdd {
+    .add {
+      visibility: hidden;
+      margin-top: 12px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

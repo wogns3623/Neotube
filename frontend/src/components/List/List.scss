@@ -7,4 +7,13 @@
   &-column {
     flex-direction: column;
   }
+  & .right {
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 711px) {
+    & .sideSubmit {
+      visibility: hidden;
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { SideMenu } from "components/SideMenu";
 import VideoContainer, { VideoData } from "components/VideoContainer";
+import "./Home.scss";
 
 const Home = () => {
   const [videoList, setVideoList] = useState([] as VideoData[]);
@@ -19,27 +20,26 @@ const Home = () => {
         description:
           "이 만화는 무료로 웃겨줍니다!\r\n\r\n[배급 : 빅픽처팀] [기획 : 비크리스피] [제작 : 짤태식 스튜디오]\r\n각본 - 이수빈 / 작화 - 이수빈 / 도움 - 황현식, 안송주, 장다현, 김주은, 이유진, 최지영, 황태훈 / 성우 - 짤태식, 성현희, 이수빈",
         run_time: 278,
+        channel: "채널이름",
         watch_count: 1255027,
         created_at: "2021-02-16T02:15:59.959096+09:00",
       },
     ];
     setVideoList(tempData);
 
-    fetch("http://www.neotubei.kro.kr/guide/")
-      .then((res) => res.json())
-      .then((json) => {
-        // console.log(json);
-        setVideoList(json);
-      });
+    // fetch("http://www.neotubei.kro.kr/guide/")
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //     // console.log(json);
+    //     setVideoList(json);
+    //   });
   }, []);
 
   return (
-    <>
-      <main className="Home">
-        <SideMenu />
-        <VideoContainer videoList={videoList} />
-      </main>
-    </>
+    <main className="Home">
+      <SideMenu />
+      <VideoContainer videoList={videoList} />
+    </main>
   );
 };
 

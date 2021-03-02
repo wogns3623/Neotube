@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import VideoBox from "components/VideoBox";
 import "./VideoContainer.scss";
 
 export type VideoData = {
@@ -9,46 +9,9 @@ export type VideoData = {
   video: string;
   description?: string;
   run_time: number;
+  channel: string;
   watch_count: number;
   created_at: string;
-};
-
-type VideoBoxProps = {
-  videoData: VideoData;
-};
-
-const VideoBox = ({ videoData }: VideoBoxProps) => {
-  const {
-    uploader,
-    title,
-    video,
-    thumb_nail,
-    run_time,
-    watch_count,
-    created_at,
-  } = videoData;
-  return (
-    <div className="video-box">
-      <a href={video}>
-        <div className="thumbnail">
-          <img alt={title} src={thumb_nail} />
-          <div className="runtime">{run_time}</div>
-        </div>
-        <div className="detail">
-          <div className="channel-icon"></div>
-          <div className="meta">
-            <div className="title">{title}</div>
-            <div className="channel-name">{uploader}</div>
-            <div className="etc">
-              <div className="views">{watch_count}</div>
-              <div className="created">{created_at}</div>
-            </div>
-          </div>
-          <div className="menu"></div>
-        </div>
-      </a>
-    </div>
-  );
 };
 
 type VideoContainerProps = {

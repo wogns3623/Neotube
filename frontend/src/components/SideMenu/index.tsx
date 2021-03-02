@@ -1,7 +1,7 @@
 import React from "react";
 import List from "components/List";
 import Icon, { DescIcon } from "components/Icon";
-import { BasicProps, SingleWrapperProps } from "types";
+import { BasicProps } from "types";
 import "./SideMenu.scss";
 
 const SideMenuHeader = ({ className }: BasicProps) => {
@@ -11,37 +11,6 @@ const SideMenuHeader = ({ className }: BasicProps) => {
       <Icon type="logo" />
     </List>
   );
-};
-
-type SideMenuItemProps = SingleWrapperProps & {
-  desc: string;
-  href: string;
-  hasNotification?: boolean;
-};
-const SideMenuItem = ({
-  className,
-  children,
-  desc,
-  href,
-  hasNotification,
-}: SideMenuItemProps) => {
-  // children: image | svg icon
-  // desc: channel name | 홈, 인기, 구독 등
-  return (
-    <div className={`side-menu-item ${className ? className : ""}`}>
-      <a href={href}>
-        <List className="item-wrapper">
-          <Icon>{children}</Icon>
-          <div className="desc">{desc}</div>
-        </List>
-        <div className="notificator" />
-      </a>
-    </div>
-  );
-};
-SideMenuItem.defaultProps = {
-  href: "",
-  hasNotification: false,
 };
 
 const SideMenu = () => {
@@ -109,4 +78,4 @@ const SideMenu = () => {
   );
 };
 
-export { SideMenuHeader, SideMenuItem, SideMenu };
+export { SideMenuHeader, SideMenu };

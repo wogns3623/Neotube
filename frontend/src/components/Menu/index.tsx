@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import List, { ListProps } from "components/List";
 
 import { ClickableProps } from "types";
 import "./Menu.scss";
 
+// TODO addmenu- window위치에따라 어느 방향으로 뜰지(window기준), on: 스크롤이벤트x
 const MenuButton = ({ className, children, onClick }: ClickableProps) => {
   return (
     <div className={`react-menu-button ${className ? className : ""}`}>
@@ -27,26 +28,29 @@ const Menu = ({ className, children, direction }: ListProps) => {
     setIsOpen(value);
   };
 
-  const renderButton = (
-    <MenuButton
-      className="react-menu-button"
-      onClick={() => {
-        handleOpenMenu(!isOpen);
-      }}
-    >
-      {menuButtonChild}
-    </MenuButton>
+  const renderedButton = useMemo(
+    () =>
+      React.cloneElement(menuButtonChild as React.ReactElement, {
+        className: "react-menu-button",
+        onClick: () => {
+          setIsOpen((value) => !value);
+        },
+      }),
+    [menuButtonChild]
   );
 
-  const renderList = (
-    <List
-      className={`react-menu-list${!isOpen ? " disable" : ""}`}
-      direction={direction}
-    >
-      {children.filter((child) => {
-        return (child as JSX.Element).type.name !== "MenuButton";
-      })}
-    </List>
+  const renderList = useMemo(
+    () => (
+      <List
+        className={`react-menu-list${!isOpen ? " disable" : " able"}`}
+        direction={direction}
+      >
+        {children.filter((child) => {
+          return (child as JSX.Element).type.name !== "MenuButton";
+        })}
+      </List>
+    ),
+    [direction, children, isOpen]
   );
 
   return (
@@ -54,7 +58,7 @@ const Menu = ({ className, children, direction }: ListProps) => {
       className={`react-menu ${className ? className : ""}`}
       onBlur={() => handleOpenMenu(false)}
     >
-      {renderButton}
+      {renderedButton}
       {renderList}
     </div>
   );

@@ -75,7 +75,3 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category
-
-
-## TODO 1: 대댓글 작성 시 Comment Table을 활용할 수 있는 방법이 있는가?
-## TODO 2: 좋아요와 싫어요 테이블을 따로 저장할 것인가 Boolean 필드를 만들어 저장할 것인가?
