@@ -37,7 +37,7 @@ export type SvgEnum =
   | "notice"
   | "search"
   | "arrowDown"
-  | "arrowUp";
+  | "arrowUp"
   | "addList"
   | "lastView"
   | "hiddenMenu";
