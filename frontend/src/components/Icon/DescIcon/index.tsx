@@ -21,13 +21,11 @@ const DescIcon = ({
   // desc: channel name | 홈, 인기, 구독 등
   return (
     <div className={`react-icon-desc ${className ? className : ""}`}>
-      <a href={href}>
-        <List className="item-wrapper">
-          <Icon type={type}>{children}</Icon>
-          <div className="desc">{desc}</div>
-          <div className="additional-icon">{additionalIcon}</div>
-        </List>
-      </a>
+      <List className="item-wrapper">
+        <Icon type={type}>{children}</Icon>
+        <div className="desc">{desc}</div>
+        <div className="additional-icon">{additionalIcon}</div>
+      </List>
     </div>
   );
 };

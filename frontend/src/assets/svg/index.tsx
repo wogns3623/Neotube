@@ -6,6 +6,7 @@ import { make } from "./make";
 import { search } from "./search";
 import { upload } from "./upload";
 import { notice } from "./notice";
+import { arrowDown, arrowUp } from "./arrow";
 import { addList } from "./addList";
 import { lastView } from "./lastView";
 import { hiddenMenu } from "./hiddenMenu";
@@ -19,6 +20,8 @@ export const svgList = {
   search: search,
   upload: upload,
   notice: notice,
+  arrowDown: arrowDown,
+  arrowUp: arrowUp,
   addList: addList,
   lastView: lastView,
   hiddenMenu: hiddenMenu,
@@ -33,6 +36,8 @@ export type SvgEnum =
   | "upload"
   | "notice"
   | "search"
+  | "arrowDown"
+  | "arrowUp";
   | "addList"
   | "lastView"
   | "hiddenMenu";

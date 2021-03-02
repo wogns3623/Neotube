@@ -21,7 +21,9 @@ const SideMenu = () => {
         <DescIcon desc="홈" type="home" />
         <DescIcon desc="홈" type="home" />
       </List>
-      <List className="personal" direction="column">
+      <List className="personal" direction="column" size={5}>
+        <DescIcon desc="홈" type="home" />
+        <DescIcon desc="홈" type="home" />
         <DescIcon desc="홈" type="home" />
         <DescIcon desc="홈" type="home" />
         <DescIcon desc="홈" type="home" />
@@ -30,7 +32,7 @@ const SideMenu = () => {
         <DescIcon desc="홈" type="home" />
         <DescIcon desc="홈" type="home" />
       </List>
-      <List className="subscribe" direction="column">
+      <List className="subscribe" direction="column" size={7}>
         <div className="menu-desc">구독</div>
         <DescIcon
           desc="홈"

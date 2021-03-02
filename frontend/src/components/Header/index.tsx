@@ -7,10 +7,10 @@ import { SideMenuHeader } from "components/SideMenu";
 import SearchBar from "components/Header/SearchBar";
 import LoginButton from "components/LoginButton";
 import { UserContext } from "context";
+import config from "config.json";
 
 import "./Header.scss";
 
-// TODO: 다른곳에서도 구글 로그인 버튼이 필요할 수 있으니 따로 분리하기(ex: SideMenu)
 const Header = () => {
   const user = useContext(UserContext);
 
@@ -50,7 +50,7 @@ const Header = () => {
                 alt="아바타 이미지"
                 height="32"
                 width="32"
-                src={user.profile.image as string}
+                src={`${config.APIServer}/identicon/image/${user.profile.id}`}
               />
             </Icon>
           ) : (

@@ -4,28 +4,23 @@
   width: 100%;
   height: 40px;
 
-  a {
+  .item-wrapper {
     width: 192px;
     height: 100%;
     padding: 0 24px;
     color: inherit;
     text-decoration: none;
 
-    .item-wrapper {
-      width: 100%;
-      justify-content: flex-start;
+    .react-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 24px;
+      fill: #909090;
+    }
 
-      .react-icon {
-        width: 24px;
-        height: 24px;
-        margin-right: 24px;
-        fill: #909090;
-      }
-
-      .desc {
-        flex: 1 1 auto;
-        text-align: initial;
-      }
+    .desc {
+      flex: 1 1 auto;
+      text-align: initial;
     }
   }
 

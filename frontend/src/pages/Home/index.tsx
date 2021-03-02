@@ -7,7 +7,6 @@ const Home = () => {
   const [videoList, setVideoList] = useState([] as VideoData[]);
 
   // load guide data after mount
-  // TODO: guide api에서 유저 정보 분리하기
   useEffect(() => {
     let tempData = [
       {
@@ -26,6 +25,7 @@ const Home = () => {
       },
     ];
     setVideoList(tempData);
+    
 
     // fetch("http://www.neotubei.kro.kr/guide/")
     //   .then((res) => res.json())

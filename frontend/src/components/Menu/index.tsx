@@ -3,6 +3,7 @@ import List, { ListProps } from "components/List";
 
 import { ClickableProps } from "types";
 import "./Menu.scss";
+import { DescIcon } from "components/Icon";
 
 // TODO addmenu- window위치에따라 어느 방향으로 뜰지(window기준), on: 스크롤이벤트x
 const MenuButton = ({ className, children, onClick }: ClickableProps) => {
@@ -18,40 +19,57 @@ MenuButton.defaultProps = {
   onClick: (e: React.MouseEvent<any, MouseEvent>) => {},
 };
 
-const Menu = ({ className, children, direction }: ListProps) => {
+type DirectionEnum = "up" | "down" | "left" | "right";
+
+type MenuProps = ListProps & {
+  alwaysOpen?: boolean;
+};
+
+const Menu = ({ className, children, direction, alwaysOpen }: MenuProps) => {
   const menuButtonChild = children.find((child) => {
     return (child as JSX.Element).type.name === "MenuButton";
   });
   const [isOpen, setIsOpen] = useState(menuButtonChild ? false : true);
+  const [openDirection, setOpenDirection] = useState([
+    "down",
+    "left",
+  ] as DirectionEnum[]);
 
   const handleOpenMenu = (value: boolean) => {
     setIsOpen(value);
   };
 
-  const renderedButton = useMemo(
-    () =>
-      React.cloneElement(menuButtonChild as React.ReactElement, {
+  const renderedButton = useMemo(() => {
+    if (menuButtonChild) {
+      return React.cloneElement(menuButtonChild as React.ReactElement, {
         className: "react-menu-button",
         onClick: () => {
           setIsOpen((value) => !value);
         },
-      }),
-    [menuButtonChild]
-  );
+      });
+    } else {
+      return undefined;
+    }
+  }, [menuButtonChild]);
 
-  const renderList = useMemo(
-    () => (
-      <List
-        className={`react-menu-list${!isOpen ? " disable" : " able"}`}
-        direction={direction}
-      >
-        {children.filter((child) => {
-          return (child as JSX.Element).type.name !== "MenuButton";
-        })}
-      </List>
-    ),
-    [direction, children, isOpen]
-  );
+  // const renderedList = useMemo(() => {
+  //   let listChildren = children.filter((child) => {
+  //     return (child as JSX.Element).type.name !== "MenuButton";
+  //   });
+
+  //   return (
+  //     <List
+  //       className={`react-menu-list ${
+  //         alwaysOpen && isOpen ? "" : "disable"
+  //       } ${openDirection.map((value) => "direction-" + value).join(" ")}`}
+  //       direction={direction}
+  //     >
+  //       {listChildren}
+  //     </List>
+  //   );
+  // }, [direction, children, alwaysOpen, isOpen, openDirection]);
+
+  // TODO: scroll막는 이벤트 등록하기
 
   return (
     <div
@@ -59,12 +77,13 @@ const Menu = ({ className, children, direction }: ListProps) => {
       onBlur={() => handleOpenMenu(false)}
     >
       {renderedButton}
-      {renderList}
+      {/* {renderedList} */}
     </div>
   );
 };
 Menu.defaultProps = {
   direction: "column",
+  alwaysOpen: "false",
 };
 
 export default Menu;

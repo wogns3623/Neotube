@@ -13,14 +13,31 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+
 from django.views.generic import TemplateView
+from django_pydenticon.views import image as pydenticon_image
+
+from .views import GuideAPIView, BrowseAPIView
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='login/index.html')),
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    path('neotubei/v1/guide/', include('guide.urls')),
+    path('', TemplateView.as_view(template_name="login/index.html"), name='login'),
 
+    # * Django Third Pary Apps URL
+    path('accounts/', include('user.urls')),
+    path('identicon/image/<path:data>/',
+         pydenticon_image, name='pydenticon_image'),
+
+    # * Django My Apps URL
+    path('guide/', GuideAPIView.as_view(), name='guide'),
+    path('browse/', BrowseAPIView.as_view(), name='browse'),
+    path('watch/', include('watch.urls')),
+    path('comment/', include('comment.urls')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL,
+                      document_root=settings.MEDIA_ROOT)
