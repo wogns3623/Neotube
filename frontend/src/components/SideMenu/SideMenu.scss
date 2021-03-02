@@ -1,0 +1,82 @@
+.SideMenu-header {
+  & > * {
+    margin-right: 8px;
+  }
+  .react-icon {
+    &.menu {
+      width: 24px;
+      height: 24px;
+      padding: 8px;
+      margin-right: 8px;
+    }
+
+    &.logo {
+      width: 80px;
+      height: 24px;
+    }
+  }
+}
+
+.SideMenu {
+  position: fixed;
+  width: 240px;
+  height: calc(100% - 50px); // 100% - header height
+  background-color: #202020;
+  color: white;
+
+  overflow: hidden;
+  &:hover {
+    overflow: overlay;
+  }
+  overscroll-behavior-y: contain;
+  &::-webkit-scrollbar {
+    width: 8px;
+    z-index: 20;
+
+    &-track {
+      background-color: none;
+    }
+    &-thumb {
+      background-color: #606060;
+    }
+  }
+
+  & > .react-list {
+    border-top: 1px solid rgba($color: #ffffff, $alpha: 0.1);
+    padding-top: 12px;
+    margin-bottom: 12px;
+
+    &:first-child {
+      border-top: none;
+    }
+
+    .menu-desc {
+      align-self: flex-start;
+      height: 35px;
+      margin: 0 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .notificator {
+      display: block;
+
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      margin: 0 6px;
+      background-color: #3ea6ff;
+    }
+  }
+
+  .footer {
+    color: #aaaaaa;
+
+    p {
+      margin: 5px 24px;
+      &:last-child {
+        color: #717171;
+      }
+    }
+  }
+}

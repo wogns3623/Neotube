@@ -1,0 +1,46 @@
+.react-menu {
+  position: relative;
+  &-button {
+    & > button {
+      color: white;
+      background-color: inherit;
+      border: none;
+      outline: none;
+      padding: 0;
+    }
+  }
+
+  &-list {
+    position: absolute;
+
+    background-color: rgba(33, 33, 33, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+
+    width: max-content;
+
+    padding: 5px 0;
+
+    &.disable {
+      display: none;
+    }
+
+    &.direction {
+      &-up {
+        bottom: 100%;
+      }
+
+      &-down {
+        top: 100%;
+      }
+
+      &-right {
+        left: 0px;
+      }
+
+      &-left {
+        right: 0px;
+      }
+    }
+  }
+}

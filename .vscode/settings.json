@@ -1,5 +1,4 @@
 {
-  "python.pythonPath": "/home/junsu/anaconda3/envs/Neotube/bin/python",
   "python.autoComplete.extraPaths": [
     "/mnt/f/Neotube/backend/Neotube"
   ],

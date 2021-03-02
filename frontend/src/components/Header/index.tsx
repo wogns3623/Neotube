@@ -1,84 +1,63 @@
-import React from "react";
-import Menu from "components/Menu";
-import SearchBar from "components/Header/SearchBar";
+import React, { useContext } from "react";
+
+import List from "components/List";
+import Menu, { MenuButton } from "components/Menu";
+import Icon, { DescIcon } from "components/Icon";
 import { SideMenuHeader } from "components/SideMenu";
-import Icon from "components/Icon";
+import SearchBar from "components/Header/SearchBar";
+import LoginButton from "components/LoginButton";
+import { UserContext } from "context";
+import config from "config.json";
 
-import "styles/Header.scss";
+import "./Header.scss";
 
-type UserInfo = {
-  username: string | null;
-  img: string | null;
-};
+const Header = () => {
+  const user = useContext(UserContext);
 
-interface HeaderProps {
-  userInfo: UserInfo | undefined;
-}
-
-const Header = (props: HeaderProps) => {
-  console.log(props.userInfo);
   return (
     <header>
-      <Menu className="menu-header">
-        <SideMenuHeader />
+      <List className="list-header">
+        <SideMenuHeader className="left" />
 
-        <Menu id="middle">
+        <List className="middle">
           <SearchBar />
 
-          <Icon className="Icon-mic">
-            <svg
-              viewBox="0 0 24 24"
-              preserveAspectRatio="xMidYMid meet"
-              focusable="false"
-            >
-              <g>
-                <path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"></path>
-              </g>
-            </svg>
-          </Icon>
-        </Menu>
+          <Icon type="mic" />
+        </List>
 
-        <Menu id="right">
-          <Icon className="Icon-upload">
-            <svg
-              viewBox="0 0 24 24"
-              preserveAspectRatio="xMidYMid meet"
-              focusable="false"
-            >
-              <g>
-                <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"></path>
-              </g>
-            </svg>
-          </Icon>
+        <List className="right">
+          <Menu className="menu-upload">
+            <MenuButton>
+              <Icon type="make" />
+            </MenuButton>
 
-          <Icon className="Icon-notice">
-            <svg
-              viewBox="0 0 24 24"
-              preserveAspectRatio="xMidYMid meet"
-              focusable="false"
-            >
-              <g>
-                <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path>
-              </g>
-            </svg>
-          </Icon>
+            <DescIcon desc="동영상 업로드" type="upload" />
+            <DescIcon desc="동영상 업로드" type="upload" />
+          </Menu>
 
-          {props.userInfo !== undefined ? (
-            <Icon className="Icon-user">
+          <Menu className="menu-notice">
+            <MenuButton>
+              <Icon type="notice" />
+            </MenuButton>
+
+            <DescIcon desc="동영상 업로드" type="upload" />
+            <DescIcon desc="동영상 업로드" type="upload" />
+          </Menu>
+
+          {user.profile ? (
+            <Icon className="user">
               <img
                 alt="아바타 이미지"
                 height="32"
                 width="32"
-                src={props.userInfo.img as string}
+                src={`${config.APIServer}/identicon/image/${user.profile.id}`}
               />
             </Icon>
           ) : (
-            <a href="http://www.neotubei.kro.kr/accounts/google/login/">
-              로그인
-            </a>
+            <LoginButton />
           )}
-        </Menu>
-      </Menu>
+        </List>
+      </List>
     </header>
   );
 };

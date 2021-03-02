@@ -1,0 +1,41 @@
+.SearchBar {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  color: white;
+
+  .input-box {
+    flex: 1 1 auto;
+    display: flex;
+    padding: 0 5px;
+    background-color: black;
+    border: 1px solid #303030;
+    border-right: 1px solid black;
+
+    input[type="text"] {
+      size: 1;
+      background: none;
+      border: none;
+      outline: none;
+      flex: 1 1 auto;
+      color: inherit;
+    }
+
+    &:focus-within {
+      border-color: blue;
+    }
+  }
+
+  .react-icon.search {
+    width: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #303030;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
