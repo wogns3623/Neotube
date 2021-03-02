@@ -13,14 +13,14 @@ const List = ({ children, className, direction, size }: ListProps) => {
   const [showMore, setShowMore] = useState(
     size ? children.length > size : false
   );
-  console.log(
-    "size:",
-    size,
-    "\nchildren length:",
-    children.length,
-    "\nshowMore:",
-    showMore
-  );
+  // console.log(
+  //   "size:",
+  //   size,
+  //   "\nchildren length:",
+  //   children.length,
+  //   "\nshowMore:",
+  //   showMore
+  // );
 
   const readmore = useMemo(() => {
     if (hasShowMore) {
@@ -55,7 +55,7 @@ const List = ({ children, className, direction, size }: ListProps) => {
       }`}
     >
       {children.slice(0, showMore ? size : undefined)}
-      {}
+      {readmore}
     </div>
   );
 };

@@ -1,14 +1,5 @@
 .react-menu {
   position: relative;
-  &-button {
-    & > button {
-      color: white;
-      background-color: inherit;
-      border: none;
-      outline: none;
-      padding: 0;
-    }
-  }
 
   &-list {
     position: absolute;

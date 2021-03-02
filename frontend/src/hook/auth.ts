@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useGoogleLogout } from "react-google-login";
 import config from "config.json";
 import myFetch from "utils/myFetch";
+import { addToken } from "utils/myFetch/middleware";
 
 export function useTokenAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -28,17 +29,27 @@ export function useTokenAuth() {
   useEffect(() => {
     if (isAuthenticated) {
       // validate token
-      myFetch(`${config.APIServer}/accounts/validate/`)
+      myFetch(
+        `${config.APIServer}/accounts/validate/`,
+        { method: "POST" },
+        { prefList: [addToken] }
+      )
         .then(() => {
           myFetch(`${config.APIServer}/accounts/current/`)
             .then((res) => {
-              setUserProfile(res.jsonBody.user);
-              myFetch(`${config.APIServer}/accounts/refresh/`).then((res) => {
+              console.log("setting user profile to", res.jsonBody);
+              setUserProfile(res.jsonBody);
+              myFetch(
+                `${config.APIServer}/accounts/refresh/`,
+                { method: "POST" },
+                { prefList: [addToken] }
+              ).then((res) => {
                 console.log("set token in refresh", res.jsonBody.token);
                 localStorage.setItem("neotube_token", res.jsonBody.token);
               });
             })
             .catch((err) => {
+              console.log("err in useTokenAuth current", err);
               signOut();
             });
         })

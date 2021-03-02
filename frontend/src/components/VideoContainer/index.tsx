@@ -76,7 +76,7 @@ const VideoContainer = (props: VideoContainerProps) => {
       console.log("get additional video");
       myFetch(`${config.APIServer}/browse/`).then((res) => {
         console.log("add video", res.jsonBody);
-        setVideoList((vl) => vl.concat(res.jsonBody.video));
+        setVideoList((vl) => vl.concat(res.jsonBody.results));
         setLoadVideo(false);
       });
     }

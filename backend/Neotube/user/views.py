@@ -34,6 +34,7 @@ class GoogleLoginView(View):
 
     def post(self, request):
         user_status = json.loads(request.body)
+        print(user_status)
 
         user, created = SocialLoginUser.objects.get_or_create(
             username=user_status['username'],
@@ -68,8 +69,8 @@ class GoogleRefreshTokenView(View):
         print(token)
         url = 'https://www.googleapis.com/oauth2/v4/token'
         body = {
-            'client_id': '859093333662-ecvnhup69lnmtb722f89fv9e2mbuqrcf.apps.googleusercontent.com',
-            'client_secret': 'ZYaVfQ4aZlnZJUGyVHDyoz32',
+            'client_id': '781581892874-5fo0b3utssf5n6eidrm0qqgcjoulr12p.apps.googleusercontent.com',
+            'client_secret': 'jg_6_RtJAm_kpTWKMECuMzUg',
             'refresh_token': token,
             'grant_type': 'refresh_token'
         }
@@ -87,7 +88,9 @@ class GoogleRefreshTokenView(View):
 
 class DecodeCurrentUserView(View):
     def get(self, request):
-        token = request.META['HTTP_AUTHORIZATION']
+        token = request.META['HTTP_AUTHORIZATION'].split(" ")[1]
         decode_data = jwt.decode(
             jwt=token, key=settings.SECRET_KEY, algorithms=['HS256'])
-        return HttpResponse(f'{decode_data}')
+        decode_data = json.dumps(decode_data)
+        return HttpResponse(f'{decode_data}', content_type="application/json")
+

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { SideMenu } from "components/SideMenu";
 import VideoContainer, { VideoData } from "components/VideoContainer";
+import myFetch from "utils/myFetch";
+import config from "config.json";
 
 const Home = () => {
   const [videoList, setVideoList] = useState([] as VideoData[]);
@@ -23,14 +25,9 @@ const Home = () => {
       },
     ];
     setVideoList(tempData);
-    
-
-    fetch("http://www.neotubei.kro.kr/guide/")
-      .then((res) => res.json())
-      .then((json) => {
-        // console.log(json);
-        setVideoList(json);
-      });
+    myFetch(`${config.APIServer}/guide/`).then((res) => {
+      setVideoList(res.jsonBody);
+    });
   }, []);
 
   return (

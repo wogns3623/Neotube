@@ -33,7 +33,7 @@ const LoginButton = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: data,
       }).then((res) => {
         localStorage.setItem("neotube_token", res.jsonBody.token);
       });

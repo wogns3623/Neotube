@@ -13,6 +13,7 @@ import "./Header.scss";
 
 const Header = () => {
   const user = useContext(UserContext);
+  console.log("in header, user profile is", user);
 
   return (
     <header>

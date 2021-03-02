@@ -1,8 +1,8 @@
 {
-  "python.autoComplete.extraPaths": [
-    "/mnt/f/Neotube/backend/Neotube"
-  ],
-  "python.analysis.extraPaths": [
-    "/mnt/f/Neotube/backend/Neotube"
-  ],
+  "python.autoComplete.extraPaths": ["/mnt/f/Neotube/backend/Neotube"],
+  "python.analysis.extraPaths": ["/mnt/f/Neotube/backend/Neotube"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "python.pythonPath": "/Users/junsu/opt/anaconda3/envs/Neotube/bin/python"
 }
