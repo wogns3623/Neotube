@@ -37,6 +37,7 @@ urlpatterns = [
     path('browse/', BrowseAPIView.as_view(), name='browse'),
     path('watch/', include('watch.urls')),
     path('comment/', include('comment.urls')),
+    path('feeds/', include('feed.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,
