@@ -51,7 +51,7 @@ const Header = () => {
                 alt="아바타 이미지"
                 height="32"
                 width="32"
-                src={`${config.APIServer}/identicon/image/${user.profile.id}`}
+                src={`${config.APIServer}/identicon/image/${user.profile.user_id}`}
               />
             </Icon>
           ) : (

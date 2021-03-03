@@ -162,8 +162,7 @@ CORS_ALLOW_CREDENTIALS = True
 #     'http://localhost:3000',
 #     'http://www.neotubei.kro.kr',
 #     'http://www.neotube.kro.kr',
-# ]
-
+# 
 
 REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': (

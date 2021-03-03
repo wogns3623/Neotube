@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "components/Icon";
 import "./ThumbNail.scss";
-import TestImg from "styles/images/ilbuni.png";
+import config from "config.json";
 
 type ThumbNailProps = {
   thumb_nail: string;
@@ -12,7 +12,7 @@ type ThumbNailProps = {
 const ThumbNail = ({ thumb_nail, video, run_time }: ThumbNailProps) => {
   return (
     <a href=" " className="thumb_nail">
-      <img src={TestImg} alt="썸네일" />
+      <img src={`${config.APIServer}${thumb_nail}`} alt="썸네일" />
       <div className="hidden">
         <div className="lastview">
           <span className="lastview-item1">

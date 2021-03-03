@@ -31,6 +31,7 @@ const VideoContainer = (props: VideoContainerProps) => {
 
   // reset videoList using props
   useEffect(() => {
+    console.log("initial videoList prop is", props.videoList);
     setVideoList(props.videoList);
   }, [props.videoList]);
 

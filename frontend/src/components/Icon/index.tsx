@@ -4,7 +4,6 @@ import DescIcon from "./DescIcon";
 import ChannelIcon from "./CannelIcon";
 import { BasicProps } from "types";
 import { SvgEnum, svgList } from "assets/svg";
-
 import "./Icon.scss";
 
 export type IconProps = BasicProps & {

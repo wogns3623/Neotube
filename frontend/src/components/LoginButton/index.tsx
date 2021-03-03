@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import GoogleLogin, {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
 } from "react-google-login";
 
+import { UserContext } from "context";
 import myFetch from "utils/myFetch";
 import config from "config.json";
 
 const LoginButton = () => {
+  const { changeToken } = useContext(UserContext);
+
   const onLogin = (
     googleUser: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => {
@@ -15,9 +18,7 @@ const LoginButton = () => {
       console.log("offline, code is ", googleUser.code);
     } else {
       googleUser = googleUser as GoogleLoginResponse;
-      console.log(googleUser);
       let profile = googleUser.getBasicProfile();
-      console.log(profile);
 
       let data = {
         username: profile.getName(),
@@ -36,7 +37,7 @@ const LoginButton = () => {
         body: data,
       })
         .then((res) => {
-          localStorage.setItem("neotube_token", res.parsedBody.token);
+          changeToken(res.parsedBody.token);
         })
         .catch((err) => {
           console.log("err in google login api", err);

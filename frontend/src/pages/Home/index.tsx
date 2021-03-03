@@ -29,7 +29,11 @@ const Home = () => {
   useEffect(() => {
     myFetch(`${config.APIServer}/guide/`)
       .then((res) => {
-        setVideoList(res.parsedBody);
+        if (!res.parsedBody.detail) {
+          setVideoList(res.parsedBody);
+        } else {
+          console.log("error occured!", res.parsedBody.detail);
+        }
       })
       .catch((err) => {
         console.log("err in guide api", err);

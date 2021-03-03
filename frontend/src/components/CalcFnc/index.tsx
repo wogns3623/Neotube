@@ -48,7 +48,8 @@ const CreateAt = ({ created_at }: CreateAtProps) => {
   useEffect(() => {
     const diffSeconds = (toDay.getTime() - createDay.getTime()) / 1000;
 
-    if (diffSeconds < 60 * 60) setCreateAt(`${diffSeconds / 60}분 전`);
+    if (diffSeconds < 60 * 60)
+      setCreateAt(`${Math.floor(diffSeconds / 60)}분 전`);
     else {
       if (diffSeconds < 60 * 60 * 24)
         setCreateAt(`${Math.floor(diffSeconds / (60 * 60))}시간 전`);
@@ -75,7 +76,7 @@ const CreateAt = ({ created_at }: CreateAtProps) => {
         }
       }
     }
-  }, [toDay]);
+  }, []);
 
   return <span className="createAt">{createdAt}</span>;
 };

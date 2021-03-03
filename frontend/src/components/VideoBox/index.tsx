@@ -32,6 +32,7 @@ const VideoBox = ({ videoData }: VideoBoxProps) => {
       <ThumbNail thumb_nail={thumb_nail} video={video} run_time={run_time} />
 
       <VideoDesc
+        thumb_nail={thumb_nail}
         title={title}
         description={description}
         channel={channel}

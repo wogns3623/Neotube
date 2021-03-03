@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { useGoogleLogout } from "react-google-login";
 import config from "config.json";
 import myFetch from "utils/myFetch";
+import { UserProfile } from "types";
 
 export function useTokenAuth() {
   const [token, setToken] = useState(localStorage.getItem("neotube_token"));
   const [isAuthenticated, setIsAuthenticated] = useState(token ? true : false);
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
 
   const changeToken = (value?: string) => {
     if (value) {
@@ -47,16 +48,30 @@ export function useTokenAuth() {
         .then(() => {
           myFetch(`${config.APIServer}/accounts/current/`)
             .then((res) => {
-              console.log("setting user profile to", res.parsedBody);
-              setProfile(res.parsedBody);
+              let resProfile = res.parsedBody;
+              delete resProfile.orig_iat;
+              delete resProfile.exp;
 
-              myFetch(`${config.APIServer}/accounts/refresh/`, fetchInit).then(
-                (res) => {
+              console.log(
+                resProfile,
+                profile,
+                resProfile.user_id !== profile?.user_id
+              );
+              if (resProfile.user_id !== profile?.user_id) {
+                console.log("setting user profile to", resProfile);
+                setProfile(resProfile);
+
+                myFetch(
+                  `${config.APIServer}/accounts/refresh/`,
+                  fetchInit
+                ).then((res) => {
                   let refreshedToken = res.parsedBody.token;
                   console.log("set token in refresh", refreshedToken);
                   changeToken(refreshedToken);
-                }
-              );
+                });
+              } else {
+                console.log("nothing change");
+              }
             })
             .catch((err) => {
               console.log("err in useTokenAuth current", err);
@@ -68,7 +83,7 @@ export function useTokenAuth() {
           signOut();
         });
     }
-  }, [token, isAuthenticated, signOut]);
+  }, [token, isAuthenticated, signOut, profile]);
 
-  return { token, profile };
+  return { token, changeToken, profile };
 }

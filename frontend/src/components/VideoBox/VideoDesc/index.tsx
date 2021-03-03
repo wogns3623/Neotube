@@ -5,6 +5,7 @@ import Menu, { MenuButton } from "components/Menu";
 import "./VideoDesc.scss";
 
 type VideoDescProps = {
+  thumb_nail: string;
   title: string;
   description?: string;
   channel: string;
@@ -13,6 +14,7 @@ type VideoDescProps = {
 };
 
 const VideoDesc = ({
+  thumb_nail,
   title,
   description,
   channel,
@@ -24,8 +26,8 @@ const VideoDesc = ({
       <ChannelIcon className="" channel={channel} href=" " />
 
       <div className="videoContent">
-        <a className="videoName" href=" " title={title + title + title + title}>
-          {title + title + title + title}
+        <a className="videoName" href=" " title={title}>
+          {title}
         </a>
         <div className="videoChannel"> {channel}</div>
         <div className="viewDesc">

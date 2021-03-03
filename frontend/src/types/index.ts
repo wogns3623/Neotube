@@ -15,10 +15,9 @@ export type ClickableProps = SingleWrapperProps & {
 };
 
 export type UserProfile = {
+  user_id: number;
   username: string;
   email: string;
-  id: string;
-  first_name: string;
-  last_name: string;
-  image: string;
+  // orig_iat: number;
+  // exp: number;
 };
