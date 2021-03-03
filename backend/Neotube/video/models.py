@@ -46,6 +46,9 @@ class VideoLike(models.Model):
     def __str__(self):
         return f'{self.video_liker}이 {self.video.title}을 좋아요 표시함.'
 
+    def is_video_like(video, user):
+        return len(VideoLike.objects.filter(video=video, video_liker=user)) == 1
+
 
 class VideoDisLike(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
@@ -57,6 +60,10 @@ class VideoDisLike(models.Model):
 
     def __str__(self):
         return f'{self.video_dis_liker}이 {self.video.title}을 싫어요 표시함.'
+
+
+    def is_video_dis_like(video, user):
+        return len(VideoDisLike.objects.filter(video=video, video_dis_liker=user)) == 1
 
 
 class Category(models.Model):

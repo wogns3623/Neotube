@@ -11,6 +11,8 @@ class TagSerializer(serializers.ModelSerializer):
 
 
 class SimpleVideoSerializer(serializers.ModelSerializer):
+    uploader = UserSerializer()
+
     class Meta:
         model = Video
         fields = ['id', 'uploader', 'title', 'thumb_nail',
@@ -19,6 +21,7 @@ class SimpleVideoSerializer(serializers.ModelSerializer):
 
 class VideoSerializer(serializers.ModelSerializer):
     # ! Default로 모델들의 이름이 정의가 되어있음.
+    user = serializers.ReadOnlyField(source='user.username')
     category = serializers.CharField(source='category.category')
     uploader = UserSerializer()
     tag_set = TagSerializer(many=True)
@@ -26,5 +29,5 @@ class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
         # fields = '__all__'
-        fields = ['id', 'uploader', 'category', 'title', 'tag_set', 'thumb_nail', 'video', 'description',
+        fields = ['id', 'user', 'uploader', 'category', 'title', 'tag_set', 'thumb_nail', 'video', 'description',
                   'run_time', 'watch_count', 'count_video_like', 'count_video_dis_like', 'created_at']

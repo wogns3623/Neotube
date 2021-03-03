@@ -14,3 +14,6 @@ class Feed(models.Model):
 
     def __str__(self):
         return f'너튜버: {self.neotuber}, 구독자: {self.subscriber}'
+
+    def is_subscribe(neotuber, subscriber):
+        return len(Feed.objects.filter(neotuber=neotuber, subscriber=subscriber)) == 1
