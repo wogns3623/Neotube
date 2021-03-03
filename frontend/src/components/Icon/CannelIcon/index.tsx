@@ -1,8 +1,7 @@
 import React from "react";
 import "./ChannelIcon.scss";
 import { IconProps } from "../index";
-import TestImg from "D:/Neotube/frontend/src/styles/images/ilbuni.png";
-// ? require()왜 안됨?
+import TestImg from "styles/images/ilbuni.png";
 
 type ChannelIconProps = IconProps & {
   channel: string;

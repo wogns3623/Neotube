@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "components/Icon";
 import "./ThumbNail.scss";
-import TestImg from "D:/Neotube/frontend/src/styles/images/ilbuni.png";
+import TestImg from "styles/images/ilbuni.png";
 
 type ThumbNailProps = {
   thumb_nail: string;

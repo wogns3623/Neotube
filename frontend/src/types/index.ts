@@ -13,3 +13,12 @@ export type MultipleWrapperProps = BasicProps & {
 export type ClickableProps = SingleWrapperProps & {
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
+
+export type UserProfile = {
+  username: string;
+  email: string;
+  id: string;
+  first_name: string;
+  last_name: string;
+  image: string;
+};

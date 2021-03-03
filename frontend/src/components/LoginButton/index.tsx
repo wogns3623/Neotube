@@ -34,9 +34,13 @@ const LoginButton = () => {
           "Content-Type": "application/json",
         },
         body: data,
-      }).then((res) => {
-        localStorage.setItem("neotube_token", res.jsonBody.token);
-      });
+      })
+        .then((res) => {
+          localStorage.setItem("neotube_token", res.parsedBody.token);
+        })
+        .catch((err) => {
+          console.log("err in google login api", err);
+        });
     }
   };
 

@@ -1,4 +1,4 @@
-import { MyRequestInit, PreProcessing, PostProcessing } from "./types";
+import { PreProcessing, PostProcessing, MyResponse } from "./types";
 
 export const useAuth: PreProcessing = (input, init) => {
   const token = localStorage.getItem("neotube_token");
@@ -44,28 +44,9 @@ export const stringifyBody: PreProcessing = (input, init) => {
   return { input: input, init: init };
 };
 
-export const addToken: PreProcessing = (input, init) => {
-  if (init && init.body) {
-    init = init as MyRequestInit;
-    init.body = {
-      ...(init.body as Object),
-      token: localStorage.getItem("neotube_token"),
-    };
-  } else {
-    init = {
-      ...init,
-      body: {
-        token: localStorage.getItem("neotube_token"),
-      },
-    };
-  }
-
-  return { input: input, init: init };
-};
-
 export const parseBody: PostProcessing = (res) => {
-  return new Promise<any>(async (resolve, reject) => {
-    let jsonBody = await res.json();
-    resolve({ ...res, jsonBody: jsonBody });
+  return new Promise<MyResponse>(async (resolve, reject) => {
+    let parsedBody = await res.json();
+    resolve({ ...res, parsedBody: parsedBody });
   });
 };

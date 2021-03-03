@@ -1,16 +1,12 @@
 import React from "react";
+import { UserProfile } from "types";
 
-export const UserContext = React.createContext<{
-  profile:
-    | {
-        username: string;
-        email: string;
-        id: string;
-        first_name: string;
-        last_name: string;
-        image: string;
-      }
-    | undefined;
-}>({
-  profile: undefined,
+interface UserInfo {
+  profile: UserProfile | null;
+  token: string | null;
+}
+
+export const UserContext = React.createContext<UserInfo>({
+  profile: null,
+  token: null,
 });

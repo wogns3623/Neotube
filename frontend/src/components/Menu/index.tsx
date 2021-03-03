@@ -29,10 +29,7 @@ const Menu = ({ className, children, direction, alwaysOpen }: MenuProps) => {
     return (child as JSX.Element).type.name === "MenuButton";
   });
   const [isOpen, setIsOpen] = useState(menuButtonChild ? false : true);
-  const [openDirection, setOpenDirection] = useState([
-    "down",
-    "left",
-  ] as DirectionEnum[]);
+  const [openDirection] = useState(["down", "left"] as DirectionEnum[]);
 
   const handleOpenMenu = (value: boolean) => {
     setIsOpen(value);

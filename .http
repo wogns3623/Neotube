@@ -1,6 +1,0 @@
-POST http://127.0.0.1:8000/comment/3/
-
-{
-    "comment": "댓글 수정",
-    "commenter": 1,
-}
