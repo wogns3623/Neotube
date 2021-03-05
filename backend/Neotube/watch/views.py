@@ -29,6 +29,7 @@ class WatchVideoView(APIView):
 
         else:
             user_dict = {}
+
         query_set = Video.objects.get(pk=pk)
         if query_set:
             serializer = VideoSerializer(query_set)

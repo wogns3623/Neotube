@@ -9,7 +9,7 @@ import myFetch from "utils/myFetch";
 import config from "config.json";
 
 const LoginButton = () => {
-  const { changeToken } = useContext(UserContext);
+  const { setToken } = useContext(UserContext);
 
   const onLogin = (
     googleUser: GoogleLoginResponse | GoogleLoginResponseOffline
@@ -37,7 +37,7 @@ const LoginButton = () => {
         body: data,
       })
         .then((res) => {
-          changeToken(res.parsedBody.token);
+          setToken(res.parsedBody.token);
         })
         .catch((err) => {
           console.log("err in google login api", err);

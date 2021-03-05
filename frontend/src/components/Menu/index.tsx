@@ -70,7 +70,7 @@ const Menu = ({ className, children, direction, alwaysOpen }: MenuProps) => {
   return (
     <div
       className={`react-menu ${className ? className : ""}`}
-      onBlur={() => handleOpenMenu(false)}
+      // onBlur={() => handleOpenMenu(false)}
     >
       {renderedButton}
       {renderedList}

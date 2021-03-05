@@ -23,6 +23,7 @@ header {
         height: 24px;
         padding: 8px;
         margin-right: 8px;
+        flex: 0 0 auto;
       }
 
       .SearchBar {
@@ -43,6 +44,21 @@ header {
           & > img {
             border-radius: 50%;
           }
+        }
+      }
+    }
+
+    .responsive-search {
+      &-visible {
+        display: none;
+      }
+
+      @media (max-width: 590px) {
+        &-visible {
+          display: inherit;
+        }
+        &-invisible {
+          display: none;
         }
       }
     }

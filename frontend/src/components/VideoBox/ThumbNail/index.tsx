@@ -8,7 +8,7 @@ type ThumbNailProps = {
   video: String;
   run_time: number;
 };
-// TODO 코드 간결화 (complete) + img태그로 변경()
+
 const ThumbNail = ({ thumb_nail, video, run_time }: ThumbNailProps) => {
   return (
     <a href=" " className="thumb_nail">

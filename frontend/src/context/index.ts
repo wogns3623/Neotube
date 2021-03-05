@@ -1,14 +1,16 @@
 import React from "react";
 import { UserProfile } from "types";
 
-interface UserInfo {
+interface User {
   token: string | null;
-  changeToken: (value?: string | undefined) => void;
+  setToken: React.Dispatch<React.SetStateAction<string | null>>;
   profile: UserProfile | null;
+  signOut: () => void;
 }
 
-export const UserContext = React.createContext<UserInfo>({
+export const UserContext = React.createContext<User>({
   token: null,
-  changeToken: () => {},
+  setToken: () => {},
   profile: null,
+  signOut: () => {},
 });

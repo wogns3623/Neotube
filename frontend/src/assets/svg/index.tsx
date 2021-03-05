@@ -10,6 +10,7 @@ import { arrowDown, arrowUp } from "./arrow";
 import { addList } from "./addList";
 import { lastView } from "./lastView";
 import { hiddenMenu } from "./hiddenMenu";
+import { logout } from "./logout";
 
 export const svgList = {
   home: home,
@@ -25,6 +26,7 @@ export const svgList = {
   addList: addList,
   lastView: lastView,
   hiddenMenu: hiddenMenu,
+  logout: logout,
 };
 
 export type SvgEnum =
@@ -40,4 +42,5 @@ export type SvgEnum =
   | "arrowUp"
   | "addList"
   | "lastView"
-  | "hiddenMenu";
+  | "hiddenMenu"
+  | "logout";

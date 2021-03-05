@@ -25,13 +25,6 @@
   }
 }
 
-/* 2칸 Sidebar: none */
-@media (max-width: 711px) {
-  .SearchBar {
-    display: none;
-  }
-}
-
 /* 2칸+Sidebar */
 @media (min-width: 810px) {
   .SideMenu {

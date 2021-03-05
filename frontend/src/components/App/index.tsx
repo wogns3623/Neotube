@@ -13,10 +13,10 @@ import "./App.scss";
  * const {isAuthenticated, userProfile} = useAuth(googleLoginParams, googleLogoutParams, token)
  */
 function App() {
-  const userInfo = useTokenAuth();
+  const user = useTokenAuth();
 
   return (
-    <UserContext.Provider value={userInfo}>
+    <UserContext.Provider value={user}>
       <div className="App">
         <Header />
         <BrowserRouter>

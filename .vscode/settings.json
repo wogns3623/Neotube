@@ -1,8 +1,10 @@
 {
-  "python.autoComplete.extraPaths": ["/mnt/f/Neotube/backend/Neotube"],
-  "python.analysis.extraPaths": ["/mnt/f/Neotube/backend/Neotube"],
+  "python.autoComplete.extraPaths": [
+    "/d/coding/project/Neotube/backend/Neotube"
+  ],
+  "python.analysis.extraPaths": ["/d/coding/project/Neotube/backend/Neotube"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
-  "python.pythonPath": "/Users/junsu/opt/anaconda3/envs/Neotube/bin/python"
+  "python.pythonPath": "C:\\Users\\choi1\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
 }

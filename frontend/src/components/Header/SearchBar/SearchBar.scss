@@ -13,12 +13,13 @@
     border-right: 1px solid black;
 
     input[type="text"] {
-      size: 1;
       background: none;
       border: none;
+      padding: 0;
       outline: none;
       flex: 1 1 0;
       color: inherit;
+      width: 100%;
     }
 
     &:focus-within {
@@ -32,6 +33,7 @@
     align-items: center;
     justify-content: center;
     background-color: #303030;
+    flex: 0 0 auto;
 
     svg {
       width: 20px;
